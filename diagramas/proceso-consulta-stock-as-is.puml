@@ -1,0 +1,44 @@
+@startuml proceso-consulta-stock-as-is
+title Proceso de consulta de disponibilidad de stock (AS-IS)
+
+|Clienta|
+start
+:Envía consulta por WhatsApp o Instagram\n(pregunta por talle, color o prenda puntual);
+
+|Silvia (propietaria)|
+:Recibe el mensaje;
+
+if (¿Está en el local\nen ese momento?) then (No)
+  :Debe trasladarse\nhasta el local;
+else (Sí)
+endif
+
+:Revisa el perchero de temporada\ny el estante de variantes/otra temporada;
+note right
+  Fuente de la principal demora:
+  el stock está distribuido en más
+  de un lugar físico (sección 5)
+end note
+
+if (¿La prenda buscada\nes de tipo "medias"?) then (Sí)
+  :Busca en la caja sin clasificar;
+  note right: Caso más lento,\nsin organización (sección 5)
+else (No)
+endif
+
+:Determina si tiene\nel producto disponible;
+
+|Clienta|
+:Recibe la respuesta;
+
+if (¿Confirma la compra?) then (Sí)
+  :Coordina retiro o visita al local;
+else (No)
+  stop
+endif
+
+|Silvia (propietaria)|
+:Concreta la venta\n(ver proceso-venta-as-is.puml);
+stop
+
+@enduml

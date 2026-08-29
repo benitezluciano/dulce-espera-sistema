@@ -1,0 +1,32 @@
+@startuml proceso-venta-as-is
+title Proceso de venta presencial (AS-IS)
+
+|Cliente|
+start
+:Ingresa al local\n(con o sin necesidad definida);
+:Explora o consulta\nsegún el perfil de compra;
+:Elige la prenda;
+
+|Silvia (propietaria)|
+:Calcula el monto\n(cuaderno y calculadora);
+
+if (¿Es venta fiada?) then (Sí)
+  :Registra la venta como fiada\n(pendiente de cobro);
+  note right
+    Poco frecuente, solo con
+    clientes de confianza.
+  end note
+else (No)
+  if (¿Medio de pago?) then (Efectivo)
+    :Recibe el pago en efectivo;
+  else (Transferencia)
+    :Espera confirmación\nde la transferencia;
+  endif
+  :Confirma el pago y\nregistra la venta en el cuaderno;
+endif
+
+|Cliente|
+:Se retira con el producto;
+stop
+
+@enduml
