@@ -1,0 +1,42 @@
+@startuml proceso-consulta-stock-to-be
+title Proceso de consulta de disponibilidad de stock (TO-BE)
+
+|Clienta|
+start
+:Envía consulta por WhatsApp o Instagram\n(pregunta por talle, color o prenda puntual);
+
+|Silvia (propietaria)|
+:Recibe el mensaje;
+:Ingresa al sistema y busca el producto\npor talle, color y/o categoría;
+
+|Sistema|
+:Muestra el stock disponible\nen tiempo real;
+note right
+  Reemplaza el traslado al local
+  y la revisión física de dos
+  ubicaciones + la caja de medias
+  (ver proceso-consulta-stock-as-is.puml)
+end note
+
+|Silvia (propietaria)|
+if (¿Hay stock disponible?) then (Sí)
+  :Responde confirmando\ndisponibilidad y detalle;
+else (No)
+  :Responde que no hay stock\n(y ofrece una alternativa similar);
+endif
+
+|Clienta|
+:Recibe la respuesta;
+
+if (¿Confirma la compra?) then (Sí)
+  :Coordina retiro o visita al local;
+else (No)
+  stop
+endif
+
+|Silvia (propietaria)|
+:Concreta la venta en el sistema;
+note right: Ver proceso-venta-to-be.puml\n(a diagramar)
+stop
+
+@enduml
