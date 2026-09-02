@@ -106,7 +106,61 @@ No, ellos se suelen enterar de lo nuevo que tiene o de cualquier novedad en sus 
     - Silvia: Y por ejemplo tener un sistema que cargan el stock de ropa que tiene. Eso me facilitaria para poder decir "Acá en la compu tengo dos talles" entonces si alguien me pregunta en las redes si tengo x talle, busco directamente en la compu y no esperar a venir a la tienda, revolver todo, analizar que tiene y después de eso recién contestarle.
 Sistema de gestión interno, para que le ayude en el stock, tener facilidad para apretar un botón y saber que es lo que tiene y cuanto tiene de cierto producto. 
 
-## 9. Cierre
+---
+
+## 9. Segunda ronda de relevamiento: dispositivo, búsqueda y stock
+
+> Las siguientes respuestas corresponden a una segunda ronda de consulta. Se registran en forma cruda y resumida, respetando el sentido de lo expresado por la propietaria. La redacción no constituye una cita textual.
+
+1. **Cuando busca una prenda, ¿qué quiere seleccionar primero: tipo de prenda, edad, género, talle, color o temporada?**
+
+    Tipo de prenda. Por ejemplo, body.
+
+2. **¿Le resulta útil combinar varios filtros? Por ejemplo: “remeras para bebé nena, talle 2, color rosa”.**
+
+    Sería útil si ya sé lo que estoy buscando, pero también si quiero buscar de manera general y quizás no tan específica.
+
+3. **¿“Bebé nena”, “bebé varón”, “junior nena”, “junior varón” y “teen” son grupos que utiliza habitualmente para ordenar o buscar la mercadería?**
+
+    No es algo habitual, pero sería un buen estándar. También existen prendas que se pueden considerar neutras.
+
+4. **¿Qué diferencia quiere hacer entre categoría y grupo? Por ejemplo, “body” como tipo de prenda y “bebé nena” como grupo.**
+
+    Exactamente: categoría body que pertenece al grupo bebé nena.
+
+5. **¿Qué datos necesita ver para reconocer una prenda: tipo, talle, género, color, estampado, temporada o proveedor?**
+
+    Necesita ver el tipo de prenda, el talle y el género.
+
+6. **¿El color debe registrarse siempre o solo cuando sea relevante?**
+
+    No es algo de mayor prioridad, pero debería registrarse siempre. Además de colores debería aparecer la opción estampado. Como hay estampados de varón y de nena, debería poder verse a qué género pertenece.
+
+7. **¿El estampado debe registrarse siempre o solo en algunos productos?**
+
+    Solo en algunos productos.
+
+8. **¿La cantidad debe diferenciarse para cada talle, color y género?**
+
+    Sí.
+
+9. **Cuando se registra una venta, ¿debería descontarse automáticamente del stock?**
+
+    Sí.
+
+10. **Si no hay wifi ni datos móviles, ¿necesita consultar igualmente el stock?**
+
+    Es muy raro que no haya conexión a internet.
+
+11. **¿Necesita registrar productos desde el celular o solo consultarlos?**
+
+    Sería ideal poder administrar todo desde el celular.
+
+12. **¿La información del sistema la utilizaría únicamente usted o también otra persona?**
+
+    La información la utilizaría solo ella.
+
+## 10. Cierre
 
 39. ¿Hay algo que no te pregunté y te parece importante que sepa sobre cómo funciona la tienda?
 Silvia: No, creo que hablamos de todo lo que había que hablar
