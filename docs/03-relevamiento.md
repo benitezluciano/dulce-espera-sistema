@@ -14,7 +14,7 @@
 
 ## 1. Objetivo del documento
 
-Este documento consolida la información obtenida en la primera entrevista de relevamiento con la propietaria de "Dulce Espera - Moda Infantil", con el fin de establecer una base de conocimiento del negocio que sirva de insumo para las siguientes etapas del proyecto: modelado del proceso actual (AS-IS), definición de requerimientos y diseño de la solución propuesta (TO-BE).
+Este documento consolida la información obtenida en la primera entrevista y en la segunda ronda de relevamiento con la propietaria de "Dulce Espera - Moda Infantil", con el fin de establecer una base de conocimiento del negocio que sirva de insumo para las siguientes etapas del proyecto: modelado del proceso actual (AS-IS), definición de requerimientos y diseño de la solución propuesta (TO-BE).
 
 ## 2. Contexto del negocio
 
@@ -26,6 +26,12 @@ El negocio opera bajo un modelo de local físico complementado con difusión y c
 - Mañana: 3 días por semana
 - Tarde (franja de mayor afluencia, 17:30–20:00): 5 días por semana
 - Fuera de horario: apertura excepcional ante pedido puntual de un cliente por mensaje
+
+### 2.1. Dispositivo, conectividad y modalidad de uso
+
+La propietaria utiliza principalmente su celular y prefiere administrar el sistema desde ese dispositivo. La conexión a internet del local es generalmente estable; cuando el wifi presenta inconvenientes, utiliza datos móviles. No considera habitual quedarse simultáneamente sin wifi y sin datos móviles, por lo que no se identifica como necesidad inicial el funcionamiento sin conexión.
+
+También necesita consultar el stock cuando se encuentra fuera del local. Esta consulta le permitiría verificar si ya posee un producto antes de comprarlo a un proveedor, especialmente cuando encuentra una oferta de interés. El sistema será utilizado únicamente por la propietaria.
 
 ## 3. Proceso de venta (AS-IS)
 
@@ -80,6 +86,12 @@ Este es el área de mayor complejidad operativa detectada y, según lo expresado
 
 **Detección de agotamiento de stock (confirmado en segunda ronda):** no existe un mecanismo de detección temprana. La propietaria se guía por un umbral de inversión: cuando el dinero acumulado alcanza el monto que considera necesario para reponer mercadería, recién en ese momento revisa físicamente el local para identificar los faltantes reales. Es decir, la detección de faltantes está atada al ciclo de reposición (impulsado por el monto disponible para invertir) y no a una revisión periódica del inventario en sí. Es un patrón consistente con lo relevado en la sección 5: no hay control de stock proactivo, sino reactivo y disparado por un evento externo (tener fondos para comprar).
 
+### 5.1. Necesidades confirmadas en la segunda ronda
+
+La propietaria confirmó que el sistema debería permitir administrar toda la información desde el celular y consultar el stock tanto dentro como fuera del local. La consulta debe servir tanto para responder preguntas de clientes como para verificar la existencia de un producto antes de decidir una compra a proveedores.
+
+La cantidad debe registrarse para cada variante definida por talle, color y género. Al registrar una venta, la cantidad disponible debe disminuir automáticamente. El sistema no necesita contemplar inicialmente consultas sin conexión a internet, ya que la propietaria considera muy poco frecuente la ausencia simultánea de wifi y datos móviles.
+
 ## 6. Productos y catálogo
 
 **Rubros comercializados:** bodys, remeras, pantalones, toallitas de bebé, mantas, frazadas, cambiadores, portachupetes, baberos, vinchas y medias.
@@ -95,6 +107,21 @@ Este es el área de mayor complejidad operativa detectada y, según lo expresado
 **Identificación de producto (confirmado en segunda ronda):** no existe un código ni una nomenclatura formal. En el registro actual del cuaderno, la propietaria anota principalmente el monto de la venta; cuando identifica el producto, lo hace de forma libre por talle y por género (nena/varón), sin un criterio sistemático ni un formato de anotación fijo. Esto confirma que el sistema deberá definir de cero una nomenclatura o codificación de producto — no hay un esquema informal previo del que partir, lo cual es una decisión de diseño a tomar en la etapa de modelado de datos, no un dato a relevar.
 
 En una consulta adicional dentro de la misma entrevista, la propietaria indicó que para ella sería útil que el stock se registre discriminado por: **talle, género de la prenda (nena / varón / prenda neutra), color y cantidad**. También mencionó el estampado como un atributo relevante a considerar.
+
+### 6.1. Clasificación y búsqueda del catálogo
+
+La propietaria indicó que al buscar una prenda prefiere comenzar por el tipo de producto, por ejemplo, `body`, y luego consultar los resultados de forma general o aplicar filtros más específicos según la necesidad.
+
+Se establece la siguiente distinción conceptual:
+
+- **Categoría:** tipo de producto, como body, remera, pantalón o medias.
+- **Grupo:** clasificación comercial que puede utilizarse para organizar los productos, como bebé nena, bebé varón, junior nena, junior varón, teen o neutro.
+
+Por ejemplo, un body puede pertenecer al grupo bebé nena. Estos grupos no forman parte actualmente de una organización habitual del negocio, pero la propietaria considera que podrían ser un estándar útil para el sistema.
+
+La búsqueda deberá admitir tanto consultas generales por categoría como combinaciones de filtros. Como mínimo, se deberán considerar categoría, grupo, género, talle, color y temporada. Para reconocer una prenda, la información prioritaria será el tipo de producto, el talle y el género.
+
+El color deberá registrarse siempre, aunque no sea un dato prioritario para la propietaria. El estampado será opcional, porque solo corresponde a algunos productos, y deberá poder asociarse al género cuando el diseño del estampado lo requiera.
 
 ## 7. Proveedores y compras
 
@@ -130,25 +157,42 @@ Este testimonio constituye la justificación de negocio central del proyecto y e
 
 **Mayor complicación diaria (confirmado en segunda ronda):** la propietaria reafirmó de forma directa que el problema es el control de existencias — reconoce que hay productos que puede verificar a simple vista y otros que no, mencionando puntualmente el caso de las medias, guardadas sin clasificación en un cajón/caja. Esta respuesta confirma, en palabras propias de la entrevistada, lo que ya se había identificado como problema principal en la sección 9.
 
+### 9.1. Precisiones obtenidas en la segunda ronda
+
+La necesidad de consulta rápida se extiende a dos situaciones concretas:
+
+1. responder consultas de clientes sobre prendas, talles, colores y disponibilidad;
+2. verificar si un producto ya se encuentra en el inventario antes de comprarlo a un proveedor.
+
+La propietaria no busca una consulta limitada a un nombre de producto. Necesita poder comenzar por una categoría y, según el caso, consultar todos los productos de ese tipo o acotar los resultados mediante filtros. Por este motivo, la solución deberá priorizar una búsqueda flexible y una visualización clara desde el celular.
+
 > **Nota metodológica:** la pregunta sobre qué cambiaría la propietaria de un solo aspecto del negocio no obtuvo respuesta directa en ninguna de las dos rondas. Se decide no insistir sobre este punto, dado que la respuesta ya está suficientemente triangulada por las preguntas 34 y 36 y por la sección 5 (stock): el aspecto a mejorar es, de forma consistente en toda la entrevista, el control y consulta de existencias. Forzar una respuesta redundante no aportaría información nueva.
 
 ## 10. Reglas de negocio
 
 Las reglas de negocio identificadas a partir de este relevamiento se documentan por separado en [`05-reglas-de-negocio.md`](./05-reglas-de-negocio.md), para poder referenciarlas de forma independiente desde los requisitos, el modelo de datos y los casos de uso.
 
-## 11. Alcance preliminar sugerido para la solución
+## 11. Alcance funcional validado preliminarmente
 
-En base a lo relevado hasta el momento, y sujeto a validación en etapas posteriores (BPMN AS-IS/TO-BE y especificación de requerimientos), se identifica como núcleo funcional prioritario:
+En base a la primera entrevista y a las precisiones obtenidas en la segunda ronda, el núcleo funcional del MVP queda definido de la siguiente manera:
 
-1. Registro y consulta de stock por talle, género de prenda, color y cantidad.
-2. Registro de ventas con diferenciación de medio de pago y de ventas fiadas.
-3. Consulta rápida de disponibilidad, pensada para responder consultas recibidas por redes sociales sin necesidad de traslado físico al local.
+1. **Administración del catálogo:** alta y mantenimiento de categorías, grupos, talles, géneros, colores, temporadas y productos.
+2. **Administración del stock:** registro de cantidades por cada variante de producto, diferenciada como mínimo por talle, color y género, con temporada y estampado opcional.
+3. **Consulta y búsqueda:** búsqueda general por categoría y búsqueda combinada mediante filtros de categoría, grupo, género, talle, color, temporada y disponibilidad.
+4. **Registro de ventas:** selección de productos y cantidades vendidas, disminución automática del stock y diferenciación del medio de pago y de las ventas fiadas.
+5. **Acceso desde celular y fuera del local:** administración y consulta por parte de la propietaria desde el celular, utilizando conexión wifi o datos móviles.
 
-Quedan fuera del alcance preliminar del MVP, a menos que el relevamiento posterior indique lo contrario: gestión formal de proveedores y cuentas por pagar, y gestión de clientes con notificaciones automáticas.
+El sistema tendrá como objetivo principal brindar información confiable y rápida sobre las existencias para responder consultas de clientes y apoyar decisiones de compra a proveedores.
+
+Quedan fuera del alcance preliminar del MVP, a menos que el relevamiento posterior indique lo contrario: funcionamiento sin conexión, aplicación nativa específica, múltiples usuarios, gestión formal de proveedores y cuentas por pagar, gestión de clientes con notificaciones automáticas, catálogo público, carrito de compra, integración automática con redes sociales, facturación electrónica y descuentos automáticos.
 
 ## 12. Cierre del relevamiento
 
-Todas las preguntas pendientes de la primera ronda fueron resueltas en una segunda instancia breve de consulta (23/08/2026). Con esto, se considera cerrada la etapa de relevamiento inicial. Como conclusión general, la segunda ronda no introdujo información contradictoria respecto de lo ya relevado, sino que confirmó y precisó lo identificado en la primera ronda: el problema central del negocio es la falta de certeza sobre el stock disponible, sin que exista además una sobrecarga operativa diaria que deba resolverse.
+La segunda ronda permitió cerrar las principales dudas sobre el contexto de uso y la forma de consulta del sistema. Confirmó que el celular será el dispositivo principal, que la propietaria necesitará administrar la información desde fuera del local y que la búsqueda deberá admitir categorías, grupos y filtros combinables.
+
+También se confirmó que el stock debe discriminar las cantidades por variante y actualizarse automáticamente al registrar una venta. No se identificó como necesidad inicial el funcionamiento sin conexión ni la participación de otros usuarios.
+
+Con estas precisiones, se considera cerrado el relevamiento funcional inicial para definir el alcance preliminar del MVP. Podrán surgir decisiones de detalle durante la especificación de requisitos, el modelado de datos y el diseño de los casos de uso, pero no quedan abiertas cuestiones que impidan establecer el núcleo de la solución.
 
 ## 13. Próximos pasos
 
