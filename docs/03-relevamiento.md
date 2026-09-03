@@ -116,6 +116,18 @@ Se identificaron dos perfiles de cliente relevantes para el diseño de la experi
 - **Cliente con necesidad definida:** sabe qué prenda busca (ya sea porque lo vio previamente o porque conoce una necesidad puntual).
 - **Cliente sin necesidad definida ("regalito"):** consulta sin un producto específico en mente, típicamente buscando una opción de regalo dentro de un rango de precio accesible.
 
+### 8.1. Registro mínimo para ventas fiadas
+
+Aunque no se identifica la necesidad de una base general o comercial de clientes, las ventas fiadas requieren identificar a la persona responsable del pago. Por este motivo, se incorporará un registro mínimo asociado exclusivamente a las ventas fiadas.
+
+Cuando la propietaria seleccione la opción **Fiado**, el sistema deberá permitir buscar un cliente existente mediante autocompletado. La búsqueda podrá realizarse por nombre, apellido o número de teléfono. Si la persona ya se encuentra registrada, la propietaria podrá seleccionarla sin volver a cargar sus datos.
+
+Si no existe un cliente coincidente, el sistema deberá ofrecer la opción **Registrar cliente** y solicitar como datos obligatorios el nombre, el apellido y el número de teléfono. El teléfono se utilizará para evitar registros duplicados y deberá validarse también cuando se modifiquen los datos de un cliente existente.
+
+La propietaria podrá modificar los datos de clientes registrados. La modificación de los datos personales no deberá alterar las ventas fiadas anteriores ni su historial de cobros.
+
+Una misma persona podrá tener varias ventas fiadas pendientes. Cada venta conservará su propio detalle, importe, fecha y estado de cobro, mientras que el sistema podrá mostrar el total pendiente acumulado del cliente. La venta fiada deberá descontar el stock al momento de registrar la entrega, aunque el importe no se considere cobrado hasta registrar el pago.
+
 ## 9. Problemas actuales identificados
 
 **Problema principal (confirmado explícitamente por la propietaria):** la falta de una forma rápida y confiable de consultar el stock disponible, particularmente al recibir consultas por WhatsApp o Instagram. Actualmente, ante una consulta de talle o color, la propietaria debe trasladarse físicamente al local para revisar la mercadería antes de poder responder.
