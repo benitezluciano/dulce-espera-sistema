@@ -2,8 +2,9 @@
 
 ## Proyecto: Sistema de Gestión — "Dulce Espera - Moda Infantil"
 
-**Versión:** 1.0 preliminar  
-**Estado:** En construcción para validación con la propietaria  
+**Versión:** 1.0  
+**Estado:** Aprobado por la propietaria  
+**Fecha de aprobación:** 04/09/2026
 **Usuaria principal:** Silvia Benítez, propietaria del negocio
 
 ---
@@ -238,3 +239,9 @@ El alcance podrá considerarse validado cuando:
 - se acepte que el uso prioritario será desde el celular;
 - se confirme que los reportes mensuales forman parte del MVP;
 - se reconozca que los pagos parciales, la anulación de ventas y el teléfono compartido se detallarán en una etapa posterior.
+
+## 11. Validación de la propietaria
+
+El alcance prelimir fue presentado a Silvia Benitez propietaria de Dulce Espera, quien manifestó su conformidad con el problema, los objetivos, las funcionales incluidas y excluidas, los supuestos y las restricciones documentadas.
+
+Las preguntas abiertas quedan reservadas para las etapas de requisitos funcionales y diseño detallado.
