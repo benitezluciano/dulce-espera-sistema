@@ -38,7 +38,8 @@ _Nombre del organismo o empresa comitente y contexto del problema que el sistema
 │   ├── casos-de-uso.md
 │   ├── er-modelo.md
 │   ├── diseño-ui.md
-│   └── stakeholders.md
+│   ├── stakeholders.md
+│   └── 10-alternativas-de-solucion.md
 ├── diagramas/
 │   ├── casos-de-uso.puml
 │   ├── er.puml

@@ -78,6 +78,8 @@ Las entregas documentales previstas son:
 
 La entrega de cada documento deberá mantener coherencia con el alcance aprobado y con la información obtenida durante el relevamiento.
 
+La decisión sobre la alternativa tecnológica para la primera implementación y la solución objetivo se documenta en [`10-alternativas-de-solucion.md`](./10-alternativas-de-solucion.md). Esta decisión no modifica el alcance funcional: establece cómo se implementará inicialmente el MVP y cómo podría evolucionar posteriormente.
+
 ---
 
 ## 5. Funcionalidades incluidas
