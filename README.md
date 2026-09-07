@@ -1,55 +1,73 @@
-# [Nombre del Sistema] — Grupo [N]
+# Dulce Espera — Sistema de gestión de stock y ventas
 
-> Materia: Diseño de Sistemas Web — Analista Funcional de Sistemas  
-> Institución: Terciario Urquiza — Rosario  
-> Docente: Pedernera Pablo  
-> Cuatrimestre: 2.° 2026
+Sistema interno para la gestión de inventario y ventas de un emprendimiento de indumentaria infantil.
 
-## Integrantes
+## Sobre el proyecto
 
-Ver [integrantes.md](integrantes.md)
+Dulce Espera es un emprendimiento de venta de indumentaria y accesorios infantiles. Actualmente, la consulta del stock depende principalmente del conocimiento de la propietaria y de la revisión física del local.
 
-## Descripción del proyecto
+El proyecto propone una herramienta accesible desde el celular para consultar rápidamente la disponibilidad de productos, talles, colores y variantes, registrar ventas y mantener actualizado el inventario.
 
-_Breve descripción del sistema que el grupo está analizando y documentando._
+El objetivo principal es que la propietaria pueda responder consultas de clientes y tomar decisiones de reposición sin tener que revisar físicamente toda la mercadería.
 
-## Caso de estudio
+## Alcance del MVP
 
-_Nombre del organismo o empresa comitente y contexto del problema que el sistema resuelve._
+El sistema contempla inicialmente:
 
-## Entregas
+- Administración de categorías, productos y variantes.
+- Registro de stock por talle, género, color y temporada.
+- Búsqueda y filtrado de productos.
+- Registro de ventas y actualización automática del stock.
+- Registro de ventas fiadas y cobros pendientes.
+- Correcciones manuales de inventario.
+- Reportes mensuales básicos.
+- Uso prioritario desde dispositivos móviles.
 
-| Entrega | Descripción | Fecha | Estado |
-|---------|-------------|-------|--------|
-| EP-01 | Presentación preliminar | | |
-| EP-02 | | | |
-| Final | Versión definitiva | | |
+El sistema será de uso interno y no funcionará como una tienda online pública.
 
-## Estructura del repositorio
+## Estado actual
 
-```
-/
-├── README.md
-├── integrantes.md
-├── RECURSOS.md         ← leer antes de empezar: prerrequisitos, cheatsheet de git, recursos
-├── docs/
-│   ├── requisitos.md
-│   ├── historias-de-usuario.md
-│   ├── casos-de-uso.md
-│   ├── er-modelo.md
-│   ├── diseño-ui.md
-│   ├── stakeholders.md
-│   └── 10-alternativas-de-solucion.md
-├── diagramas/
-│   ├── casos-de-uso.puml
-│   ├── er.puml
-│   └── wireframes/
-└── cuestionario/
-```
+- Relevamiento del negocio: completado.
+- Alcance funcional inicial: definido y aprobado.
+- Procesos AS-IS y TO-BE: en elaboración.
+- Requisitos, historias de usuario y casos de uso: en elaboración.
+- Modelo de datos y diseño de interfaz: en elaboración.
+- Implementación del MVP: próxima etapa.
 
-## Instrucciones operativas
+## Mi participación
 
-- Un integrante del grupo es responsable de subir los cambios al repositorio.
-- Completar `integrantes.md` antes de la primera entrega.
-- Mantener los archivos en la carpeta correspondiente según la estructura indicada.
-- Los diagramas deben entregarse en formato PlantUML (`.puml`). Se pueden visualizar en [plantuml.com](https://www.plantuml.com/plantuml/uml/).
+Proyecto realizado como parte de mi formación en análisis funcional de sistemas.
+
+Mi participación incluye:
+
+- Relevamiento del negocio y entrevistas.
+- Identificación de actores, problemas y necesidades.
+- Definición del alcance del MVP.
+- Análisis de procesos actuales y propuestos.
+- Elaboración de requisitos funcionales.
+- Redacción de historias de usuario y casos de uso.
+- Modelado de datos y documentación de reglas de negocio.
+- Análisis de alternativas de solución.
+
+## Documentación
+
+- [Alcance del proyecto](docs/01-alcance.md)
+- [Stakeholders](docs/02-stakeholders.md)
+- [Relevamiento del negocio](docs/03-relevamiento.md)
+- [Requisitos](docs/04-requisitos.md)
+- [Reglas de negocio](docs/05-reglas-de-negocio.md)
+- [Historias de usuario](docs/06-historias-de-usuario.md)
+- [Casos de uso](docs/07-casos-de-uso.md)
+- [Modelo de datos](docs/08-modelo-de-datos.md)
+- [Diseño de interfaz](docs/09-diseño-ui.md)
+- [Alternativas de solución](docs/10-alternativas-de-solucion.md)
+
+## Enfoque de implementación
+
+Para la primera versión se seleccionó una alternativa de bajo costo basada en Google Sheets y Google Apps Script, con una interfaz web responsive accesible desde el celular.
+
+A futuro, el sistema podría evolucionar hacia una aplicación web con una base de datos estructurada y mayor capacidad de crecimiento.
+
+## Contexto académico
+
+El proyecto continúa en desarrollo. La documentación se actualiza progresivamente a medida que se validan los requisitos y se construye el MVP.
