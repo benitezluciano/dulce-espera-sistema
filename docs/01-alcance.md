@@ -104,12 +104,12 @@ La categoría representará el tipo de producto y el grupo representará una cla
 
 El sistema permitirá:
 
-- cargar el stock inicial de una vez;
+- cargar el stock inicial mediante una planilla validada;
 - completar posteriormente los productos que no hayan sido cargados en la primera carga;
 - registrar cantidades por variante;
 - diferenciar la cantidad por talle, color y género;
-- asociar cada existencia a una temporada;
-- registrar siempre el color;
+- asociar cada producto a una única temporada, común a todas sus variantes;
+- registrar el color cuando corresponda y utilizar el valor "No aplica" para los productos que no tengan color;
 - registrar un estampado de forma opcional;
 - corregir manualmente una cantidad cuando exista una diferencia con el stock físico;
 - conservar en las búsquedas los productos cuya cantidad sea cero.

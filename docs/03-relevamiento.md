@@ -121,7 +121,7 @@ Por ejemplo, un body puede pertenecer al grupo bebé nena. Estos grupos no forma
 
 La búsqueda deberá admitir tanto consultas generales por categoría como combinaciones de filtros. Como mínimo, se deberán considerar categoría, grupo, género, talle, color y temporada. Para reconocer una prenda, la información prioritaria será el tipo de producto, el talle y el género.
 
-El color deberá registrarse siempre, aunque no sea un dato prioritario para la propietaria. El estampado será opcional, porque solo corresponde a algunos productos, y deberá poder asociarse al género cuando el diseño del estampado lo requiera.
+El color deberá registrarse cuando corresponda al producto. Para los productos que no tengan color, el sistema deberá permitir utilizar el valor "No aplica". El estampado será opcional, porque solo corresponde a algunos productos, y deberá poder asociarse al género cuando el diseño del estampado lo requiera.
 
 ## 7. Proveedores y compras
 

@@ -18,10 +18,23 @@
 | RN10 | La actualización de los datos personales de una persona no modifica las ventas fiadas ni los cobros registrados previamente. | Sección 8.1 del relevamiento. La información actual puede cambiar sin perder el historial de operaciones. |
 | RN11 | Una misma persona puede tener varias ventas fiadas pendientes simultáneamente. | Sección 8.1 del relevamiento. La propietaria confirmó que una persona puede mantener más de una venta pendiente. |
 | RN12 | Una venta fiada descuenta la mercadería entregada, pero permanece pendiente hasta que se registra su cobro. | Secciones 3, 4 y 8.1 del relevamiento. La entrega de mercadería y el ingreso efectivo del dinero son hechos distintos. |
+| RN13 | El precio vigente se asocia al producto y es común a todas sus variantes. | Decisión tomada durante la especificación de requisitos. Las prendas iguales mantienen el mismo precio aunque cambie el talle; el volumen del negocio no justifica repetir el precio por variante. |
+| RN14 | Cada venta conserva el precio aplicado en el momento de la operación, aunque luego se modifique el precio vigente del producto. | Necesidad de identificar correctamente operaciones históricas y reportes de meses anteriores. |
+| RN15 | Cada producto pertenece a una única temporada, que es común a todas sus variantes. | Aclaración de la propietaria sobre productos de verano e invierno, por ejemplo remeras mangas cortas y remeras mangas largas. |
+| RN16 | Los productos que no requieren talle, género o color se registran mediante una única variante y el atributo correspondiente toma el valor "No aplica". | Decisión tomada durante la especificación de requisitos para mantener una estructura uniforme de stock. |
+| RN17 | Un producto inactivo no se elimina y conserva sus variantes, ventas y demás información histórica. | Decisión de la propietaria para preservar el historial. |
+| RN18 | Una variante se identifica por la combinación de los atributos aplicables a su producto: talle, color, género y estampado. | Decisión derivada de la necesidad de controlar cantidades por variante. |
+| RN19 | Toda corrección manual de stock debe registrar un motivo seleccionado de una lista de opciones simples. | Decisión tomada durante la especificación de requisitos para mantener trazabilidad sin sobrecargar la operación cotidiana. |
+| RN20 | Cada corrección manual de stock debe conservarse en un historial con la fecha, la variante, la cantidad anterior, la cantidad nueva y el motivo. | Principio de trazabilidad de los movimientos de inventario y necesidad de explicar diferencias entre el stock registrado y el físico. |
+| RN21 | La carga inicial de stock debe realizarse mediante una planilla validada antes de incorporar los datos al inventario. | Decisión tomada durante la especificación de requisitos para facilitar la carga inicial y reducir errores masivos. |
+| RN22 | No se puede confirmar una venta si alguna cantidad solicitada supera la cantidad disponible de la variante correspondiente. | Principio de integridad del stock y prevención de ventas de mercadería no registrada como disponible. |
 
 ## Notas de aplicación
 
 - **RN01 y RN02** son las reglas con mayor impacto sobre los casos de uso de registro de venta: el sistema debe permitir marcar una venta como fiada y diferenciarla del total hasta su cobro, y debe permitir aplicar un descuento manual editable, nunca una lógica de descuento automática.
-- **RN03 y RN04** son las de mayor impacto sobre el modelo de datos (`08-modelo-de-datos.md`): el talle debe modelarse como una lista de valores de referencia (no un rango numérico estricto), y cada producto/stock debe poder asociarse a una temporada sin que eso implique ocultar automáticamente las demás.
+- **RN03 y RN04** son las de mayor impacto sobre el modelo de datos (`08-modelo-de-datos.md`): el talle debe modelarse como una lista de valores de referencia (no un rango numérico estricto), y la temporada debe asociarse al producto completo.
 - **RN05** delimita negativamente el alcance: no es necesario diseñar entidades ni pantallas para gestión de deuda con proveedores en el MVP.
 - **RN06 a RN12** delimitan el registro de personas asociado a ventas fiadas: no se requiere una gestión comercial general, pero sí identificar a quien mantiene pagos pendientes y conservar la trazabilidad de sus operaciones.
+- **RN13 a RN18** definen la relación entre producto, precio, temporada, variante y conservación del historial. Estas reglas deben reflejarse en el modelo de datos y en la carga inicial del catálogo.
+- **RN19 y RN20** definen la trazabilidad mínima de las correcciones manuales de stock. El motivo debe seleccionarse antes de confirmar el cambio y el historial no debe reemplazarse por el valor actual.
+- **RN21 y RN22** protegen la integridad de la carga inicial y de las ventas: los datos importados se validan antes de incorporarse y una venta con stock insuficiente no puede confirmarse.
