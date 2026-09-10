@@ -68,6 +68,24 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-STK-15 | El historial de correcciones deberá registrar como mínimo la fecha, la variante, la cantidad anterior, la cantidad nueva y el motivo seleccionado. |
 | RF-STK-16 | El sistema no deberá permitir confirmar una venta cuando la cantidad solicitada de una variante sea superior a su cantidad disponible. |
 
+### Módulo BUS — Búsqueda y consulta
+
+| ID | Requisito |
+|----|-----------|
+| RF-BUS-01 | El sistema deberá permitir buscar productos utilizando al menos un criterio de búsqueda. |
+| RF-BUS-02 | El sistema deberá permitir buscar por nombre, código interno, marca, categoría y características de la variante. |
+| RF-BUS-03 | El sistema deberá permitir iniciar una búsqueda utilizando únicamente una categoría, únicamente un nombre o una combinación de ambos. |
+| RF-BUS-04 | El sistema deberá permitir combinar los filtros de categoría, grupo, género, talle, color, temporada y disponibilidad. |
+| RF-BUS-05 | El sistema deberá aplicar únicamente los filtros que la propietaria haya completado o seleccionado. |
+| RF-BUS-06 | El sistema deberá combinar los filtros seleccionados mediante una condición que exija cumplir todos los criterios ingresados. |
+| RF-BUS-07 | El sistema deberá informar que no se encontraron coincidencias cuando ningún producto cumpla los criterios seleccionados. |
+| RF-BUS-08 | El sistema deberá permitir filtrar los resultados por `Disponibles`, `Agotados` y `Todos`. |
+| RF-BUS-09 | El sistema deberá ocultar los productos inactivos en las búsquedas normales. |
+| RF-BUS-10 | El sistema deberá permitir incluir productos inactivos mediante un filtro específico. |
+| RF-BUS-11 | El sistema deberá admitir coincidencias parciales al buscar por nombre. |
+| RF-BUS-12 | El sistema deberá mostrar el precio vigente junto con la información del producto. |
+| RF-BUS-13 | El sistema deberá mostrar la marca, temporada, variantes y cantidad disponible de los productos encontrados. |
+
 ## 3. Requisitos no funcionales
 
 Los siguientes requisitos surgen del alcance aprobado y del contexto de uso.
@@ -109,6 +127,12 @@ la validación del MVP.
 - Las correcciones manuales de stock requerirán un motivo seleccionado de una lista de opciones simples.
 - Se conservará un historial de las correcciones manuales de stock.
 - No se confirmarán ventas cuya cantidad supere el stock disponible.
+- La búsqueda deberá aceptar al menos un criterio y permitirá combinar criterios opcionales.
+- Los criterios seleccionados se aplicarán conjuntamente y los no seleccionados no restringirán los resultados.
+- Los productos inactivos estarán ocultos en la búsqueda normal y podrán incluirse mediante un filtro específico.
+- La disponibilidad podrá filtrarse como `Disponibles`, `Agotados` o `Todos`.
+- La búsqueda por nombre admitirá coincidencias parciales.
+- Los resultados mostrarán el precio vigente del producto.
 
 ### 4.2. Alcance pendiente del módulo de stock
 
