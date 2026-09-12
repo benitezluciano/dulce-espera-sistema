@@ -38,6 +38,13 @@
 | RN30 | Los pagos parciales se aplican a la deuda total de la persona comenzando por las ventas fiadas más antiguas. | Recomendación aceptada durante la especificación de requisitos para simplificar la operación cotidiana. |
 | RN31 | Un pago no puede superar el saldo pendiente de la persona. | Principio de integridad de la cuenta corriente y prevención de saldos negativos. |
 | RN32 | Una venta fiada se considera cancelada cuando los pagos aplicados alcanzan su importe pendiente. | Decisión derivada del modelo de cuenta corriente y pagos parciales. |
+| RN33 | Una venta puede anularse en cualquier momento posterior a su confirmación, sin un plazo límite. | Decisión tomada durante la especificación de requisitos para permitir corregir errores detectados tardíamente. |
+| RN34 | Toda anulación requiere un motivo obligatorio seleccionado de una lista de opciones simples. | Decisión tomada durante la especificación de requisitos, análoga a RN19 para correcciones de stock. |
+| RN35 | Una venta anulada no se elimina; conserva su detalle original, su motivo y su fecha de anulación. | Principio de trazabilidad e historial aplicado también en RN17 y RN20. |
+| RN36 | Al anular una venta se restituyen al stock las cantidades de las variantes vendidas. | Consecuencia directa de RN22 y de la necesidad de mantener el stock confiable. |
+| RN37 | Las ventas anuladas no se contabilizan en el total de ventas válidas ni en los reportes mensuales. | Decisión tomada durante la especificación de requisitos para no distorsionar la información consolidada. |
+| RN38 | Al anular una venta fiada sin pagos registrados, se descuenta su importe de la deuda de la persona. | Consecuencia del modelo de cuenta corriente definido en RN28 a RN32. |
+| RN39 | Al anular una venta fiada con pagos parciales registrados, la venta y los pagos existentes se conservan sin modificación, y el efecto de la anulación se registra mediante un ajuste separado. | Decisión tomada durante la especificación de requisitos para no alterar el historial de pagos ya recibidos. |
 
 ## Notas de aplicación
 
@@ -50,3 +57,4 @@
 - **RN21 y RN22** protegen la integridad de la carga inicial y de las ventas: los datos importados se validan antes de incorporarse y una venta con stock insuficiente no puede confirmarse.
 - **RN23 a RN27** definen el cálculo, fecha, medios de pago y estado de cobro de las ventas normales.
 - **RN28 a RN32** definen la cuenta corriente de ventas fiadas, la aplicación de pagos y la conservación del historial.
+- **RN33 a RN39** definen la anulación de ventas: no tiene plazo límite, requiere motivo, conserva el historial, restituye stock y no altera pagos ya recibidos en ventas fiadas; en su lugar, genera un ajuste separado.

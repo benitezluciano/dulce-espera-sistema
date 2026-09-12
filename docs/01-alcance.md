@@ -142,7 +142,7 @@ El sistema permitirá:
 - registrar ventas fiadas;
 - disminuir automáticamente el stock al registrar la venta;
 - registrar posteriormente el cobro de una venta fiada;
-- permitir la anulación de una venta, contemplando la restitución correspondiente del stock.
+- permitir la anulación de una venta en cualquier momento, con motivo obligatorio, restitución del stock y sin alterar los pagos ya recibidos en ventas fiadas.
 
 ### 5.5. Registro mínimo para ventas fiadas
 
