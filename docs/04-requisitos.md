@@ -86,6 +86,55 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-BUS-12 | El sistema deberá mostrar el precio vigente junto con la información del producto. |
 | RF-BUS-13 | El sistema deberá mostrar la marca, temporada, variantes y cantidad disponible de los productos encontrados. |
 
+### Módulo VTA — Registro de ventas
+
+| ID | Requisito |
+|----|-----------|
+| RF-VTA-01 | El sistema deberá permitir registrar una venta seleccionando uno o más productos y sus variantes. |
+| RF-VTA-02 | El sistema deberá permitir indicar la cantidad vendida para cada variante seleccionada. |
+| RF-VTA-03 | El sistema deberá mostrar el precio vigente del producto al preparar la venta. |
+| RF-VTA-04 | El sistema deberá permitir modificar manualmente el precio aplicado a un producto durante la venta cuando la propietaria lo decida. |
+| RF-VTA-05 | El sistema deberá conservar en la venta el precio aplicado al momento de confirmarla, aunque luego se modifique el precio vigente del producto. |
+| RF-VTA-06 | El sistema deberá calcular el importe total a partir de los productos, cantidades y precios aplicados. |
+| RF-VTA-07 | El sistema deberá permitir aplicar un descuento expresado como porcentaje antes de confirmar la venta. |
+| RF-VTA-08 | El sistema deberá mostrar el subtotal, el porcentaje de descuento aplicado y el total final. |
+| RF-VTA-09 | El sistema deberá registrar la venta utilizando automáticamente la fecha actual. |
+| RF-VTA-10 | El sistema deberá permitir registrar una venta cobrada o una venta fiada. |
+| RF-VTA-11 | El sistema deberá permitir registrar pagos mediante efectivo, transferencia o tarjeta de débito. |
+| RF-VTA-12 | El sistema deberá permitir registrar una venta utilizando más de un medio de pago. |
+| RF-VTA-13 | El sistema deberá permitir registrar una venta entregada cuyo pago por transferencia se encuentre pendiente de confirmación. |
+| RF-VTA-14 | El sistema deberá descontar automáticamente del stock las cantidades vendidas al confirmar la entrega de la mercadería. |
+| RF-VTA-15 | El sistema deberá conservar el detalle de productos, variantes, cantidades, precios, descuento e importe total de cada venta. |
+| RF-VTA-16 | El sistema no deberá registrar el nombre de un cliente en las ventas normales en el MVP. |
+
+### Módulo FIA — Ventas fiadas y cuenta corriente
+
+| ID | Requisito |
+|----|-----------|
+| RF-FIA-01 | El sistema deberá permitir asociar cada venta fiada a una persona identificable. |
+| RF-FIA-02 | El sistema deberá permitir buscar y reutilizar una persona registrada mediante nombre, apellido o número de teléfono. |
+| RF-FIA-03 | El sistema deberá permitir registrar una nueva persona para una venta fiada indicando nombre, apellido y número de teléfono. |
+| RF-FIA-04 | El sistema deberá permitir que una persona tenga varias ventas fiadas pendientes. |
+| RF-FIA-05 | El sistema deberá mostrar el historial completo de ventas fiadas y pagos de una persona. |
+| RF-FIA-06 | El sistema deberá calcular y mostrar el saldo pendiente acumulado de una persona. |
+| RF-FIA-07 | El sistema deberá permitir registrar nuevas ventas fiadas para una persona aunque tenga saldo pendiente. |
+| RF-FIA-08 | El sistema deberá actualizar automáticamente el saldo después de registrar una nueva venta fiada o un pago. |
+| RF-FIA-09 | El sistema deberá conservar el historial completo de una persona aunque su saldo pendiente llegue a cero. |
+| RF-FIA-10 | El sistema deberá permitir modificar los datos personales de una persona sin alterar sus ventas ni pagos históricos. |
+
+### Módulo PAG — Pagos de ventas fiadas
+
+| ID | Requisito |
+|----|-----------|
+| RF-PAG-01 | El sistema deberá permitir registrar pagos parciales o totales de la deuda de una persona. |
+| RF-PAG-02 | El sistema deberá registrar la fecha actual, el importe y el medio de pago de cada pago. |
+| RF-PAG-03 | El sistema deberá permitir registrar pagos mediante efectivo, transferencia o tarjeta de débito. |
+| RF-PAG-04 | El sistema deberá aplicar cada pago a la deuda total de la persona comenzando por las ventas fiadas más antiguas. |
+| RF-PAG-05 | El sistema deberá actualizar automáticamente el saldo pendiente después de registrar un pago. |
+| RF-PAG-06 | El sistema no deberá permitir registrar un pago superior al saldo pendiente de la persona. |
+| RF-PAG-07 | El sistema deberá considerar una venta fiada como cancelada cuando el total de sus pagos aplicados alcance su importe pendiente. |
+| RF-PAG-08 | El sistema deberá contabilizar como cobrado únicamente el importe efectivamente registrado mediante pagos. |
+
 ## 3. Requisitos no funcionales
 
 Los siguientes requisitos surgen del alcance aprobado y del contexto de uso.
@@ -133,6 +182,15 @@ la validación del MVP.
 - La disponibilidad podrá filtrarse como `Disponibles`, `Agotados` o `Todos`.
 - La búsqueda por nombre admitirá coincidencias parciales.
 - Los resultados mostrarán el precio vigente del producto.
+- El descuento de una venta se registrará como porcentaje.
+- El precio aplicado podrá modificarse manualmente durante una venta si la propietaria lo decide y ese valor quedará conservado en el historial.
+- Las ventas normales no se asociarán a una persona en el MVP.
+- Una venta podrá utilizar uno o más medios de pago.
+- Una venta entregada con transferencia pendiente podrá registrarse como pendiente de confirmación.
+- Las ventas fiadas se administrarán mediante una cuenta corriente única por persona.
+- Los pagos parciales se aplicarán a la deuda total comenzando por las ventas fiadas más antiguas.
+- Una persona podrá generar nuevas ventas fiadas aunque mantenga deuda activa.
+- La fecha de ventas y pagos será la fecha actual del sistema.
 
 ### 4.2. Alcance pendiente del módulo de stock
 

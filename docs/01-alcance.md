@@ -135,7 +135,10 @@ El sistema permitirá:
 - registrar los productos y cantidades vendidos;
 - registrar el precio de venta;
 - registrar la fecha y el medio de pago;
-- aplicar descuentos manuales cuando corresponda;
+- aplicar descuentos manuales expresados como porcentaje cuando corresponda;
+- permitir modificar manualmente el precio aplicado durante una venta cuando la propietaria lo decida;
+- permitir utilizar uno o más medios de pago en una misma venta;
+- registrar una venta entregada cuyo pago por transferencia se encuentre pendiente de confirmación;
 - registrar ventas fiadas;
 - disminuir automáticamente el stock al registrar la venta;
 - registrar posteriormente el cobro de una venta fiada;
@@ -150,7 +153,9 @@ No se incluirá una base comercial general de clientes. Sí se incluirá un regi
 - registrar una nueva persona cuando sea necesario;
 - consultar las ventas fiadas pendientes;
 - permitir varias ventas fiadas pendientes para una misma persona;
-- registrar pagos parciales o totales, según el detalle que se defina en la etapa de requisitos;
+- administrar una cuenta corriente única por persona;
+- registrar pagos parciales o totales aplicados a la deuda más antigua;
+- permitir nuevas ventas fiadas aunque la persona mantenga deuda activa;
 - modificar los datos personales sin alterar el historial de ventas y cobros.
 
 Los datos definidos como necesarios para una nueva persona son nombre, apellido y número de teléfono, siendo obligatorio este último.
