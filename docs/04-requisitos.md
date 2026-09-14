@@ -85,6 +85,7 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-BUS-11 | El sistema deberá admitir coincidencias parciales al buscar por nombre. |
 | RF-BUS-12 | El sistema deberá mostrar el precio vigente junto con la información del producto. |
 | RF-BUS-13 | El sistema deberá mostrar la marca, temporada, variantes y cantidad disponible de los productos encontrados. |
+| RF-BUS-14 | El sistema deberá permitir ordenar los resultados de búsqueda de menor a mayor cantidad disponible, para apoyar la decisión de reposición de mercadería. |
 
 ### Módulo VTA — Registro de ventas
 
@@ -176,6 +177,13 @@ la validación del MVP.
 |----|-----------|
 | RNF-06 | El sistema deberá conservar los productos inactivos y sus datos históricos. |
 | RNF-07 | El sistema deberá conservar el precio aplicado en una venta aunque posteriormente se modifique el precio vigente del producto. |
+
+### 3.4. Seguridad de acceso y resguardo de la información
+
+| ID | Requisito |
+|----|-----------|
+| RNF-08 | El sistema deberá exigir usuario y contraseña para acceder, recomendándose activar la verificación en dos pasos en la cuenta utilizada. |
+| RNF-09 | El sistema deberá generar copias de seguridad periódicas y automáticas de la información almacenada, independientes del historial de versiones nativo de la herramienta utilizada. |
 
 ## 4. Decisiones confirmadas y temas pendientes
 

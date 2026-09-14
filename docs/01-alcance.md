@@ -43,7 +43,7 @@ Mejorar el control y la consulta del stock de Dulce Espera mediante una herramie
 - Facilitar la respuesta a consultas recibidas por WhatsApp e Instagram.
 - Permitir verificar la existencia de un producto antes de comprar nueva mercadería.
 - Permitir corregir manualmente las cantidades cuando se detecten diferencias físicas.
-- Consultar productos agotados y reportes mensuales.
+- Consultar productos agotados y con stock bajo mediante el motor de búsqueda, como apoyo a la decisión de reposición de mercadería.
 - Mantener una solución simple e intuitiva para una única usuaria.
 
 ---
@@ -160,9 +160,9 @@ No se incluirá una base comercial general de clientes. Sí se incluirá un regi
 
 Los datos definidos como necesarios para una nueva persona son nombre, apellido y número de teléfono, siendo obligatorio este último.
 
-### 5.6. Reportes mensuales
+### 5.6. Consulta de stock bajo
 
-El MVP incluirá reportes mensuales básicos para consultar la información registrada durante un período. El contenido exacto de los reportes, sus filtros y los datos que mostrarán se definirán durante la especificación de requisitos.
+En lugar de un módulo de reportes independiente, la búsqueda (sección 5.3) permitirá ordenar los resultados de menor a mayor cantidad disponible, de forma que la propietaria pueda identificar visualmente los productos con stock bajo o agotado al momento de decidir una reposición.
 
 ---
 
@@ -184,7 +184,8 @@ Quedan fuera del MVP:
 - descuentos automáticos;
 - funcionamiento sin conexión;
 - múltiples usuarios y permisos complejos;
-- aplicación móvil nativa específica para Android o iOS.
+- aplicación móvil nativa específica para Android o iOS;
+- módulo de reportes mensuales (queda como posible mejora futura, no se desarrollará en este primer MVP).
 
 El sistema podrá ayudar a decidir una compra mostrando el stock existente, pero no administrará la relación completa con los proveedores.
 
@@ -202,7 +203,7 @@ Se adoptan los siguientes supuestos para esta versión del alcance:
 - Podrán agregarse posteriormente los productos que no hayan sido cargados en la primera instancia.
 - Las redes sociales continuarán utilizándose fuera del sistema.
 - El sistema se utilizará para gestión interna y no para vender directamente a clientes.
-- Los reportes mensuales serán de carácter básico y su contenido se precisará más adelante.
+- La gestión de la recuperación de acceso a la cuenta de Google (correo o teléfono de recuperación) es responsabilidad de la propietaria y queda fuera del alcance funcional del sistema.
 
 ---
 
