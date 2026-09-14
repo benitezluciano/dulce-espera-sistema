@@ -43,7 +43,7 @@ Mejorar el control y la consulta del stock de Dulce Espera mediante una herramie
 - Facilitar la respuesta a consultas recibidas por WhatsApp e Instagram.
 - Permitir verificar la existencia de un producto antes de comprar nueva mercadería.
 - Permitir corregir manualmente las cantidades cuando se detecten diferencias físicas.
-- Consultar productos agotados y reportes mensuales.
+- Consultar productos agotados y con stock bajo mediante el motor de búsqueda, como apoyo a la decisión de reposición de mercadería.
 - Mantener una solución simple e intuitiva para una única usuaria.
 
 ---
@@ -104,12 +104,12 @@ La categoría representará el tipo de producto y el grupo representará una cla
 
 El sistema permitirá:
 
-- cargar el stock inicial de una vez;
+- cargar el stock inicial mediante una planilla validada;
 - completar posteriormente los productos que no hayan sido cargados en la primera carga;
 - registrar cantidades por variante;
 - diferenciar la cantidad por talle, color y género;
-- asociar cada existencia a una temporada;
-- registrar siempre el color;
+- asociar cada producto a una única temporada, común a todas sus variantes;
+- registrar el color cuando corresponda y utilizar el valor "No aplica" para los productos que no tengan color;
 - registrar un estampado de forma opcional;
 - corregir manualmente una cantidad cuando exista una diferencia con el stock físico;
 - conservar en las búsquedas los productos cuya cantidad sea cero.
@@ -135,11 +135,14 @@ El sistema permitirá:
 - registrar los productos y cantidades vendidos;
 - registrar el precio de venta;
 - registrar la fecha y el medio de pago;
-- aplicar descuentos manuales cuando corresponda;
+- aplicar descuentos manuales expresados como porcentaje cuando corresponda;
+- permitir modificar manualmente el precio aplicado durante una venta cuando la propietaria lo decida;
+- permitir utilizar uno o más medios de pago en una misma venta;
+- registrar una venta entregada cuyo pago por transferencia se encuentre pendiente de confirmación;
 - registrar ventas fiadas;
 - disminuir automáticamente el stock al registrar la venta;
 - registrar posteriormente el cobro de una venta fiada;
-- permitir la anulación de una venta, contemplando la restitución correspondiente del stock.
+- permitir la anulación de una venta en cualquier momento, con motivo obligatorio, restitución del stock y sin alterar los pagos ya recibidos en ventas fiadas.
 
 ### 5.5. Registro mínimo para ventas fiadas
 
@@ -150,14 +153,16 @@ No se incluirá una base comercial general de clientes. Sí se incluirá un regi
 - registrar una nueva persona cuando sea necesario;
 - consultar las ventas fiadas pendientes;
 - permitir varias ventas fiadas pendientes para una misma persona;
-- registrar pagos parciales o totales, según el detalle que se defina en la etapa de requisitos;
+- administrar una cuenta corriente única por persona;
+- registrar pagos parciales o totales aplicados a la deuda más antigua;
+- permitir nuevas ventas fiadas aunque la persona mantenga deuda activa;
 - modificar los datos personales sin alterar el historial de ventas y cobros.
 
 Los datos definidos como necesarios para una nueva persona son nombre, apellido y número de teléfono, siendo obligatorio este último.
 
-### 5.6. Reportes mensuales
+### 5.6. Consulta de stock bajo
 
-El MVP incluirá reportes mensuales básicos para consultar la información registrada durante un período. El contenido exacto de los reportes, sus filtros y los datos que mostrarán se definirán durante la especificación de requisitos.
+En lugar de un módulo de reportes independiente, la búsqueda (sección 5.3) permitirá ordenar los resultados de menor a mayor cantidad disponible, de forma que la propietaria pueda identificar visualmente los productos con stock bajo o agotado al momento de decidir una reposición.
 
 ---
 
@@ -179,7 +184,8 @@ Quedan fuera del MVP:
 - descuentos automáticos;
 - funcionamiento sin conexión;
 - múltiples usuarios y permisos complejos;
-- aplicación móvil nativa específica para Android o iOS.
+- aplicación móvil nativa específica para Android o iOS;
+- módulo de reportes mensuales (queda como posible mejora futura, no se desarrollará en este primer MVP).
 
 El sistema podrá ayudar a decidir una compra mostrando el stock existente, pero no administrará la relación completa con los proveedores.
 
@@ -197,7 +203,7 @@ Se adoptan los siguientes supuestos para esta versión del alcance:
 - Podrán agregarse posteriormente los productos que no hayan sido cargados en la primera instancia.
 - Las redes sociales continuarán utilizándose fuera del sistema.
 - El sistema se utilizará para gestión interna y no para vender directamente a clientes.
-- Los reportes mensuales serán de carácter básico y su contenido se precisará más adelante.
+- La gestión de la recuperación de acceso a la cuenta de Google (correo o teléfono de recuperación) es responsabilidad de la propietaria y queda fuera del alcance funcional del sistema.
 
 ---
 
