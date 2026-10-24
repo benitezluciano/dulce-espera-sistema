@@ -1,3 +1,29 @@
+## 2026-10-24 — Sesión 4
+**Duración aprox.:** ~1 h 30 min · **Quién:** Usuario
+
+- **Objetivo de la sesión:** Continuar la redacción de Historias de Usuario en la rama `docs/HU`, cerrando los módulos STK, BUS y VTA.
+- **Hecho:**
+  - Se cerró el módulo STK con tres historias (`HU-02` a `HU-04`): carga inicial por planilla, asignación de stock a un producto o variante nueva en cualquier momento, y corrección manual con motivo e historial. Se detectó y resolvió un vacío: el motivo obligatorio aplica solo a corregir una cantidad existente, no a asignarla por primera vez (se documentó en `04-requisitos.md`).
+  - Se cerró el módulo BUS con dos historias (`HU-05`, `HU-06`): responder consultas de clientes combinando filtros, e identificar stock bajo/agotado para decidir reposición (reemplazo directo del módulo de reportes descartado).
+  - Se cerró el módulo VTA con dos historias (`HU-07`, `HU-08`): registrar una venta cobrada con uno o más medios de pago, y confirmar una venta con transferencia pendiente. Se detectó un vacío: no existía ningún requisito para cerrar el estado "pendiente de confirmación" de una transferencia; se resolvió agregando `RF-VTA-17` y `RN40`, optando por la alternativa más simple (cambio de estado) para no sumar complejidad de desarrollo.
+  - Se discutió la conveniencia de adelantar wireframes de UI; se acordó esperar a tener al menos un Caso de Uso y delegar inicialmente solo los módulos ya cerrados (CAT + STK) para no comprometer un diseño prematuro.
+- **Decidido:** (ver DECISIONES.md)
+  - DEC-004 — Cierre del estado "transferencia pendiente" mediante una confirmación simple de estado, sin flujo de conciliación adicional.
+- **Cerrado:**
+  - Módulos STK, BUS y VTA de Historias de Usuario (`HU-02` a `HU-08`).
+- **Pendiente / abierto:**
+  - Redactar las Historias de Usuario de los módulos FIA, PAG y ANU.
+  - Redactar al menos un Caso de Uso antes de delegar wireframes.
+  - Armar el encargo acotado de wireframes (CAT + STK) para una tercera persona.
+  - Seguir validando la convención de en qué rama registrar `gestion/` si `docs/HU` se extiende más sesiones.
+- **Problemas o aprendizajes:**
+  - El mismo patrón de "vacío de requisito" (un estado o acción sin su contraparte de cierre) volvió a aparecer, igual que en la sesión anterior con la carga de stock nuevo vs. corrección. Redactar Historias de Usuario a partir de los RF es una buena forma de detectar estos huecos antes de llegar a diseño.
+  - Los wireframes deben apoyarse en Casos de Uso, no solo en Historias de Usuario, para no rediseñar pantallas cuando aparezcan los módulos de ventas fiadas y pagos.
+- **Próximo paso:** Redactar la Historia de Usuario representativa del módulo FIA.
+- **Dudas para retomar:** Ninguna nueva; se mantiene la de la sesión anterior sobre la convención de rama para `gestion/`.
+
+---
+
 ## 2026-10-05 — Sesión 3
 **Duración aprox.:** ~1 h · **Quién:** Usuario
 

@@ -55,3 +55,18 @@
   - Separar en dos historias (datos básicos vs. atributos comerciales): descartada porque ninguna de las dos mitades resultantes es útil de forma independiente; viola el criterio "Valiosa" de INVEST.
 - **Consecuencias:** Este criterio se aplica como estándar para el resto de las Historias de Usuario del proyecto (`docs/06-historias-de-usuario.md`), incluidas las de los módulos STK, BUS, VTA, FIA, PAG y ANU aún pendientes de redactar.
 - **Relacionado con:** #23, `docs/06-historias-de-usuario.md`
+
+---
+
+### DEC-004 — Cierre del estado "transferencia pendiente" mediante una confirmación simple
+
+- **Fecha:** 2026-10-24
+- **Estado:** Cerrada
+- **Participantes:** Usuario (rol de PM/analista funcional del proyecto)
+- **Contexto:** Al redactar la Historia de Usuario de ventas (módulo VTA) se detectó que `RF-VTA-13` permitía registrar una venta con transferencia pendiente de confirmación, pero ningún requisito definía cómo se cerraba ese estado una vez acreditado el pago.
+- **Decisión:** Se agrega `RF-VTA-17` y la regla `RN40`: el sistema debe permitir marcar como confirmada una venta con transferencia pendiente, sin modificar ningún otro dato de la venta. Se optó explícitamente por la alternativa más simple (un cambio de estado) para no agregar complejidad de desarrollo evitable.
+- **Alternativas consideradas:**
+  - No contemplar ninguna acción de cierre y dejar el estado "pendiente" sin resolución formal en el MVP: descartada porque una venta real quedaría para siempre sin poder contabilizarse como cobrada.
+  - Diseñar un flujo más completo de conciliación de transferencias (con comprobantes, fechas de acreditación, etc.): descartada por desproporcionada para el volumen y el contexto de una única usuaria; se prioriza la opción de menor esfuerzo de implementación.
+- **Consecuencias:** Se actualizan `docs/04-requisitos.md` (RF-VTA-17), `docs/05-reglas-de-negocio.md` (RN40) y `docs/06-historias-de-usuario.md` (HU-08).
+- **Relacionado con:** #23, `docs/06-historias-de-usuario.md`
