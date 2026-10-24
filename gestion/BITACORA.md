@@ -1,3 +1,28 @@
+## 2026-10-05 — Sesión 3
+**Duración aprox.:** ~1 h · **Quién:** Usuario
+
+- **Objetivo de la sesión:** Cerrar formalmente los requisitos funcionales y no funcionales, y arrancar la redacción de Historias de Usuario.
+- **Hecho:**
+  - Se evaluó el módulo de reportes mensuales (`REP`) y se descartó del MVP: la necesidad real (detectar stock bajo para decidir reposición) queda cubierta agregando `RF-BUS-14` (ordenar resultados de búsqueda de menor a mayor cantidad). Se documentó como mejora futura fuera del MVP en `01-alcance.md`.
+  - Se definió una política de seguridad de acceso y resguardo de datos para la alternativa Google Sheets + Apps Script: login con recomendación de 2FA (`RNF-08`) y copias de seguridad periódicas automáticas independientes del historial de versiones (`RNF-09`).
+  - Se dieron por cerrados los requisitos funcionales y no funcionales (`docs/04-requisitos.md`).
+  - Se creó la rama `docs/HU` para trabajar exclusivamente la etapa de Historias de Usuario.
+  - Se explicó la metodología INVEST y se discutió el criterio de corte de historias (vertical vs. horizontal), aplicándolo para definir y cerrar `HU-01` del módulo CAT (alta completa de un producto con sus variantes) en `docs/06-historias-de-usuario.md`.
+- **Decidido:** (ver DECISIONES.md)
+  - DEC-003 — Criterio de corte vertical para Historias de Usuario: una historia se separa de otra solo cuando el fragmento resultante sigue siendo útil y verificable por sí mismo.
+- **Cerrado:**
+  - Requisitos funcionales y no funcionales del MVP (#23).
+  - HU-01 (módulo CAT).
+- **Pendiente / abierto:**
+  - Redactar las Historias de Usuario de los módulos STK, BUS, VTA, FIA, PAG y ANU.
+  - Definir si las actualizaciones de `gestion/` se registran en la rama de trabajo (ej. `docs/HU`) o directo en `main`. Criterio inicial para sesiones cortas y ramas de corta duración: registrar junto con el trabajo funcional en la misma rama y fusionar a `main` pronto, para que `ESTADO.md` no quede desactualizado en `main` por mucho tiempo. Si una rama se extiende por varias sesiones, conviene reevaluar y volcar los archivos de `gestion/` directo en `main` en cada cierre de sesión, ya que son de proceso y no un entregable funcional atado a esa rama.
+- **Problemas o aprendizajes:**
+  - Separar una Historia de Usuario por tipo de atributo (ej. "datos básicos" vs. "atributos comerciales") es un corte horizontal que no aporta valor real: el criterio correcto es si el fragmento resultante ya es usable por sí solo.
+- **Próximo paso:** Continuar en `docs/HU` con la Historia de Usuario representativa del módulo STK.
+- **Dudas para retomar:** Confirmar convención de rama para los archivos de `gestion/` (ver punto pendiente arriba).
+
+---
+
 ## 2026-10-01 — Sesión 2
 **Duración aprox.:** ~30 min · **Quién:** Usuario
 
