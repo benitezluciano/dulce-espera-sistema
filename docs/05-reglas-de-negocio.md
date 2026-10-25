@@ -45,6 +45,7 @@
 | RN37 | Las ventas anuladas no se contabilizan en el total de ventas válidas ni en los reportes mensuales. | Decisión tomada durante la especificación de requisitos para no distorsionar la información consolidada. |
 | RN38 | Al anular una venta fiada sin pagos registrados, se descuenta su importe de la deuda de la persona. | Consecuencia del modelo de cuenta corriente definido en RN28 a RN32. |
 | RN39 | Al anular una venta fiada con pagos parciales registrados, la venta y los pagos existentes se conservan sin modificación, y el efecto de la anulación se registra mediante un ajuste separado. | Decisión tomada durante la especificación de requisitos para no alterar el historial de pagos ya recibidos. |
+| RN40 | Una venta con transferencia pendiente se considera cobrada recién cuando se marca explícitamente como confirmada. | Consecuencia de RN27 y necesidad de cerrar formalmente el estado pendiente sin agregar complejidad adicional al registro de la venta. |
 
 ## Notas de aplicación
 
@@ -56,5 +57,6 @@
 - **RN19 y RN20** definen la trazabilidad mínima de las correcciones manuales de stock. El motivo debe seleccionarse antes de confirmar el cambio y el historial no debe reemplazarse por el valor actual.
 - **RN21 y RN22** protegen la integridad de la carga inicial y de las ventas: los datos importados se validan antes de incorporarse y una venta con stock insuficiente no puede confirmarse.
 - **RN23 a RN27** definen el cálculo, fecha, medios de pago y estado de cobro de las ventas normales.
+- **RN40** cierra el estado de transferencia pendiente: la venta pasa a considerarse cobrada recién cuando se marca explícitamente como confirmada.
 - **RN28 a RN32** definen la cuenta corriente de ventas fiadas, la aplicación de pagos y la conservación del historial.
 - **RN33 a RN39** definen la anulación de ventas: no tiene plazo límite, requiere motivo, conserva el historial, restituye stock y no altera pagos ya recibidos en ventas fiadas; en su lugar, genera un ajuste separado.

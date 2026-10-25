@@ -107,6 +107,7 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-VTA-14 | El sistema deberá descontar automáticamente del stock las cantidades vendidas al confirmar la entrega de la mercadería. |
 | RF-VTA-15 | El sistema deberá conservar el detalle de productos, variantes, cantidades, precios, descuento e importe total de cada venta. |
 | RF-VTA-16 | El sistema no deberá registrar el nombre de un cliente en las ventas normales en el MVP. |
+| RF-VTA-17 | El sistema deberá permitir marcar como confirmada una venta con transferencia pendiente, una vez acreditado el pago, sin modificar el resto de los datos de la venta. |
 
 ### Módulo FIA — Ventas fiadas y cuenta corriente
 
@@ -209,10 +210,12 @@ la validación del MVP.
 - Las ventas normales no se asociarán a una persona en el MVP.
 - Una venta podrá utilizar uno o más medios de pago.
 - Una venta entregada con transferencia pendiente podrá registrarse como pendiente de confirmación.
+- Una venta con transferencia pendiente podrá marcarse como confirmada una vez acreditado el pago, sin alterar el resto de sus datos.
 - Las ventas fiadas se administrarán mediante una cuenta corriente única por persona.
 - Los pagos parciales se aplicarán a la deuda total comenzando por las ventas fiadas más antiguas.
 - Una persona podrá generar nuevas ventas fiadas aunque mantenga deuda activa.
 - La fecha de ventas y pagos será la fecha actual del sistema.
+- El motivo obligatorio de stock aplica únicamente a la corrección de una cantidad ya existente; la asignación de cantidad a un producto o variante nueva no requiere motivo.
 
 ### 4.2. Alcance pendiente del módulo de stock
 
