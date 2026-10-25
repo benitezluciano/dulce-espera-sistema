@@ -1,26 +1,27 @@
 # Estado actual
 
-**Última actualización:** 2026-10-24
-**Versión / hito actual:** Etapa de análisis funcional en curso, trabajando en solitario. Historias de Usuario en redacción en la rama `docs/HU`: completos los módulos CAT, STK, BUS y VTA (HU-01 a HU-08).
+**Última actualización:** 2026-10-25
+**Versión / hito actual:** Etapa de análisis funcional en curso, trabajando en solitario. Historias de Usuario completas (`HU-01` a `HU-14`) en la rama `docs/HU`, pendiente de mergear a `main`.
 
 ## Objetivo del momento
-Redactar al menos una Historia de Usuario representativa por módulo (CAT, STK, BUS, VTA, FIA, PAG, ANU) en `docs/06-historias-de-usuario.md`, aplicando el criterio de corte vertical definido en DEC-003.
+Mergear `docs/HU` a `main` y continuar con Casos de Uso (`docs/07-casos-de-uso.md`).
 
 ## En curso
-- [ ] Redactar Historias de Usuario de los módulos FIA, PAG y ANU (responsable: usuario, con asistencia de Copilot) — rama `docs/HU`
+- [ ] Mergear la rama `docs/HU` a `main` mediante Pull Request (responsable: usuario)
 
 ## Pendiente (en orden de prioridad)
-1. Completar Historias de Usuario de FIA, PAG y ANU
-2. Redactar al menos un Caso de Uso (`docs/07-casos-de-uso.md`)
-3. Armar un encargo acotado de wireframes (módulos CAT + STK, ya cerrados) para delegar a una tercera persona
-4. Redactar Modelo de Datos
-5. Sumar a la segunda persona (desarrolladora) al repositorio
-6. _(Pospuesto hasta sumar a la segunda persona)_ Crear el GitHub Project (tablero Kanban) y definir la convención de columnas — ver DEC-002
+1. Redactar al menos un Caso de Uso (`docs/07-casos-de-uso.md`)
+2. Armar un encargo acotado de wireframes (módulos CAT + STK, ya cerrados) para delegar a una tercera persona
+3. Redactar Modelo de Datos
+4. Sumar a la segunda persona (desarrolladora) al repositorio
+5. _(Pospuesto hasta sumar a la segunda persona)_ Crear el GitHub Project (tablero Kanban) y definir la convención de columnas — ver DEC-002
 
 ## Bloqueado
 - Ninguno por el momento.
 
 ## Cerrado recientemente
+- HU-09 a HU-14 (módulos FIA, PAG y ANU) — asociar persona, consultar cuenta corriente, modificar datos, registrar pago, anular venta (caso general y caso con pagos parciales) — 2026-10-25
+- Documento `docs/06-historias-de-usuario.md` completo: las 7 módulos cubiertos con 14 Historias de Usuario (HU-01 a HU-14)
 - HU-05 a HU-08 (módulos BUS y VTA) — búsqueda, stock bajo, venta cobrada y confirmación de transferencia pendiente — 2026-10-24
 - DEC-004 — Cierre del estado "transferencia pendiente" con una confirmación simple (RF-VTA-17, RN40) — 2026-10-24
 - HU-02 a HU-04 (módulo STK) — carga por planilla, asignación de stock nuevo y corrección con motivo — 2026-10-24
@@ -32,10 +33,10 @@ Redactar al menos una Historia de Usuario representativa por módulo (CAT, STK, 
 - #23 — Definir requisitos funcionales y no funcionales
 
 ## Próximo paso concreto
-Continuar en la rama `docs/HU` definiendo la Historia de Usuario representativa del módulo FIA (ventas fiadas y cuenta corriente), siguiendo el mismo proceso de borrador + validación INVEST antes de escribirla.
+Mergear `docs/HU` a `main` (ver Pull Request sugerido en BITACORA.md) y luego arrancar Casos de Uso.
 
 ## Dudas / riesgos abiertos
-- Convención sobre en qué rama registrar los cambios de `gestion/` (¿en la rama de trabajo como `docs/HU`, o directo en `main`?). Mientras `docs/HU` siga activa y acumulando sesiones, se sigue registrando `gestion/` en esa misma rama; a revisar si se extiende demasiado antes del próximo merge.
+- Convención sobre en qué rama registrar los cambios de `gestion/`: con el merge de `docs/HU` a `main`, este ciclo queda resuelto para esta rama; a confirmar el mismo criterio (registrar en la rama de trabajo y mergear pronto) para la próxima rama de Casos de Uso.
 
 ## Enlaces útiles
 - [DECISIONES.md](./DECISIONES.md)

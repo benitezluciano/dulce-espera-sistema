@@ -1,3 +1,27 @@
+## 2026-10-25 — Sesión 5
+**Duración aprox.:** ~1 h · **Quién:** Usuario
+
+- **Objetivo de la sesión:** Cerrar la redacción de Historias de Usuario completando los módulos FIA, PAG y ANU, y dejar la rama `docs/HU` lista para mergear a `main`.
+- **Hecho:**
+  - Se cerró el módulo FIA con tres historias (`HU-09` a `HU-11`): asociar una venta fiada a una persona (existente o nueva), consultar el historial y saldo de la cuenta corriente, y modificar los datos personales sin alterar el historial.
+  - Se cerró el módulo PAG con una sola historia (`HU-12`): registrar un pago parcial o total, ya que todos sus RF describen un único acto de negocio indivisible.
+  - Se cerró el módulo ANU con dos historias (`HU-13`, `HU-14`): anulación general de una venta, y el caso especial de anular una venta fiada con pagos parciales mediante un ajuste separado.
+  - Con esto, `docs/06-historias-de-usuario.md` queda completo: 14 Historias de Usuario cubriendo los 7 módulos del sistema (CAT, STK, BUS, VTA, FIA, PAG, ANU).
+- **Decidido:** Ninguna decisión de fondo nueva en esta sesión; se aplicó el criterio ya vigente de DEC-003 para los módulos restantes.
+- **Cerrado:**
+  - Documento completo de Historias de Usuario (`HU-01` a `HU-14`).
+  - Rama `docs/HU` lista para Pull Request y merge a `main`.
+- **Pendiente / abierto:**
+  - Mergear `docs/HU` a `main`.
+  - Redactar al menos un Caso de Uso antes de delegar wireframes.
+  - Armar el encargo acotado de wireframes (CAT + STK) para una tercera persona.
+- **Problemas o aprendizajes:**
+  - No todos los módulos requieren el mismo número de historias: cuando todos los RF de un módulo describen un único acto indivisible (como en PAG), alcanza con una sola historia bien delimitada; forzar una división ahí sería un corte artificial sin valor, igual que fusionar sin criterio sería forzar demasiado junto.
+- **Próximo paso:** Mergear `docs/HU` a `main` y arrancar la redacción de Casos de Uso.
+- **Dudas para retomar:** Confirmar el mismo criterio de registrar `gestion/` en la próxima rama de trabajo (Casos de Uso) y mergearla pronto.
+
+---
+
 ## 2026-10-24 — Sesión 4
 **Duración aprox.:** ~1 h 30 min · **Quién:** Usuario
 
