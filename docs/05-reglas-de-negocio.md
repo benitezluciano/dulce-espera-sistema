@@ -46,6 +46,11 @@
 | RN38 | Al anular una venta fiada sin pagos registrados, se descuenta su importe de la deuda de la persona. | Consecuencia del modelo de cuenta corriente definido en RN28 a RN32. |
 | RN39 | Al anular una venta fiada con pagos parciales registrados, la venta y los pagos existentes se conservan sin modificación, y el efecto de la anulación se registra mediante un ajuste separado. | Decisión tomada durante la especificación de requisitos para no alterar el historial de pagos ya recibidos. |
 | RN40 | Una venta con transferencia pendiente se considera cobrada recién cuando se marca explícitamente como confirmada. | Consecuencia de RN27 y necesidad de cerrar formalmente el estado pendiente sin agregar complejidad adicional al registro de la venta. |
+| RN41 | Un valor de catálogo no se elimina: se desactiva y se conserva en los productos, variantes y ventas que lo utilizan. | Principio de conservación del historial aplicado también en RN17, RN35 y RN39. |
+| RN42 | El nombre de un valor es único dentro de su catálogo, sin distinguir mayúsculas de minúsculas. | Evita opciones duplicadas que dispersen el stock entre variantes equivalentes (RN18). |
+| RN43 | Los talles se presentan según un orden definido por la propietaria y no alfabéticamente. | Los talles mezclan meses, años y números (RN03); el orden alfabético colocaría, por ejemplo, el 10 antes que el 4. |
+| RN44 | Un producto inacgittivo no puede incluirse en nuevas ventas hasta que se reactive; conserva sus variantes, cantidades e historial. | Extiende RN17: inactivar retira el producto de la operación sin alterar lo ya registrado. |
+| RN45 | Modificar el precio vigente de un producto no altera el precio aplicado en las ventas ya registradas. | Refuerza RN14 para el caso de la edición del producto. |
 
 ## Notas de aplicación
 
