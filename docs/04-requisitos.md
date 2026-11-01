@@ -46,6 +46,16 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-CAT-12 | El sistema deberá permitir marcar un producto como inactivo sin eliminarlo ni alterar su historial. |
 | RF-CAT-13 | El sistema deberá permitir administrar categorías, grupos, talles, géneros, colores, temporadas y estampados desde un apartado específico. |
 | RF-CAT-14 | El sistema deberá permitir buscar productos por nombre, código interno, marca y categoría. |
+| RF-CAT-15 | El sistema deberá permitir consultar los valores de cada catálogo: categorías, grupos, talles, géneros, colores, temporadas y estampados. |
+| RF-CAT-16 | El sistema deberá permitir agregar un valor a un catálogo indicando su nombre. |
+| RF-CAT-17 | El sistema deberá impedir registrar un valor cuyo nombre ya exista en el mismo catálogo. |
+| RF-CAT-18 | El sistema deberá permitir definir y modificar el orden de presentación de los talles. |
+| RF-CAT-19 | El sistema deberá permitir modificar el nombre de un valor de catálogo. |
+| RF-CAT-20 | El sistema deberá permitir desactivar un valor de catálogo sin eliminarlo. |
+| RF-CAT-21 | El sistema no deberá ofrecer valores desactivados al registrar o editar productos y variantes, pero deberá conservarlos en los registros que ya los utilizan y mantenerlos disponibles como filtro de búsqueda. |
+| RF-CAT-22 | El sistema deberá permitir reactivar un valor de catálogo desactivado. |
+| RF-CAT-23 | El sistema deberá permitir reactivar un producto inactivo. |
+| RF-CAT-24 | El sistema deberá advertir antes de inactivar un producto que todavía tenga stock disponible. |
 
 ### Módulo STK — Stock y variantes
 
@@ -67,6 +77,10 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-STK-14 | El sistema deberá conservar un historial de las correcciones manuales de stock. |
 | RF-STK-15 | El historial de correcciones deberá registrar como mínimo la fecha, la variante, la cantidad anterior, la cantidad nueva y el motivo seleccionado. |
 | RF-STK-16 | El sistema no deberá permitir confirmar una venta cuando la cantidad solicitada de una variante sea superior a su cantidad disponible. |
+| RF-STK-17 | El sistema deberá permitir consultar el historial de correcciones manuales de stock, ordenado de la más reciente a la más antigua. |
+| RF-STK-18 | El sistema deberá permitir filtrar el historial de correcciones por producto o variante y por fecha o período, combinando los criterios seleccionados. |
+| RF-STK-19 | El sistema deberá permitir acceder al historial de correcciones de una variante desde su consulta de stock. |
+| RF-STK-20 | El sistema no deberá permitir modificar ni eliminar registros del historial de correcciones. |
 
 ### Módulo BUS — Búsqueda y consulta
 
@@ -108,6 +122,11 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-VTA-15 | El sistema deberá conservar el detalle de productos, variantes, cantidades, precios, descuento e importe total de cada venta. |
 | RF-VTA-16 | El sistema no deberá registrar el nombre de un cliente en las ventas normales en el MVP. |
 | RF-VTA-17 | El sistema deberá permitir marcar como confirmada una venta con transferencia pendiente, una vez acreditado el pago, sin modificar el resto de los datos de la venta. |
+| RF-VTA-18 | El sistema deberá permitir consultar el listado de ventas registradas, ordenadas de la más reciente a la más antigua. |
+| RF-VTA-19 | El sistema deberá mostrar en el listado la fecha, el importe total, los medios de pago y el estado de cada venta, identificando las ventas anuladas. |
+| RF-VTA-20 | El sistema deberá permitir filtrar el listado de ventas por fecha o período, estado y medio de pago, combinando los criterios seleccionados. |
+| RF-VTA-21 | El sistema deberá permitir consultar el detalle de una venta: productos, variantes, cantidades, precios aplicados, descuento, total, medios de pago, fecha, estado y, según corresponda, la persona asociada y el motivo y fecha de anulación. |
+| RF-VTA-22 | El sistema no deberá permitir agregar productos inactivos a una venta nueva. |
 
 ### Módulo FIA — Ventas fiadas y cuenta corriente
 

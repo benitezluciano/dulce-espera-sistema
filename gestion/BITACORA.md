@@ -1,3 +1,25 @@
+## 2026-10-26 — Sesión 6
+**Duración aprox.:** No registrada · **Quién:** Usuario
+
+- **Objetivo de la sesión:** Registrar el cierre de la tarea de Casos de Uso.
+- **Hecho:**
+  - Se completó `docs/07-casos-de-uso.md` con 14 casos de uso (CU-01 a CU-14), trazados a las Historias de Usuario, requisitos y reglas de negocio.
+  - El usuario confirmó que los casos cumplen los criterios de aceptación del Issue correspondiente.
+  - Quedó habilitado el siguiente trabajo acordado: preparar wireframes únicamente para los módulos ya elaborados, comenzando por CAT y STK.
+- **Decidido:** No surgieron decisiones de fondo nuevas; no se agrega una entrada a `DECISIONES.md`.
+- **Cerrado:**
+  - Tarea de Casos de Uso: 14 CU completos.
+- **Pendiente / abierto:**
+  - Revisar y mergear la rama `docs/CU` a `main`.
+  - Crear la tarea/módulo de diseño UI y preparar el encargo de wireframes para CAT y STK.
+  - Elaborar el Modelo de Datos.
+- **Problemas o aprendizajes:**
+  - La trazabilidad CU → HU → RF y reglas de negocio permite revisar que los escenarios detallados cubran el comportamiento acordado, además de servir como base para wireframes.
+- **Próximo paso:** Revisar el Pull Request de `docs/CU` y, tras el merge, preparar el trabajo de wireframes de CAT y STK.
+- **Dudas para retomar:** Ninguna nueva.
+
+---
+
 ## 2026-10-25 — Sesión 5
 **Duración aprox.:** ~1 h · **Quién:** Usuario
 

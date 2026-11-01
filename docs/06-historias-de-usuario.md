@@ -395,3 +395,150 @@ _Cada historia debe incluir formato clásico, criterios de aceptación y validac
 | Estimable | Sí | Alcance acotado. |
 | Pequeña | Sí | Es un caso especial puntual, separado del flujo general de anulación. |
 | Verificable | Sí | Criterios objetivos. |
+
+## HU-15 — Consultar el listado y el detalle de ventas
+ 
+| Campo | Detalle |
+|-------|---------|
+| Historia | Como propietaria, quiero consultar el listado de ventas registradas y el detalle de cada una, para revisar lo que vendí y encontrar la venta sobre la que necesito actuar (confirmar una transferencia o anularla). |
+| Módulo | VTA |
+| Requisitos relacionados | RF-VTA-18, RF-VTA-19, RF-VTA-20, RF-VTA-21 (nuevos), RF-VTA-15, RF-ANU-03 |
+ 
+### Criterios de aceptación
+ 
+1. Dado que ingreso al listado de ventas, veo las ventas ordenadas de la más reciente a la más antigua, con fecha, importe total, medios de pago y estado.
+2. Dado que existen ventas anuladas, las veo en el listado identificadas como anuladas.
+3. Dado que filtro por fecha o período, por estado (pendiente de confirmación, fiada o anulada) o por medio de pago, veo únicamente las ventas que cumplen todos los criterios seleccionados.
+4. Dado que ninguna venta cumple los criterios, el sistema me informa que no se encontraron coincidencias.
+5. Dado que selecciono una venta, veo su detalle: productos, variantes, cantidades, precios aplicados, descuento, total, medios de pago, fecha y estado.
+6. Dado que la venta es fiada, el detalle muestra la persona asociada; dado que está anulada, muestra el motivo y la fecha de anulación.
+7. Dado que veo el detalle de una venta, puedo iniciar desde allí las acciones que correspondan a su estado (confirmar una transferencia pendiente o anularla).
+### Validación INVEST
+ 
+| Criterio | ¿Se cumple? | Observación |
+|----------|-------------|-------------|
+| Independiente | Sí | Depende de que existan ventas registradas (HU-07 y HU-09), no de otra historia de consulta. |
+| Negociable | Sí | El diseño del listado, los filtros y el orden se resuelve en UI. |
+| Valiosa | Sí | Habilita HU-08, HU-13 y HU-14, que necesitan localizar una venta, y reemplaza la revisión del cuaderno. |
+| Estimable | Sí | Es una consulta de solo lectura con alcance acotado. |
+| Pequeña | Sí | Agrupa listado y detalle, que forman un único recorrido de consulta; no modifica datos. |
+| Verificable | Sí | Criterios objetivos. |
+ 
+---
+ 
+## HU-16 — Consultar y agregar valores de un catálogo
+ 
+| Campo | Detalle |
+|-------|---------|
+| Historia | Como propietaria, quiero consultar y agregar valores a los catálogos de referencia (categorías, grupos, talles, géneros, colores, temporadas y estampados), para poder cargar productos y variantes con las opciones que realmente uso en mi negocio. |
+| Módulo | CAT |
+| Requisitos relacionados | RF-CAT-13, RF-CAT-15, RF-CAT-16, RF-CAT-17, RF-CAT-18 (nuevos salvo RF-CAT-13) |
+ 
+### Criterios de aceptación
+ 
+1. Dado que ingreso al apartado de catálogos, que está separado de la operación cotidiana, puedo elegir un catálogo y ver sus valores.
+2. Dado que agrego un valor indicando su nombre, queda disponible para registrar productos y variantes.
+3. Dado que intento agregar un valor sin nombre, el sistema no permite guardarlo.
+4. Dado que el nombre ya existe en el mismo catálogo, sin distinguir mayúsculas de minúsculas, el sistema no permite registrarlo.
+5. Dado que agrego un talle, puedo ubicarlo en el orden de presentación, y las listas y filtros muestran los talles en ese orden y no alfabéticamente.
+### Validación INVEST
+ 
+| Criterio | ¿Se cumple? | Observación |
+|----------|-------------|-------------|
+| Independiente | Sí | Es previa a HU-01 y HU-02, pero no depende de ninguna historia. |
+| Negociable | Sí | Puede resolverse con una lista simple por catálogo; el diseño se define en UI. |
+| Valiosa | Sí | Sin valores de referencia no se pueden registrar productos ni importar la planilla inicial. |
+| Estimable | Sí | El comportamiento es el mismo para los siete catálogos. |
+| Pequeña | Sí | Cubre consulta y alta; la modificación y la desactivación se separan en HU-17. |
+| Verificable | Sí | Criterios objetivos. |
+ 
+---
+ 
+## HU-17 — Modificar o desactivar un valor de catálogo
+ 
+| Campo | Detalle |
+|-------|---------|
+| Historia | Como propietaria, quiero corregir el nombre de un valor de catálogo, cambiar el orden de los talles o desactivar un valor que ya no uso, sin perder los productos y ventas que lo tienen asociado, para mantener las opciones ordenadas sin afectar el historial. |
+| Módulo | CAT |
+| Requisitos relacionados | RF-CAT-18, RF-CAT-19, RF-CAT-20, RF-CAT-21, RF-CAT-22 (nuevos) |
+ 
+### Criterios de aceptación
+ 
+1. Dado que modifico el nombre de un valor, el nuevo nombre se refleja en los productos, variantes y ventas que lo utilizan.
+2. Dado que el nuevo nombre ya existe en el mismo catálogo, el sistema no permite guardar el cambio.
+3. Dado que desactivo un valor, deja de ofrecerse al registrar o editar productos y variantes.
+4. Dado que un valor desactivado está asociado a productos, variantes o ventas existentes, estos lo conservan sin cambios y las búsquedas siguen permitiendo filtrar por él.
+5. Dado que reactivo un valor desactivado, vuelve a ofrecerse al registrar o editar productos y variantes.
+6. Dado que cambio la posición de un talle, las listas y filtros reflejan el nuevo orden.
+7. Dado que un valor está en uso, el sistema no ofrece eliminarlo; solo permite desactivarlo.
+### Validación INVEST
+ 
+| Criterio | ¿Se cumple? | Observación |
+|----------|-------------|-------------|
+| Independiente | Sí | Depende de que el valor exista (HU-16), no de otra historia de mantenimiento. |
+| Negociable | Sí | Las acciones pueden presentarse en una misma pantalla de edición; el detalle se define en UI. |
+| Valiosa | Sí | Permite corregir errores y retirar opciones sin romper el historial, principio ya aplicado en RN17. |
+| Estimable | Sí | Las tres acciones comparten pantalla y reglas de conservación del historial. |
+| Pequeña | Sí | Agrupa acciones de mantenimiento sobre un valor ya existente, sin mezclar el alta (HU-16). |
+| Verificable | Sí | Criterios objetivos. |
+ 
+---
+
+## HU-18 — Modificar los datos de un producto o inactivarlo
+ 
+| Campo | Detalle |
+|-------|---------|
+| Historia | Como propietaria, quiero modificar los datos de un producto ya cargado (nombre, marca, grupo, temporada y precio vigente) e inactivarlo o reactivarlo, para mantener el catálogo actualizado sin perder el historial de ventas ni de stock. |
+| Módulo | CAT |
+| Requisitos relacionados | RF-CAT-11, RF-CAT-12, RF-CAT-23, RF-CAT-24 (nuevos), RF-VTA-22 (nuevo), RF-BUS-09, RF-BUS-10, RF-STK-09 |
+ 
+### Criterios de aceptación
+ 
+1. Dado que selecciono un producto, puedo modificar su nombre, marca, grupo, temporada y precio vigente.
+2. Dado que modifico el precio vigente, el nuevo precio se ofrece en las ventas posteriores y las ventas ya registradas conservan el precio aplicado.
+3. Dado que modifico la temporada, el cambio se aplica a todas las variantes del producto.
+4. Dado que intento guardar sin nombre o con un precio no válido, el sistema no permite confirmar el cambio.
+5. Dado que modifico un producto, su código interno no cambia.
+6. Dado que inactivo un producto, deja de aparecer en las búsquedas normales y no puede agregarse a nuevas ventas; sus variantes, cantidades y ventas anteriores se conservan.
+7. Dado que inactivo un producto que todavía tiene stock disponible, el sistema me advierte antes de confirmar.
+8. Dado que encuentro un producto inactivo mediante el filtro específico y lo reactivo, vuelve a aparecer en las búsquedas normales y puede venderse.
+### Validación INVEST
+ 
+| Criterio | ¿Se cumple? | Observación |
+|----------|-------------|-------------|
+| Independiente | Sí | Depende de que el producto exista (HU-01), no de otra historia de mantenimiento. |
+| Negociable | Sí | Pantalla de edición y confirmación se resuelven en UI. |
+| Valiosa | Sí | Mantiene precios y catálogo al día y permite retirar productos sin perder el historial (RN17). |
+| Estimable | Sí | Alcance acotado a los datos del producto. |
+| Pequeña | Sí | Agrupa la edición y el cambio de estado de un producto existente, que comparten pantalla y regla de conservación del historial. Si en la estimación resulta grande, puede separarse la inactivación. |
+| Verificable | Sí | Criterios objetivos. |
+ 
+---
+ 
+## HU-19 — Consultar el historial de correcciones de stock
+ 
+| Campo | Detalle |
+|-------|---------|
+| Historia | Como propietaria, quiero consultar el historial de correcciones manuales de stock, para entender las diferencias entre lo registrado y la mercadería física y revisar qué cambié y por qué. |
+| Módulo | STK |
+| Requisitos relacionados | RF-STK-14, RF-STK-15, RF-STK-17, RF-STK-18, RF-STK-19, RF-STK-20 (nuevos salvo RF-STK-14 y 15) |
+ 
+### Criterios de aceptación
+ 
+1. Dado que ingreso al historial, veo las correcciones ordenadas de la más reciente a la más antigua, con fecha, producto, variante, cantidad anterior, cantidad nueva y motivo.
+2. Dado que filtro por producto o variante, o por fecha o período, veo únicamente las correcciones que cumplen todos los criterios seleccionados.
+3. Dado que consulto una variante desde la búsqueda de productos, puedo acceder directamente a su historial de correcciones.
+4. Dado que no hay correcciones registradas o ninguna cumple los criterios, el sistema me informa la situación.
+5. Dado que consulto el historial, no puedo modificar ni eliminar ninguna corrección.
+### Validación INVEST
+ 
+| Criterio | ¿Se cumple? | Observación |
+|----------|-------------|-------------|
+| Independiente | Sí | Depende de que existan correcciones registradas (HU-04), no de otra historia de consulta. |
+| Negociable | Sí | Cierra el tema pendiente en 4.2 de requisitos; el diseño de la pantalla se define en UI. |
+| Valiosa | Sí | Permite explicar diferencias de stock y hace efectiva la trazabilidad de RN20. |
+| Estimable | Sí | Es una consulta de solo lectura con alcance acotado. |
+| Pequeña | Sí | Un único objetivo: consultar correcciones, sin registrar ni modificar nada. |
+| Verificable | Sí | Criterios objetivos. |
+ 
+---

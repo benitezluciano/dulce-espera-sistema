@@ -36,6 +36,11 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | CU-12 | Registrar un pago de la deuda de una persona | HU-12 | RF-PAG-01 a 08 | RN30, RN31, RN32 |
 | CU-13 | Anular una venta | HU-13 | RF-ANU-01 a 06, 09 | RN33 a RN38 |
 | CU-14 | Anular una venta fiada con pagos registrados | HU-14 | RF-ANU-07, 08 | RN39 |
+| CU-15 | Consultar el listado y el detalle de ventas | HU-15 | RF-VTA-18 a 21, RF-VTA-15, RF-ANU-03 | RN35 |
+| CU-16 | Consultar y agregar valores de un catálogo | HU-16 | RF-CAT-13, 15, 16, 17, 18 | RN03, RN42, RN43 |
+| CU-17 | Modificar o desactivar un valor de catálogo | HU-17 | RF-CAT-18 a 22 | RN41, RN42, RN43 |
+| CU-18 | Modificar un producto o inactivarlo | HU-18 | RF-CAT-11, 12, 23, 24; RF-VTA-22 | RN14, RN17, RN44, RN45 |
+| CU-19 | Consultar el historial de correcciones de stock | HU-19 | RF-STK-14, 15, 17 a 20 | RN20 |
 
 ### 3.1. Relaciones entre casos de uso
 
@@ -45,6 +50,10 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 - CU-09 es la variante de CU-07 para ventas fiadas; incluye la identificación de la persona.
 - CU-12 requiere una persona con saldo, originado en CU-09.
 - CU-14 es la variante de CU-13 para ventas fiadas con pagos registrados (extiende).
+- CU-15 es el punto de entrada de CU-08, CU-13 y CU-14, que parten de una venta seleccionada en el listado.
+- CU-18 parte de un producto encontrado con CU-05 (incluido el filtro de inactivos) y condiciona a CU-07 y CU-09, que solo ofrecen productos activos.
+- CU-19 se puede iniciar desde la consulta de una variante (CU-05) y permite revisar lo registrado por CU-04.
+- CU-16 y CU-17 mantienen los valores de referencia que necesitan CU-01 y CU-02; CU-16 puede derivar en CU-17 cuando el nombre ingresado coincide con un valor desactivado.
 
 ---
 
@@ -56,7 +65,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | Nombre | Registrar un producto con sus variantes |
 | Descripción | La propietaria da de alta un producto con sus datos generales (nombre, categoría, marca, precio, temporada, grupo) y define sus variantes mediante talle, color, género y estampado, para poder venderlo y controlar su stock. |
 | Actores | Principal: Propietaria / Secundario: Ninguno |
-| Precondiciones | La propietaria accedió al sistema. Existen cargados los valores de referencia necesarios (categorías, temporadas, talles, géneros, colores y, si corresponde, grupos y estampados). |
+| Precondiciones | La propietaria accedió al sistema. Existen cargados los valores de referencia necesarios (categorías, temporadas, talles, géneros, colores y, si corresponde, grupos y estampados), administrados en CU-16 y CU-17. |
 | Postcondiciones | Éxito: el producto queda registrado con un código interno único, una única temporada y sus variantes. Fallo: no se registra ningún dato y el producto no existe en el sistema. |
 
 ### Secuencia normal
@@ -99,7 +108,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | Nombre | Cargar el stock inicial mediante una planilla |
 | Descripción | La propietaria incorpora de una sola vez el inventario inicial (productos, variantes y cantidades) mediante una planilla con formato definido, que el sistema valida antes de incorporar cualquier dato. |
 | Actores | Principal: Propietaria / Secundario: Ninguno |
-| Precondiciones | La propietaria accedió al sistema. Existen cargados los valores de referencia (categorías, temporadas, talles, géneros, colores). Dispone de la planilla completada con el formato definido. |
+| Precondiciones | La propietaria accedió al sistema. Existen cargados los valores de referencia (categorías, temporadas, talles, géneros, colores), administrados en CU-16 y CU-17. Dispone de la planilla completada con el formato definido. |
 | Postcondiciones | Éxito: todos los productos y variantes de la planilla quedan registrados con su cantidad disponible. Fallo: no se incorpora ningún dato al inventario. |
 
 ### Secuencia normal
@@ -303,7 +312,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | # | Acción (actor) | Reacción (sistema) |
 |---|----------------|--------------------|
 | 1 | Elige la opción de registrar una venta. | Muestra una venta nueva con la fecha actual. |
-| 2 | Busca y selecciona un producto y una variante. | Muestra el precio vigente y la cantidad disponible de la variante. |
+| 2 | Busca y selecciona un producto activo y una variante. | Muestra el precio vigente y la cantidad disponible de la variante. Los productos inactivos no se ofrecen. |
 | 3 | Indica la cantidad vendida. | Valida que no supere la cantidad disponible, agrega el ítem y calcula el subtotal. |
 | 4 | Repite los pasos 2 y 3 para cada producto o variante adicional. | Actualiza el subtotal con cada ítem agregado. |
 | 5 | Si lo decide, modifica manualmente el precio aplicado de un ítem. | Recalcula el subtotal con el precio indicado, sin alterar el precio vigente del producto. |
@@ -349,7 +358,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 
 | # | Acción (actor) | Reacción (sistema) |
 |---|----------------|--------------------|
-| 1 | Accede a las ventas pendientes de confirmación. | Muestra el listado de ventas con transferencia pendiente. |
+| 1 | Accede al listado de ventas (CU-15) y filtra por las pendientes de confirmación. | Muestra las ventas con transferencia pendiente. |
 | 2 | Selecciona la venta cuya transferencia fue acreditada. | Muestra el detalle de la venta. |
 | 3 | Elige marcarla como confirmada. | Solicita confirmación de la acción. |
 | 4 | Confirma. | Cambia el estado de la venta a cobrada sin modificar productos, cantidades, precios, descuento ni importes. |
@@ -550,7 +559,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 
 | # | Acción (actor) | Reacción (sistema) |
 |---|----------------|--------------------|
-| 1 | Accede a las ventas registradas y selecciona la venta a anular, sin límite de tiempo desde su registro. | Muestra el detalle de la venta y su estado. |
+| 1 | Accede al listado de ventas (CU-15) y selecciona la venta a anular, sin límite de tiempo desde su registro. | Muestra el detalle de la venta y su estado. |
 | 2 | Elige la opción de anular. | Solicita seleccionar un motivo de una lista de opciones simples. |
 | 3 | Selecciona el motivo. | Muestra un resumen de los efectos: restitución del stock, exclusión de las ventas válidas y, si corresponde, descuento de la deuda. Solicita confirmación. |
 | 4 | Confirma la anulación. | Marca la venta como anulada, conserva su detalle junto con el motivo y la fecha de anulación, restituye al stock las cantidades de las variantes vendidas y la excluye del total de ventas válidas. |
@@ -592,7 +601,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 
 | # | Acción (actor) | Reacción (sistema) |
 |---|----------------|--------------------|
-| 1 | Selecciona la venta fiada a anular y elige anular. | Detecta que la venta tiene pagos registrados y muestra una advertencia con el detalle de los pagos recibidos. |
+| 1 | Selecciona la venta fiada a anular desde el listado de ventas (CU-15) y elige anular. | Detecta que la venta tiene pagos registrados y muestra una advertencia con el detalle de los pagos recibidos. |
 | 2 | Acepta continuar con la anulación. | Solicita seleccionar un motivo de una lista de opciones simples. |
 | 3 | Selecciona el motivo. | Muestra el resumen de efectos: restitución del stock y registro de un ajuste separado en la cuenta corriente. Solicita confirmación. |
 | 4 | Confirma la anulación. | Marca la venta como anulada con su motivo y fecha, restituye el stock y la excluye de las ventas válidas. |
@@ -615,3 +624,206 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | Frecuencia | Excepcional: combina fiado, pagos parciales y un error posterior. |
 | Importancia | Baja a media: protege la integridad del historial de pagos. |
 | Urgencia | Baja. |
+
+---
+
+## CU-15 — Consultar el listado y el detalle de ventas
+
+| Campo | Detalle |
+|-------|---------|
+| Identificador | CU-15 |
+| Nombre | Consultar el listado y el detalle de ventas |
+| Descripción | La propietaria consulta las ventas registradas, las filtra por fecha, estado o medio de pago y accede al detalle de cada una. Desde el detalle puede iniciar las acciones que correspondan a su estado (confirmar una transferencia pendiente o anular la venta). |
+| Actores | Principal: Propietaria / Secundario: Ninguno |
+| Precondiciones | La propietaria accedió al sistema. |
+| Postcondiciones | Éxito: el sistema muestra el listado o el detalle solicitado, sin modificar ningún dato. Fallo: no se muestra información y no se modifican datos. |
+
+### Secuencia normal
+
+| # | Acción (actor) | Reacción (sistema) |
+|---|----------------|--------------------|
+| 1 | Elige la opción de consultar ventas. | Muestra el listado ordenado de la más reciente a la más antigua, con fecha, importe total, medios de pago y estado de cada venta, e identifica las ventas anuladas. |
+| 2 | Si lo necesita, filtra por fecha o período, estado (pendiente de confirmación, fiada o anulada) y medio de pago. | Aplica únicamente los filtros seleccionados y muestra las ventas que cumplen todos los criterios. |
+| 3 | Selecciona una venta. | Muestra su detalle: productos, variantes, cantidades, precios aplicados, descuento, total, medios de pago, fecha y estado. Si es fiada, muestra la persona asociada; si está anulada, el motivo y la fecha de anulación. |
+| 4 | Si lo desea, elige una acción disponible para esa venta. | Inicia el caso de uso correspondiente: CU-08 si la transferencia está pendiente, CU-13 para anularla o CU-14 si es una venta fiada con pagos registrados. |
+
+### Excepciones
+
+| # | Situación | Respuesta del sistema |
+|---|-----------|-----------------------|
+| E1 | Todavía no hay ventas registradas. | Informa que no existen ventas. |
+| E2 | Ninguna venta cumple los filtros seleccionados. | Informa que no se encontraron coincidencias. |
+| E3 | La venta seleccionada está anulada. | Muestra su detalle con el motivo y la fecha de anulación, y no ofrece confirmarla ni anularla de nuevo. |
+| E4 | La venta ya fue cobrada o confirmada. | No ofrece la acción de confirmar la transferencia. |
+| E5 | Se pierde la conexión durante la consulta. | Informa que no se pudo obtener la información y permite reintentar. |
+
+| Campo | Detalle |
+|-------|---------|
+| Rendimiento | Listado y detalle en pocos segundos desde el celular; valor objetivo a definir. |
+| Frecuencia | Media: para revisar lo vendido y cada vez que hay que confirmar o anular una venta. |
+| Importancia | Media a alta: habilita CU-08, CU-13 y CU-14 y reemplaza la revisión del cuaderno. |
+| Urgencia | Media: se implementa junto con el registro de ventas. |
+
+---
+
+## CU-16 — Consultar y agregar valores de un catálogo
+
+| Campo | Detalle |
+|-------|---------|
+| Identificador | CU-16 |
+| Nombre | Consultar y agregar valores de un catálogo |
+| Descripción | La propietaria consulta los valores de los catálogos de referencia (categorías, grupos, talles, géneros, colores, temporadas y estampados) y agrega valores nuevos para poder registrar productos y variantes. |
+| Actores | Principal: Propietaria / Secundario: Ninguno |
+| Precondiciones | La propietaria accedió al sistema. |
+| Postcondiciones | Éxito: el valor nuevo queda registrado y disponible para registrar productos y variantes; si es un talle, queda ubicado en el orden de presentación. Fallo: el catálogo no se modifica. |
+
+### Secuencia normal
+
+| # | Acción (actor) | Reacción (sistema) |
+|---|----------------|--------------------|
+| 1 | Accede al apartado de catálogos. | Muestra los catálogos disponibles, separados de la operación cotidiana. |
+| 2 | Selecciona un catálogo. | Muestra sus valores, identificando los desactivados y, en el caso de los talles, respetando su orden de presentación. |
+| 3 | Elige agregar un valor e ingresa su nombre. | Valida que el nombre no esté vacío y que no exista ya en el mismo catálogo, sin distinguir mayúsculas de minúsculas. |
+| 4 | Si el catálogo es el de talles, indica la posición que ocupará en el orden de presentación. | Propone por defecto la última posición. |
+| 5 | Confirma el alta. | Registra el valor y lo muestra en la lista, disponible desde ese momento para registrar productos y variantes. |
+
+### Excepciones
+
+| # | Situación | Respuesta del sistema |
+|---|-----------|-----------------------|
+| E1 | El nombre está vacío. | Indica que es obligatorio y no permite guardar. |
+| E2 | El nombre ya existe en el catálogo. | Informa que el valor ya existe y no lo registra. |
+| E3 | El nombre coincide con un valor desactivado. | Informa que existe desactivado y ofrece reactivarlo (CU-17). |
+| E4 | El catálogo todavía no tiene valores. | Muestra la lista vacía e invita a agregar el primer valor. |
+| E5 | La propietaria cancela el alta. | No modifica el catálogo. |
+| E6 | Se pierde la conexión al guardar. | Informa que no pudo guardar y no registra el valor. |
+
+| Campo | Detalle |
+|-------|---------|
+| Rendimiento | Alta y consulta inmediatas; valor objetivo a definir. |
+| Frecuencia | Alta durante la puesta en marcha; luego esporádica, cuando aparece un color, estampado o talle nuevo. |
+| Importancia | Alta: es precondición de CU-01 y CU-02. |
+| Urgencia | Alta: debe estar disponible antes de cargar productos. |
+
+---
+
+## CU-17 — Modificar o desactivar un valor de catálogo
+
+| Campo | Detalle |
+|-------|---------|
+| Identificador | CU-17 |
+| Nombre | Modificar o desactivar un valor de catálogo |
+| Descripción | La propietaria corrige el nombre de un valor, cambia la posición de un talle, o desactiva o reactiva un valor, sin perder los productos, variantes y ventas que lo utilizan. |
+| Actores | Principal: Propietaria / Secundario: Ninguno |
+| Precondiciones | La propietaria accedió al sistema. El valor existe en el catálogo. |
+| Postcondiciones | Éxito: el valor queda con el nombre, la posición o el estado indicados; los productos, variantes y ventas que lo utilizan se conservan, reflejando el nuevo nombre si fue modificado. Fallo: el valor permanece sin cambios. |
+
+### Secuencia normal
+
+| # | Acción (actor) | Reacción (sistema) |
+|---|----------------|--------------------|
+| 1 | Accede al apartado de catálogos, selecciona un catálogo y elige un valor. | Muestra su nombre, su estado (activo o desactivado) y, si es un talle, su posición. |
+| 2 | Elige una acción: modificar el nombre, cambiar la posición (solo talles), desactivar o reactivar. | Presenta la edición correspondiente. |
+| 3 | Realiza el cambio. | Valida que el nuevo nombre no esté vacío y no exista en el mismo catálogo. |
+| 4 | — | Muestra un resumen del cambio e informa que los productos, variantes y ventas existentes se conservarán. Solicita confirmación. |
+| 5 | Confirma. | Aplica el cambio: actualiza el nombre en todos los registros que lo utilizan, reordena los talles, o desactiva o reactiva el valor. |
+| 6 | — | Informa que el cambio fue realizado y muestra la lista actualizada. |
+
+### Excepciones
+
+| # | Situación | Respuesta del sistema |
+|---|-----------|-----------------------|
+| E1 | El nuevo nombre está vacío. | Indica que es obligatorio y no permite guardar. |
+| E2 | El nuevo nombre ya existe en el mismo catálogo. | Informa la coincidencia y no guarda el cambio. |
+| E3 | Se desactiva un valor que está en uso. | Lo permite: deja de ofrecerse al registrar o editar productos y variantes, pero los registros existentes lo conservan y las búsquedas siguen permitiendo filtrar por él. |
+| E4 | Se reactiva un valor desactivado. | Vuelve a ofrecerse al registrar o editar productos y variantes. |
+| E5 | Se intenta eliminar un valor. | No ofrece la eliminación; solo permite desactivarlo. |
+| E6 | La propietaria cancela antes de confirmar. | El valor permanece sin cambios. |
+| E7 | Se pierde la conexión al confirmar. | Informa que no pudo guardar y mantiene el valor sin cambios. |
+
+| Campo | Detalle |
+|-------|---------|
+| Rendimiento | Cambio e impacto en los registros inmediatos; valor objetivo a definir. |
+| Frecuencia | Baja: ante errores de carga o cuando deja de usar una opción. |
+| Importancia | Media: mantiene ordenadas las opciones sin afectar el historial. |
+| Urgencia | Media a baja. |
+
+---
+
+## CU-18 — Modificar un producto o inactivarlo
+
+| Campo | Detalle |
+|-------|---------|
+| Identificador | CU-18 |
+| Nombre | Modificar un producto o inactivarlo |
+| Descripción | La propietaria modifica los datos de un producto ya cargado (nombre, marca, grupo, temporada y precio vigente), o lo inactiva o reactiva, sin alterar su historial de ventas ni de stock. |
+| Actores | Principal: Propietaria / Secundario: Ninguno |
+| Precondiciones | La propietaria accedió al sistema. El producto existe. |
+| Postcondiciones | Éxito: el producto queda con los datos o el estado indicados; las variantes, cantidades y ventas anteriores se conservan, y las ventas ya registradas mantienen su precio aplicado. Fallo: el producto permanece sin cambios. |
+
+### Secuencia normal
+
+| # | Acción (actor) | Reacción (sistema) |
+|---|----------------|--------------------|
+| 1 | Busca y selecciona el producto (CU-05); si está inactivo, lo encuentra mediante el filtro de inactivos. | Muestra sus datos actuales: código interno y categoría (solo lectura), nombre, marca, grupo, temporada, precio vigente, estado y variantes. |
+| 2 | Elige una acción: editar los datos, inactivar o reactivar. | Presenta la acción elegida. |
+| 3 | Si edita, modifica uno o más datos. | Valida que el nombre esté completo y que el precio sea un valor numérico válido. |
+| 4 | — | Muestra un resumen de los cambios (valor anterior y nuevo) o del cambio de estado, aclarando que un cambio de precio solo afecta las ventas posteriores. Solicita confirmación. |
+| 5 | Confirma. | Guarda los cambios. Si cambió la temporada, la aplica a todas las variantes. Si inactivó, oculta el producto de las búsquedas normales y de las ventas nuevas. Si reactivó, vuelve a ofrecerlo. |
+| 6 | — | Informa que el cambio fue realizado. |
+
+### Excepciones
+
+| # | Situación | Respuesta del sistema |
+|---|-----------|-----------------------|
+| E1 | Falta el nombre o el precio no es un valor numérico válido. | Indica el error y no permite confirmar el cambio. |
+| E2 | No se modificó ningún dato. | Informa que no hay cambios y no guarda nada. |
+| E3 | Se inactiva un producto con stock disponible. | Advierte la cantidad existente y solicita una confirmación explícita antes de inactivarlo. |
+| E4 | Se intenta inactivar un producto ya inactivo o reactivar uno ya activo. | No ofrece esa acción e informa el estado actual. |
+| E5 | Se intenta modificar el código interno o la categoría. | No permite editarlos. Si la categoría fue cargada por error, debe inactivarse el producto y registrarse uno nuevo. |
+| E6 | La propietaria cancela antes de confirmar. | El producto permanece sin cambios. |
+| E7 | Se pierde la conexión al confirmar. | Informa que no pudo guardar y mantiene el producto sin cambios. |
+
+| Campo | Detalle |
+|-------|---------|
+| Rendimiento | Guardado inmediato desde el celular; valor objetivo a definir. |
+| Frecuencia | Media a baja: cambios de precio al reponer y bajas ocasionales de productos. |
+| Importancia | Media: mantiene el catálogo y los precios actualizados sin perder historial. |
+| Urgencia | Media. |
+
+---
+
+## CU-19 — Consultar el historial de correcciones de stock
+
+| Campo | Detalle |
+|-------|---------|
+| Identificador | CU-19 |
+| Nombre | Consultar el historial de correcciones de stock |
+| Descripción | La propietaria consulta las correcciones manuales de stock registradas, con la cantidad anterior, la nueva y el motivo, para entender las diferencias con la mercadería física. |
+| Actores | Principal: Propietaria / Secundario: Ninguno |
+| Precondiciones | La propietaria accedió al sistema. |
+| Postcondiciones | Éxito: el sistema muestra el historial solicitado, sin modificar ningún dato. Fallo: no se muestra información y no se modifican datos. |
+
+### Secuencia normal
+
+| # | Acción (actor) | Reacción (sistema) |
+|---|----------------|--------------------|
+| 1 | Elige consultar el historial de correcciones, o accede a él desde la consulta de una variante. | Muestra las correcciones ordenadas de la más reciente a la más antigua, con fecha, producto, variante, cantidad anterior, cantidad nueva y motivo. Si parte de una variante, muestra solo las suyas. |
+| 2 | Si lo necesita, filtra por producto o variante y por fecha o período. | Aplica únicamente los filtros seleccionados y muestra las correcciones que cumplen todos los criterios. |
+| 3 | Revisa las correcciones. | Presenta la información solo para consulta, sin opciones para modificarla ni eliminarla. |
+
+### Excepciones
+
+| # | Situación | Respuesta del sistema |
+|---|-----------|-----------------------|
+| E1 | Todavía no hay correcciones registradas. | Informa que no existen correcciones. |
+| E2 | Ninguna corrección cumple los filtros seleccionados. | Informa que no se encontraron coincidencias. |
+| E3 | La corrección corresponde a un producto inactivo. | La muestra igualmente, conservando su información. |
+| E4 | Se pierde la conexión durante la consulta. | Informa que no se pudo obtener la información y permite reintentar. |
+
+| Campo | Detalle |
+|-------|---------|
+| Rendimiento | Resultados en pocos segundos; valor objetivo a definir. |
+| Frecuencia | Baja: al revisar diferencias de stock o antes de una compra. |
+| Importancia | Media: hace efectiva la trazabilidad de las correcciones. |
+| Urgencia | Baja a media. |
