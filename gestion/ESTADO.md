@@ -1,33 +1,38 @@
 # Estado actual
 
-**Última actualización:** 2026-10-26
-**Versión / hito actual:** Etapa de análisis funcional en curso, trabajando en solitario. Historias de Usuario y Casos de Uso completos (14 HU y 14 CU); los Casos de Uso se trabajaron en la rama `docs/CU`.
+**Última actualización:** 2026-11-02
+**Versión / hito actual:** Diseño de interfaz en curso en la rama `docs/UI`. Inventario y mapa de navegación registrados; ficha de UI-01 redactada. La Issue coordinadora es #29.
 
 ## Objetivo del momento
-Preparar el inicio del diseño de UI mediante wireframes de los módulos ya elaborados, comenzando por CAT y STK.
+Coordinar el diseño de UI mediante la Issue #29 y sus issues hijos, preparar fichas antes de delegar wireframes y sumar a Gabi al flujo de colaboración.
 
 ## En curso
-- [ ] Revisar y mergear `docs/CU` a `main` mediante Pull Request (responsable: usuario)
+- [ ] Crear en GitHub los issues hijos ya redactados: "Inventario de pantallas y mapa de navegación" y "Definir ficha UI-01 Buscar stock", vinculándolos a #29.
+- [ ] Incorporar a Gabi al repositorio y asignarle los wireframes cuando las fichas estén listas.
 
 ## Pendiente (en orden de prioridad)
-1. Crear el módulo/tarea de diseño UI y preparar el encargo de wireframes para CAT y STK
-2. Redactar el Modelo de Datos
-3. Sumar a la segunda persona (desarrolladora) al repositorio
-4. _(Pospuesto hasta sumar a la segunda persona)_ Crear el GitHub Project (tablero Kanban) y definir la convención de columnas — ver DEC-002
+1. Crear un issue hijo de wireframe para UI-01; la ficha ya está hecha, pero el wireframe aún no.
+2. Completar las fichas UI-02 a UI-07 antes de delegar los wireframes de Entrega 1.
+3. Continuar con las fichas y wireframes de VTA, FIA, PAG y ANU, según el alcance de #29.
+4. Redactar el Modelo de Datos en paralelo.
+5. Incorporar formalmente a Gabi al repositorio y al flujo de PR.
 
 ## Bloqueado
 - Ninguno por el momento.
 
 ## Cerrado recientemente
-- 14 Casos de Uso (`docs/07-casos-de-uso.md`) completados y contrastados con los criterios de aceptación del Issue — 2026-10-26
-- Pull Request de `docs/HU` con las 14 Historias de Usuario — registrado en la sesión del 2026-10-25
-- Requisitos funcionales y no funcionales (`docs/04-requisitos.md`) y reglas de negocio (`docs/05-reglas-de-negocio.md`) cerrados
+- Inventario de pantallas y mapa de navegación para los 19 CU en `docs/09-interfaz-usuario.md`.
+- Ficha detallada UI-01 Buscar: objetivo, patrones, justificación, interacciones, validaciones, estados, accesibilidad y prueba del recorrido crítico.
+- GitHub Project Kanban Liviano creado; se comenzará a utilizar con la incorporación de Gabi — DEC-005.
+- Historias de Usuario y Casos de Uso completos (19 HU y 19 CU).
+- Requisitos funcionales y no funcionales (`docs/04-requisitos.md`) y reglas de negocio (`docs/05-reglas-de-negocio.md`) cerrados.
 
 ## Próximo paso concreto
-Revisar y mergear `docs/CU` a `main`; después, crear la tarea de diseño UI y preparar el alcance de wireframes de CAT y STK.
+Crear y vincular a #29 los dos issues hijos ya redactados; luego abrir un issue separado para el wireframe visual de UI-01 y preparar su revisión con Gabi.
 
 ## Dudas / riesgos abiertos
-- Ninguno nuevo. Se mantiene DEC-002: no crear tablero GitHub Projects hasta sumar a la segunda persona.
+- Falta confirmar la incorporación de Gabi al repositorio y definir cómo recibirá/revisará cada entrega.
+- Los números de los dos issues hijos aún no se conocen; agregarlos a este estado y a la bitácora cuando se creen en GitHub.
 
 ## Enlaces útiles
 - [DECISIONES.md](./DECISIONES.md)
@@ -35,3 +40,4 @@ Revisar y mergear `docs/CU` a `main`; después, crear la tarea de diseño UI y p
 - [docs/04-requisitos.md](../docs/04-requisitos.md)
 - [docs/06-historias-de-usuario.md](../docs/06-historias-de-usuario.md)
 - [docs/07-casos-de-uso.md](../docs/07-casos-de-uso.md)
+- [docs/09-interfaz-usuario.md](../docs/09-interfaz-usuario.md)

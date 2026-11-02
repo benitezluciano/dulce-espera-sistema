@@ -1,3 +1,33 @@
+## 2026-11-02 — Sesión 7
+**Duración aprox.:** No registrada · **Quién:** Usuario
+
+- **Objetivo de la sesión:** Ordenar el avance de diseño UI bajo la Issue coordinadora #29, documentar los dos trabajos ya completados y adaptar la gestión a la incorporación próxima de Gabi.
+- **Hecho:**
+  - Se acordó Buscar como pantalla inicial, la navegación principal Buscar / Ventas / Fiados / Administración y el término visible "Cliente".
+  - Se incorporaron a `docs/09-interfaz-usuario.md` los criterios globales, el mapa de navegación y el inventario de 13 pantallas/flujo trazado a las 19 HU y los 19 CU.
+  - Se redactó la ficha de UI-01 Buscar con patrones, justificación, interacciones, filtros, validaciones, estados, accesibilidad y una prueba del recorrido crítico.
+  - Se prepararon dos borradores de issues hijos para #29: "Inventario de pantallas y mapa de navegación" y "Definir ficha UI-01 Buscar stock". Sus números quedan pendientes de creación en GitHub.
+  - Se aclaró que el wireframe visual de UI-01 aún no está hecho y debe tener un issue de entrega separado; no se cerrará como realizado por la ficha solamente.
+  - El usuario creó el GitHub Project Kanban Liviano y prevé sumar a Gabi para colaborar en diseño y wireframes.
+- **Decidido:** (ver DECISIONES.md)
+  - DEC-005 — Utilizar GitHub Projects para coordinar el trabajo con Gabi; DEC-002 queda reemplazada.
+- **Cerrado:**
+  - Inventario de pantallas y mapa de navegación en el documento UI.
+  - Ficha de interfaz UI-01 Buscar.
+- **Pendiente / abierto:**
+  - Crear en GitHub los dos issues hijos ya redactados, vincularlos a #29 y cerrarlos una vez registrados como completados.
+  - Crear un issue separado para el wireframe visual de UI-01 y asignarlo cuando Gabi se incorpore.
+  - Completar las fichas UI-02 a UI-07 antes de delegar esos wireframes.
+  - Incorporar formalmente a Gabi al repositorio y al flujo de PR; añadir los números de Issues a `ESTADO.md` cuando existan.
+  - Avanzar en paralelo con el Modelo de Datos.
+- **Problemas o aprendizajes:**
+  - Una ficha de interfaz y su wireframe son entregables distintos: documentar el comportamiento de UI-01 no significa que ya exista su diseño visual.
+  - El Project visualiza el flujo de Issues entre colaboradores; `gestion/` sigue conservando el estado del proyecto y las decisiones duraderas.
+- **Próximo paso:** Crear los dos issues hijos usando los borradores preparados, enlazarlos a #29 y abrir la tarea visual de UI-01 para Gabi.
+- **Dudas para retomar:** Definir con Gabi el formato de entrega del wireframe (archivo editable/exportación o enlace) al asignar la tarea.
+
+---
+
 ## 2026-10-26 — Sesión 6
 **Duración aprox.:** No registrada · **Quién:** Usuario
 
