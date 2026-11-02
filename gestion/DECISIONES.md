@@ -32,7 +32,7 @@
 ### DEC-002 — Posponer GitHub Projects (tablero Kanban) hasta sumar a la segunda persona
 
 - **Fecha:** 2026-10-01
-- **Estado:** Cerrada
+- **Estado:** Reemplazada por DEC-005
 - **Participantes:** Usuario (rol de PM/analista funcional del proyecto)
 - **Contexto:** Se evaluó crear el tablero de GitHub Projects ahora para representar las columnas del Kanban (Backlog → Por Hacer → En curso → En revisión → Hecho). El usuario está trabajando solo en la etapa de análisis funcional y considera que montar el tablero en este momento es burocracia innecesaria que le resta foco a terminar el análisis, además de no tener aún claro cómo usarlo en la práctica.
 - **Decisión:** No crear el GitHub Project por ahora. Mientras el usuario trabaje en solitario, se sigue solo el flujo interno de `gestion/` (`ESTADO.md` + `BITACORA.md` en cada sesión, `DECISIONES.md` para decisiones de fondo), sin tablero ni labels de Kanban. El tablero se retoma y se estudia en profundidad recién cuando se sume la segunda persona (desarrolladora) y haya tareas reales de desarrollo que coordinar entre dos.
@@ -70,3 +70,18 @@
   - Diseñar un flujo más completo de conciliación de transferencias (con comprobantes, fechas de acreditación, etc.): descartada por desproporcionada para el volumen y el contexto de una única usuaria; se prioriza la opción de menor esfuerzo de implementación.
 - **Consecuencias:** Se actualizan `docs/04-requisitos.md` (RF-VTA-17), `docs/05-reglas-de-negocio.md` (RN40) y `docs/06-historias-de-usuario.md` (HU-08).
 - **Relacionado con:** #23, `docs/06-historias-de-usuario.md`
+
+---
+
+### DEC-005 — Usar GitHub Projects para coordinar el trabajo con Gabi
+
+- **Fecha:** 2026-11-02
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** DEC-002 pospuso el tablero mientras el usuario trabajaba en solitario. Ahora se creó un GitHub Project con un Kanban liviano y se prevé sumar a Gabi para colaborar en el diseño y los wireframes.
+- **Decisión:** Utilizar el GitHub Project creado para visualizar y coordinar las Issues del trabajo de interfaz cuando Gabi se incorpore. Mantener `gestion/` como registro versionado del estado y las decisiones; las Issues siguen siendo las unidades de trabajo y cada entrega se revisa mediante PR.
+- **Alternativas consideradas:**
+  - Continuar solo con `ESTADO.md` y `BITACORA.md`, sin tablero: descartada porque habrá trabajo distribuido entre dos personas y entregas dependientes.
+  - Usar únicamente Issues sin una vista Kanban: descartada porque el Project ya está creado y permite ver el avance y las dependencias de las entregas.
+- **Consecuencias:** DEC-002 queda reemplazada. Se organizará el trabajo de UI bajo la Issue coordinadora #29 y sus Issues hijas; antes de asignar trabajo, se completará la incorporación de Gabi al repositorio y al flujo de revisión.
+- **Relacionado con:** DEC-001, DEC-002, Issue #29
