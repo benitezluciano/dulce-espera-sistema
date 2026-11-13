@@ -145,7 +145,9 @@ interacciones y justifica las decisiones con el contexto real de uso.
 
 **Casos de uso asociados:** CU-05, CU-06
 
-**Wireframe:** Pendiente; guardar en `diagramas/wireframes/`.
+**Wireframe:** Pendiente; guardar en `diagramas/wireframes/01-buscar-stock.png`.
+
+**Navegación:** Viene de la navegación inferior (Buscar); va al detalle de producto (UI-02).
 
 **Objetivo de la pantalla:** Permitir que Silvia encuentre rápidamente un
 producto y vea las variantes y cantidades disponibles, tanto al responder una
@@ -153,11 +155,10 @@ consulta como al revisar qué reponer.
 
 **Patrones de diseño propuestos:**
 
-- Campo de búsqueda visible al inicio para nombre o código.
+- Campo de búsqueda visible al inicio para nombre, código interno o marca.
 - Panel inferior de filtros que se abre sobre la lista, con filtros seleccionados
   visibles como chips.
-- Resultados agrupados por producto, con variantes y cantidad disponible
-  claramente identificadas.
+- Resultados agrupados por producto, cada tarjeta muestra nombre, marca, temporada, precio y las variamtes que coinciden con los criterios, cada una con su cantidad. Todas las variantes del producto, incluidas las agotadas y las sin cantidad asignada, se ven en el detalle (UI-02).
 - Navegación inferior fija: Buscar, Ventas, Fiados y Administración.
 
 **Justificación:** El relevamiento identifica la consulta de disponibilidad
@@ -172,14 +173,15 @@ reposición (CU-06, RF-BUS-08 y RF-BUS-14).
 
 **Acciones principales e interacción:**
 
-- Buscar por nombre con coincidencias parciales o por código interno.
+- Buscar por nombre con coincidencias parciales o por código interno o por marca.
 - Abrir filtros y combinar categoría, grupo, género, talle, color, temporada y
   disponibilidad; los criterios no seleccionados no restringen la búsqueda.
 - Aplicar los filtros seleccionados conjuntamente y volver a los resultados.
 - Ordenar la lista por cantidad disponible de menor a mayor.
 - Incluir productos inactivos mediante una opción explícita; por defecto quedan
   ocultos.
-- Abrir el detalle del producto y sus variantes al seleccionar un resultado.
+- Abrir el detalle del producto (UI-02) al tocar un resultado.
+- Quitar un filtro tocando su chip, o limpiar todos los filtros.
 - Cambiar entre las secciones principales mediante la navegación inferior.
 
 **Formulario y criterios:**
@@ -188,8 +190,7 @@ reposición (CU-06, RF-BUS-08 y RF-BUS-14).
   temporada y disponibilidad; opción para incluir inactivos.
 - Flujo: búsqueda y resultados en la misma pantalla; filtros en un panel que se
   puede abrir y cerrar sin perder el contexto de la lista.
-- Validaciones: exigir al menos un criterio; combinar los criterios activos;
-  informar cuando no hay coincidencias.
+- Validaciones: exigir al menos un criterio, entendiendo como criterio cualquier filtro, incluidos "Disponibles" y "Agotados" (no "Todos"); combinar los criterios activos; informar cuando no hay coincidencias.
 - El filtro de stock bajo no define un umbral: se resuelve mediante el orden
   ascendente para que Silvia evalúe visualmente las cantidades.
 
@@ -199,6 +200,7 @@ reposición (CU-06, RF-BUS-08 y RF-BUS-14).
 - Cargando resultados.
 - Resultados encontrados.
 - Sin resultados para los criterios seleccionados.
+- Resultados con productos inactivos, identificados con la palabra "Inactivo".
 - Catálogo todavía vacío.
 - Error de conexión con posibilidad de reintentar.
 
@@ -211,7 +213,80 @@ el wireframe permitirá evaluar el recorrido antes de fijar un límite concreto.
 “Quedan 2”), no solo como color. Los controles de filtro deben poder identificarse
 por nombre y operarse cómodamente desde el celular.
 
+### UI-02 — Detalle de producto y variantes
+
+**Historias de Usuario asociadas:** HU-03, HU-04, HU-05, HU-18, HU-19
+
+**Casos de uso asociados:** CU-03, CU-04, CU-18, CU-19 (CU-05 como origen)
+
+**Wireframe:** Pendiente; guardar como `diagramas/wireframes/02-detalle-producto.png`.
+
+**Navegación:** Viene de UI-01 (al tocar un resultado) y de UI-03 (tras guardar un
+producto). Va a UI-03 (editar producto, agregar variante), UI-05 (asignar o
+corregir stock) y UI-06 (historial de una variante).
+
+**Objetivo de la pantalla:** Mostrar un producto con todos sus datos y todas sus
+variantes, y ser el punto de partida de las acciones de gestión sobre el producto
+y sobre cada variante.
+
+**Patrones de diseño propuestos:**
+
+- Encabezado compacto con los datos clave del producto.
+- Lista de variantes ordenada por talle, con cantidad y estado visibles en cada fila.
+- Menú de acciones por variante en un panel inferior.
+- Acciones del producto agrupadas en la parte superior.
+- Confirmación para inactivar, con advertencia si hay stock.
+- Aviso visible cuando el producto está inactivo.
+
+**Justificación:** Silvia necesita ver todas las variantes de un producto,
+incluidas las agotadas y las sin cantidad, y actuar sobre una puntual sin perder de
+vista cuál es. UI-01 muestra solo lo que coincide con la búsqueda; esta pantalla es
+la única con el panorama completo. Un menú por variante evita repetir botones en
+cada fila y mantiene la lista legible en el celular. Ordenar por talle y mostrar el
+género respeta cómo ella reconoce una prenda (relevamiento, sección 6.1). Separar la
+consulta (UI-01 y UI-02) de la edición (UI-03) y de los formularios de stock (UI-05)
+evita pantallas sobrecargadas.
+
+**Acciones principales e interacción:**
+
+- Volver a UI-01 conservando filtros y posición de la lista.
+- Editar producto: abre UI-03 (CU-18).
+- Inactivar o reactivar: pide confirmación y advierte si hay stock (CU-18, RF-CAT-24).
+- Agregar variante: abre UI-03 en la sección de variantes (CU-03).
+- Por variante: "Asignar stock" (solo si no tiene cantidad), "Corregir stock"
+  (CU-04) y "Ver historial" (CU-19), que abren UI-05 y UI-06.
+
+**Información que se muestra:**
+
+- Producto: código interno (solo lectura), nombre, marca, categoría, grupo,
+  temporada, precio vigente y estado.
+- Variante: talle, género, color, estampado (si aplica), cantidad y estado, con los
+  mismos textos que UI-01: "Quedan N", "Agotado" y "Sin cantidad asignada".
+
+**Formulario y criterios:**
+
+- La pantalla no tiene formularios propios; están en UI-03 y UI-05.
+- Código interno y categoría se muestran solo como lectura.
+- Una variante sin cantidad asignada ofrece "Asignar stock" y no "Corregir stock".
+
+**Estados a representar:**
+
+- Cargando.
+- Producto activo con variantes con stock, agotadas y sin cantidad asignada.
+- Producto inactivo, con aviso visible.
+- Confirmación de inactivación con advertencia de stock.
+- Error de conexión con posibilidad de reintentar.
+
+**Prueba de recorrido para el wireframe:** Desde un resultado de UI-01, llegar a
+corregir la cantidad de una variante puntual (body nena, talle 2, rosa) y contar los
+toques hasta abrir el formulario de UI-05.
+
+**Accesibilidad:** El estado de cada variante se indica con texto y no solo con
+color. Filas y menú con zonas táctiles cómodas. La acción de inactivar se diferencia
+de las demás y pide confirmación para evitar tocarla por error. Ninguna acción
+depende de gestos como mantener presionado.
+
 ### Fichas pendientes
 
-Continuar con UI-02 (Detalle de producto y variantes) y UI-03 (Alta y edición de
+Continuar con UI-03 (Alta y edición de
 producto), y luego avanzar por el resto del inventario de la sección 4.
