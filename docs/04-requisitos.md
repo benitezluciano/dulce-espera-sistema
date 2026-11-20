@@ -164,7 +164,7 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-ANU-02 | El sistema deberá solicitar un motivo obligatorio, seleccionado de una lista de opciones simples, antes de confirmar una anulación. |
 | RF-ANU-03 | El sistema deberá conservar la venta anulada en el historial junto con su motivo y fecha de anulación. |
 | RF-ANU-04 | El sistema deberá restituir al stock las cantidades de las variantes correspondientes a una venta anulada. |
-| RF-ANU-05 | El sistema deberá excluir las ventas anuladas del total de ventas válidas y de los reportes mensuales. |
+| RF-ANU-05 | El sistema deberá excluir las ventas anuladas del total de ventas válidas. |
 | RF-ANU-06 | El sistema deberá descontar de la deuda de la persona el importe de una venta fiada anulada que no tenga pagos registrados. |
 | RF-ANU-07 | El sistema deberá advertir antes de anular una venta fiada que tenga pagos parciales registrados. |
 | RF-ANU-08 | El sistema deberá permitir anular una venta fiada con pagos parciales registrando un ajuste separado, sin modificar el importe original de la venta ni de los pagos ya recibidos. |
@@ -202,7 +202,7 @@ la validación del MVP.
 
 | ID | Requisito |
 |----|-----------|
-| RNF-08 | El sistema deberá exigir usuario y contraseña para acceder, recomendándose activar la verificación en dos pasos en la cuenta utilizada. |
+| RNF-08 | El sistema deberá restringir el acceso mediante la autenticación de la cuenta de Google de la propietaria, sin pantalla de acceso propia, recomendándose activar la verificación en dos pasos en esa cuenta. |
 | RNF-09 | El sistema deberá generar copias de seguridad periódicas y automáticas de la información almacenada, independientes del historial de versiones nativo de la herramienta utilizada. |
 
 ## 4. Decisiones confirmadas y temas pendientes

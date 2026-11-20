@@ -1,3 +1,35 @@
+## 2026-11-20 — Sesión 8
+**Duración aprox.:** No registrada · **Quién:** Usuario con asistencia de Claude Code
+
+- **Objetivo de la sesión:** Recorrer todo el proyecto para recuperar el contexto y corregir las inconsistencias documentales detectadas.
+- **Hecho:**
+  - Se recorrió el repositorio completo (docs, gestión, diagramas y cuestionario) y se contrastó el estado real con lo registrado en `ESTADO.md` y el README.
+  - Se reescribió `ESTADO.md`: figura la ficha UI-02 como cerrada, se agregaron los pendientes de modelo de datos, diagrama de casos de uso y vacíos de diseño (autenticación, planilla de carga inicial, listas de motivos).
+  - Se corrigió el link del README al documento de interfaz (`09-interfaz-usuario.md`) y se actualizó su sección de estado y alcance del MVP.
+  - Se eliminaron las menciones residuales a "reportes mensuales" que contradecían su descarte (README, `01-alcance.md`, RF-ANU-05, RN37, `10-alternativas-de-solucion.md`). Las menciones históricas en la bitácora y en HU-06/CU-06 se conservan porque documentan el descarte.
+  - Se corrigió el typo "inacgittivo" en RN44.
+  - Se deja constancia de trabajo previo sin entrada propia en la bitácora: la ampliación a HU-15 a HU-19 y CU-15 a CU-19 (la Sesión 6 registra solo 14 CU; hoy son 19) y la ficha UI-02 (commit `4d18adc`).
+  - Se creó la rama `docs/UI-acceso-y-limpieza` (a partir de `docs/UI`) para separar este trabajo del PR de UI.
+  - Se eliminaron `RECURSOS.md` e `integrantes.md` (restos de la plantilla académica; estaban en `.gitignore`, solo existían en local) y se limpió el `.gitignore`. El proyecto pasa a tener enfoque de portfolio profesional.
+  - Se definió la autenticación: sin pantalla de login propia, acceso con la cuenta de Google. Se reformuló RNF-08, se actualizó el mapa de navegación (nuevo estado transversal "Acceso no autorizado") y se agregó un supuesto en `01-alcance.md`.
+- **Decidido:** (ver DECISIONES.md)
+  - DEC-006 — Autenticación mediante la cuenta de Google, sin pantalla de login propia.
+- **Cerrado:**
+  - Revisión de consistencia documental.
+  - Definición de la pantalla inicial y del mecanismo de acceso.
+- **Pendiente / abierto:**
+  - Crear en GitHub los dos issues hijos de #29 y abrir los de wireframe de UI-01 y UI-02.
+  - Redactar UI-03 a UI-13, el Modelo de Datos y el diagrama de casos de uso.
+  - Verificar con un prototipo mínimo los dos puntos abiertos de DEC-006 (propiedad del script y varias cuentas de Google).
+  - Definir planilla de carga inicial y listas de motivos.
+  - Typo menor sin corregir: "variamtes" en la ficha UI-01 de `09-interfaz-usuario.md`.
+- **Problemas o aprendizajes:**
+  - El trabajo de las sesiones intermedias no quedó registrado en `gestion/`, por lo que `ESTADO.md` y el README fueron quedando atrás. Conviene cerrar cada sesión actualizando `ESTADO.md` y la bitácora antes del commit.
+- **Próximo paso:** Redactar la ficha UI-03 (Alta y edición de producto).
+- **Dudas para retomar:** Ninguna nueva.
+
+---
+
 ## 2026-11-02 — Sesión 7
 **Duración aprox.:** No registrada · **Quién:** Usuario
 

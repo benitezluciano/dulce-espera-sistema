@@ -15,7 +15,7 @@ Ambas alternativas contemplan:
 - Uso prioritario desde el celular.
 - Consulta por producto y variante, incluyendo talle, género, color, temporada y cantidad.
 - Registro de ventas y actualización del stock según el alcance aprobado.
-- Registro de ventas fiadas y reportes básicos, sujetos a la especificación de requisitos.
+- Registro de ventas fiadas, pagos y anulaciones, y consulta de stock bajo, según la especificación de requisitos.
 - Las reglas de negocio documentadas en [`05-reglas-de-negocio.md`](./05-reglas-de-negocio.md).
 - Los mismos criterios de aceptación y de éxito del producto.
 
@@ -35,7 +35,7 @@ Esta alternativa utiliza servicios del ecosistema de Google para construir un MV
 | Interfaz | Aplicación web responsive accesible desde el celular |
 | Usuaria inicial | Una única usuaria: Silvia |
 | Conectividad | Requiere conexión a internet |
-| Alcance recomendado | Consulta y administración básica de stock; luego ventas y reportes |
+| Alcance recomendado | Consulta y administración básica de stock; luego ventas, fiados y anulaciones |
 
 ### Adecuación al contexto
 
