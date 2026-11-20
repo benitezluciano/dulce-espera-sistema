@@ -101,3 +101,33 @@
   - Sin ninguna restricción de acceso: descartada porque la información de stock, ventas y deudas de terceras personas es sensible.
 - **Consecuencias:** Se reformula RNF-08 y se actualizan el mapa de navegación de `docs/09-interfaz-usuario.md` y los supuestos de `docs/01-alcance.md`. Quedan dos puntos a verificar con un prototipo mínimo antes de implementar: (1) el script debe pertenecer a la cuenta de Silvia, o transferirse, para publicarse con acceso restringido a ella; (2) el comportamiento de Apps Script cuando el celular tiene varias cuentas de Google con sesión abierta.
 - **Relacionado con:** RNF-08, DEC-001, `docs/10-alternativas-de-solucion.md`
+
+---
+
+### DEC-007 — Una rama por tarea, desde `main` actualizada, fusionada con merge commit
+
+- **Fecha:** 2026-11-20
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** Se venía reutilizando la rama `docs/UI` para varias tareas y se acumularon ramas ya fusionadas sin borrar. Al separar el trabajo de autenticación y limpieza, se comprobó que reutilizar una rama larga obliga a verificar a mano qué commits están o no en `main`, y que un "squash and merge" reescribiría los commits y generaría conflictos en las ramas que parten de ellos.
+- **Decisión:** Cada tarea (normalmente una Issue) tiene su propia rama, creada desde `main` actualizada (`git checkout main`, `git pull`) y nombrada con el patrón `docs/<tarea>` (por ejemplo, `docs/UI-03`). Se integra con un Pull Request usando **"Create a merge commit"**, nunca squash ni rebase. Después del merge se actualiza `main` y se borra la rama, local y remota, con `git branch -d`, que se niega a borrar si hay commits sin fusionar.
+- **Alternativas consideradas:**
+  - Reutilizar una rama larga para varias tareas (`docs/UI`): descartada porque mezcla trabajo nuevo con commits ya fusionados y complica el historial de cada PR.
+  - Squash and merge: descartada porque rompe la ascendencia de los commits y genera conflictos en las ramas derivadas.
+- **Consecuencias:** Quedan eliminadas las ramas ya fusionadas (`docs/UI`, `docs/UI-acceso-y-limpieza`, `docs/CU`, `docs/CU-HU-17-19`, `docs/alcance`, `docs/requisitos`, `diagramas`). Se recomienda activar en GitHub "Automatically delete head branches" (pendiente de confirmar por el usuario). La rama `docs/add-wireframe-link` no está fusionada y se decide aparte.
+- **Relacionado con:** DEC-005, Issue #29
+
+---
+
+### DEC-008 — Conversar los puntos abiertos antes de redactar un entregable
+
+- **Fecha:** 2026-11-20
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** Al iniciar la ficha UI-03 se redactó el documento completo y se dejó al final una lista de "puntos a validar". Varios de esos puntos podían modificar documentos ya cerrados (RN16, RF-CAT-10, RF-STK-12), por lo que debían resolverse antes de escribir.
+- **Decisión:** Cuando una tarea tenga decisiones sin definir o inconsistencias con documentos cerrados, no se redacta en los archivos. Primero se conversa en el chat y se hacen las preguntas necesarias; cuando haya información suficiente, se pide una confirmación final antes de redactar. Los documentos no incluyen secciones de dudas pendientes: lo resuelto queda como decisión (`DECISIONES.md`) o como requisito.
+- **Alternativas consideradas:**
+  - Redactar con una sección de "puntos a validar" al final: descartada porque deja dudas dentro de entregables que se delegan (por ejemplo, a Gabi) y puede propagar supuestos sin validar.
+  - Que el asistente decida por defecto todo lo no definido: descartada porque algunas decisiones modifican requisitos y reglas ya aprobados.
+- **Consecuencias:** Se espera una etapa de preguntas antes de cada ficha o documento nuevo. Los detalles menores con una opción razonable por defecto se resuelven y se informan sin consulta previa. Aplica también a quien colabore con el repositorio.
+- **Relacionado con:** DEC-003, Issue #29

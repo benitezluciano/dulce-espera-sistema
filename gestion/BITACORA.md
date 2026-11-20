@@ -1,7 +1,7 @@
 ## 2026-11-20 — Sesión 8
 **Duración aprox.:** No registrada · **Quién:** Usuario con asistencia de Claude Code
 
-- **Objetivo de la sesión:** Recorrer todo el proyecto para recuperar el contexto y corregir las inconsistencias documentales detectadas.
+- **Objetivo de la sesión:** Recorrer todo el proyecto para recuperar el contexto, corregir las inconsistencias documentales, definir la autenticación, ordenar las ramas y preparar el inicio de la ficha UI-03.
 - **Hecho:**
   - Se recorrió el repositorio completo (docs, gestión, diagramas y cuestionario) y se contrastó el estado real con lo registrado en `ESTADO.md` y el README.
   - Se reescribió `ESTADO.md`: figura la ficha UI-02 como cerrada, se agregaron los pendientes de modelo de datos, diagrama de casos de uso y vacíos de diseño (autenticación, planilla de carga inicial, listas de motivos).
@@ -12,21 +12,33 @@
   - Se creó la rama `docs/UI-acceso-y-limpieza` (a partir de `docs/UI`) para separar este trabajo del PR de UI.
   - Se eliminaron `RECURSOS.md` e `integrantes.md` (restos de la plantilla académica; estaban en `.gitignore`, solo existían en local) y se limpió el `.gitignore`. El proyecto pasa a tener enfoque de portfolio profesional.
   - Se definió la autenticación: sin pantalla de login propia, acceso con la cuenta de Google. Se reformuló RNF-08, se actualizó el mapa de navegación (nuevo estado transversal "Acceso no autorizado") y se agregó un supuesto en `01-alcance.md`.
+  - Se fusionaron en `main` los PR de `docs/UI` y `docs/UI-acceso-y-limpieza` (PR #40) con merge commit.
+  - Se borraron, en local y remoto, las ramas ya fusionadas: `docs/UI`, `docs/UI-acceso-y-limpieza`, `docs/CU`, `docs/CU-HU-17-19`, `docs/alcance`, `docs/requisitos` y `diagramas`. Las dos últimas tenían commits locales que no estaban en su remota; se verificó que todos estaban en `main` antes de forzar el borrado.
+  - Se creó la rama `docs/UI-03` desde `main` actualizada y se redactó el texto del Issue "Definir ficha UI-03 Alta y edición de producto" (pendiente de crear en GitHub, como parte de #29).
+  - Se redactó un borrador completo de la ficha UI-03 en `docs/09-interfaz-usuario.md`, con una lista de puntos a validar. El usuario indicó que no debía escribirse antes de resolver esos puntos conversando; el borrador quedó **sin commitear** y se rehará (ver DEC-008).
 - **Decidido:** (ver DECISIONES.md)
   - DEC-006 — Autenticación mediante la cuenta de Google, sin pantalla de login propia.
+  - DEC-007 — Una rama por tarea, desde `main` actualizada, fusionada con merge commit.
+  - DEC-008 — Conversar los puntos abiertos antes de redactar un entregable.
 - **Cerrado:**
   - Revisión de consistencia documental.
   - Definición de la pantalla inicial y del mecanismo de acceso.
+  - Limpieza de ramas y definición del flujo de ramas.
 - **Pendiente / abierto:**
-  - Crear en GitHub los dos issues hijos de #29 y abrir los de wireframe de UI-01 y UI-02.
-  - Redactar UI-03 a UI-13, el Modelo de Datos y el diagrama de casos de uso.
+  - Conversar los puntos abiertos de UI-03 antes de redactar la ficha (ver "Dudas para retomar"). Decidir si se descarta el borrador sin commitear de `docs/09-interfaz-usuario.md`.
+  - Crear en GitHub el Issue de UI-03 y los dos issues hijos pendientes de #29; abrir los de wireframe de UI-01 y UI-02.
+  - Redactar UI-04 a UI-13, el Modelo de Datos y el diagrama de casos de uso.
   - Verificar con un prototipo mínimo los dos puntos abiertos de DEC-006 (propiedad del script y varias cuentas de Google).
   - Definir planilla de carga inicial y listas de motivos.
+  - Decidir qué hacer con la rama remota `docs/add-wireframe-link` (referencia a un wireframe de Figma, no fusionada).
+  - Activar en GitHub "Automatically delete head branches" (sugerido).
   - Typo menor sin corregir: "variamtes" en la ficha UI-01 de `09-interfaz-usuario.md`.
 - **Problemas o aprendizajes:**
   - El trabajo de las sesiones intermedias no quedó registrado en `gestion/`, por lo que `ESTADO.md` y el README fueron quedando atrás. Conviene cerrar cada sesión actualizando `ESTADO.md` y la bitácora antes del commit.
-- **Próximo paso:** Redactar la ficha UI-03 (Alta y edición de producto).
-- **Dudas para retomar:** Ninguna nueva.
+  - Pedir "empezamos a trabajar en una ficha" no equivale a pedir su redacción: si hay puntos sin definir, primero se conversa (DEC-008).
+  - Un "squash and merge" rompería la ascendencia de los commits y generaría conflictos en las ramas derivadas; por eso se usa merge commit (DEC-007).
+- **Próximo paso:** Conversar los puntos abiertos de UI-03 y, con una confirmación final, redactar la ficha.
+- **Dudas para retomar:** Puntos sobre UI-03 detectados al preparar el borrador, a resolver conversando: (1) si "No aplica" es por atributo o por producto (RN16 y RF-CAT-10 hablan de "variante única", pero una vincha podría no tener talle y venir en varios colores); (2) cómo corregir o retirar una variante cargada por error, que ningún requisito cubre (RF-STK-12); (3) qué es la pantalla Administración, que figura en el mapa pero no en el inventario de pantallas; (4) si se puede agregar un valor de catálogo desde el formulario de producto, dado RNF-04; (5) reglas finas de datos: si el precio cero es válido y si la marca lleva sugerencias de las ya usadas.
 
 ---
 
