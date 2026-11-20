@@ -204,6 +204,7 @@ Se adoptan los siguientes supuestos para esta versión del alcance:
 - Las redes sociales continuarán utilizándose fuera del sistema.
 - El sistema se utilizará para gestión interna y no para vender directamente a clientes.
 - La gestión de la recuperación de acceso a la cuenta de Google (correo o teléfono de recuperación) es responsabilidad de la propietaria y queda fuera del alcance funcional del sistema.
+- El acceso al sistema se controla con la cuenta de Google de la propietaria, sin pantalla de login propia (DEC-006). El script y la planilla deberán pertenecer a esa cuenta, o transferirse a ella, para poder restringir el acceso a la propietaria.
 
 ---
 

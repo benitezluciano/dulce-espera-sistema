@@ -202,7 +202,7 @@ la validación del MVP.
 
 | ID | Requisito |
 |----|-----------|
-| RNF-08 | El sistema deberá exigir usuario y contraseña para acceder, recomendándose activar la verificación en dos pasos en la cuenta utilizada. |
+| RNF-08 | El sistema deberá restringir el acceso mediante la autenticación de la cuenta de Google de la propietaria, sin pantalla de acceso propia, recomendándose activar la verificación en dos pasos en esa cuenta. |
 | RNF-09 | El sistema deberá generar copias de seguridad periódicas y automáticas de la información almacenada, independientes del historial de versiones nativo de la herramienta utilizada. |
 
 ## 4. Decisiones confirmadas y temas pendientes

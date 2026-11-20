@@ -85,3 +85,19 @@
   - Usar únicamente Issues sin una vista Kanban: descartada porque el Project ya está creado y permite ver el avance y las dependencias de las entregas.
 - **Consecuencias:** DEC-002 queda reemplazada. Se organizará el trabajo de UI bajo la Issue coordinadora #29 y sus Issues hijas; antes de asignar trabajo, se completará la incorporación de Gabi al repositorio y al flujo de revisión.
 - **Relacionado con:** DEC-001, DEC-002, Issue #29
+
+---
+
+### DEC-006 — Autenticación mediante la cuenta de Google, sin pantalla de login propia
+
+- **Fecha:** 2026-11-20
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** El mapa de navegación de `docs/09-interfaz-usuario.md` dejaba pendiente si la pantalla inicial debía tener un login propio. RNF-08 exigía "usuario y contraseña", sin precisar el mecanismo. La alternativa elegida (Google Sheets + Apps Script, ver `10-alternativas-de-solucion.md`) no ofrece un lugar seguro para guardar credenciales, y el objetivo de UI-01 es responder una consulta con pocos toques.
+- **Decisión:** No habrá pantalla de login propia. El acceso se controla con la autenticación de Google: la aplicación web se publica con acceso restringido a la cuenta de la propietaria, la planilla de datos se comparte únicamente con esa cuenta y se recomienda activar la verificación en dos pasos. Opcionalmente, el servidor verifica que el correo de quien accede sea el autorizado. La pantalla inicial es Buscar (UI-01); el rechazo de una cuenta no autorizada es un estado transversal.
+- **Alternativas consideradas:**
+  - Login propio con usuario y contraseña guardados en una hoja de cálculo: descartada porque almacenar credenciales en Sheets es menos seguro que no tener login propio, y agrega pasos al recorrido crítico de consulta.
+  - Aplicación publicada con acceso abierto y un PIN o clave dentro de la aplicación: descartada por la misma razón y porque expone los datos a cualquiera que tenga el enlace.
+  - Sin ninguna restricción de acceso: descartada porque la información de stock, ventas y deudas de terceras personas es sensible.
+- **Consecuencias:** Se reformula RNF-08 y se actualizan el mapa de navegación de `docs/09-interfaz-usuario.md` y los supuestos de `docs/01-alcance.md`. Quedan dos puntos a verificar con un prototipo mínimo antes de implementar: (1) el script debe pertenecer a la cuenta de Silvia, o transferirse, para publicarse con acceso restringido a ella; (2) el comportamiento de Apps Script cuando el celular tiene varias cuentas de Google con sesión abierta.
+- **Relacionado con:** RNF-08, DEC-001, `docs/10-alternativas-de-solucion.md`

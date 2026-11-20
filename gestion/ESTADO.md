@@ -15,13 +15,16 @@ Coordinar el diseño de UI mediante la Issue #29 y sus issues hijos, completar l
 2. Crear los issues hijos de wireframe para UI-01 y UI-02; las fichas están hechas, los wireframes no.
 3. Continuar con las fichas y wireframes de VTA, FIA, PAG y ANU (UI-08 a UI-13), según el alcance de #29.
 4. Redactar el Modelo de Datos (`docs/08-modelo-de-datos.md` y `diagramas/er.puml` siguen siendo la plantilla vacía) y el diagrama de casos de uso (`diagramas/casos-de-uso.puml`, también plantilla).
-5. Definir los vacíos de diseño abiertos: mecanismo de autenticación (¿hay pantalla de login?), columnas y valores permitidos de la planilla de carga inicial, y listas de motivos para correcciones de stock y anulaciones.
+5. Definir los vacíos de diseño abiertos: columnas y valores permitidos de la planilla de carga inicial, y listas de motivos para correcciones de stock y anulaciones.
+5b. Armar un prototipo mínimo de Apps Script para verificar los dos puntos abiertos de DEC-006 (propiedad del script y varias cuentas de Google en el celular).
 6. Incorporar formalmente a Gabi al repositorio y al flujo de PR.
 
 ## Bloqueado
 - Ninguno por el momento.
 
 ## Cerrado recientemente
+- Autenticación definida (DEC-006): acceso con la cuenta de Google, sin login propio; RNF-08, mapa de navegación y alcance actualizados.
+- Eliminados `RECURSOS.md` e `integrantes.md`, restos de la plantilla académica que solo existían en local.
 - Ficha detallada UI-02 Detalle de producto y variantes.
 - Inventario de pantallas y mapa de navegación para los 19 CU en `docs/09-interfaz-usuario.md`.
 - Ficha detallada UI-01 Buscar: objetivo, patrones, justificación, interacciones, validaciones, estados, accesibilidad y prueba del recorrido crítico.
@@ -36,7 +39,7 @@ Redactar la ficha UI-03 (Alta y edición de producto); en paralelo, crear y vinc
 ## Dudas / riesgos abiertos
 - Falta confirmar la incorporación de Gabi al repositorio y definir cómo recibirá/revisará cada entrega.
 - Los números de los dos issues hijos aún no se conocen; agregarlos a este estado y a la bitácora cuando se creen en GitHub.
-- Autenticación de la alternativa Google Sheets + Apps Script sin definir; condiciona si existe una pantalla de acceso (ver mapa de navegación en `docs/09-interfaz-usuario.md`).
+- DEC-006 define el acceso con la cuenta de Google, pero depende de dos supuestos de Apps Script aún sin verificar en la práctica: el script debe pertenecer a la cuenta de Silvia y debe funcionar con varias cuentas de Google en el celular.
 
 ## Enlaces útiles
 - [DECISIONES.md](./DECISIONES.md)

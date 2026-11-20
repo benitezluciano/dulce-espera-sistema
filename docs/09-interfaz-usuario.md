@@ -54,7 +54,7 @@ se inician las acciones permitidas por su estado.
 
 ```mermaid
 flowchart TD
-    A[Acceso al sistema] --> B[Buscar: inicio]
+    A[Acceso con cuenta de Google] --> B[Buscar: inicio]
     B --> C[Resultados y filtros]
     C --> D[Detalle de producto y variantes]
     D --> E[Asignar o corregir stock]
@@ -86,9 +86,11 @@ flowchart TD
     AI --> AN[Carga inicial de stock]
 ```
 
-El acceso se representa como punto de entrada, pero la necesidad de una pantalla
-de inicio de sesión propia queda pendiente de definir según el mecanismo de
-autenticación de la alternativa Google Sheets + Google Apps Script.
+El sistema no tiene pantalla de inicio de sesión propia (DEC-006, RNF-08): el
+acceso lo resuelve la autenticación de Google, que en el celular de Silvia ya
+tiene la sesión abierta, por lo que se entra directo a Buscar. El nodo de acceso
+del mapa representa ese paso previo. El rechazo de una cuenta no autorizada es un
+estado transversal.
 
 ## 4. Inventario de pantallas y flujos
 
@@ -108,7 +110,7 @@ autenticación de la alternativa Google Sheets + Google Apps Script.
 | UI-12 | Datos del Cliente | HU-11 | CU-11 | Edición accesible desde la cuenta corriente. |
 | UI-13 | Registrar pago | HU-12 | CU-12 | Formulario desde la cuenta corriente y resumen antes de confirmar. |
 
-Las pantallas de acceso, carga, estado vacío, ausencia de resultados, error de
+Las pantallas de carga, acceso no autorizado, estado vacío, ausencia de resultados, error de
 conexión, confirmación y éxito son estados transversales; no se consideran
 pantallas independientes salvo que el wireframe muestre que requieren un flujo
 propio. La decisión final se documentará en las fichas detalladas.
@@ -118,6 +120,7 @@ propio. La decisión final se documentará en las fichas detalladas.
 Para cada pantalla se evaluarán, cuando correspondan, estos estados:
 
 - Cargando o guardando.
+- Acceso no autorizado, cuando la cuenta de Google no es la de la propietaria.
 - Vacío, cuando todavía no hay información cargada.
 - Sin resultados para los filtros seleccionados.
 - Error de conexión con opción de reintentar.
