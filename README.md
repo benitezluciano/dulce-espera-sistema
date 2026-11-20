@@ -20,7 +20,8 @@ El sistema contempla inicialmente:
 - Registro de ventas y actualización automática del stock.
 - Registro de ventas fiadas y cobros pendientes.
 - Correcciones manuales de inventario.
-- Reportes mensuales básicos.
+- Identificación de productos con stock bajo o agotado mediante el orden de los resultados de búsqueda (en reemplazo de un módulo de reportes, descartado del MVP).
+- Anulación de ventas con restitución de stock.
 - Uso prioritario desde dispositivos móviles.
 
 El sistema será de uso interno y no funcionará como una tienda online pública.
@@ -29,9 +30,11 @@ El sistema será de uso interno y no funcionará como una tienda online pública
 
 - Relevamiento del negocio: completado.
 - Alcance funcional inicial: definido y aprobado.
-- Procesos AS-IS y TO-BE: en elaboración.
-- Requisitos, historias de usuario y casos de uso: en elaboración.
-- Modelo de datos y diseño de interfaz: en elaboración.
+- Procesos AS-IS y TO-BE: diagramados (consulta de stock y venta).
+- Requisitos funcionales y no funcionales, reglas de negocio: completos.
+- Historias de usuario (19) y casos de uso (19): completos.
+- Diseño de interfaz: en elaboración (mapa de navegación, inventario de pantallas y fichas UI-01 y UI-02; wireframes pendientes).
+- Modelo de datos: pendiente.
 - Implementación del MVP: próxima etapa.
 
 ## Mi participación
@@ -59,7 +62,7 @@ Mi participación incluye:
 - [Historias de usuario](docs/06-historias-de-usuario.md)
 - [Casos de uso](docs/07-casos-de-uso.md)
 - [Modelo de datos](docs/08-modelo-de-datos.md)
-- [Diseño de interfaz](docs/09-diseño-ui.md)
+- [Diseño de interfaz](docs/09-interfaz-usuario.md)
 - [Alternativas de solución](docs/10-alternativas-de-solucion.md)
 
 ## Enfoque de implementación

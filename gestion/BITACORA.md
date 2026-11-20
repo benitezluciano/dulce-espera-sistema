@@ -1,3 +1,29 @@
+## 2026-11-20 — Sesión 8
+**Duración aprox.:** No registrada · **Quién:** Usuario con asistencia de Claude Code
+
+- **Objetivo de la sesión:** Recorrer todo el proyecto para recuperar el contexto y corregir las inconsistencias documentales detectadas.
+- **Hecho:**
+  - Se recorrió el repositorio completo (docs, gestión, diagramas y cuestionario) y se contrastó el estado real con lo registrado en `ESTADO.md` y el README.
+  - Se reescribió `ESTADO.md`: figura la ficha UI-02 como cerrada, se agregaron los pendientes de modelo de datos, diagrama de casos de uso y vacíos de diseño (autenticación, planilla de carga inicial, listas de motivos).
+  - Se corrigió el link del README al documento de interfaz (`09-interfaz-usuario.md`) y se actualizó su sección de estado y alcance del MVP.
+  - Se eliminaron las menciones residuales a "reportes mensuales" que contradecían su descarte (README, `01-alcance.md`, RF-ANU-05, RN37, `10-alternativas-de-solucion.md`). Las menciones históricas en la bitácora y en HU-06/CU-06 se conservan porque documentan el descarte.
+  - Se corrigió el typo "inacgittivo" en RN44.
+  - Se deja constancia de trabajo previo sin entrada propia en la bitácora: la ampliación a HU-15 a HU-19 y CU-15 a CU-19 (la Sesión 6 registra solo 14 CU; hoy son 19) y la ficha UI-02 (commit `4d18adc`).
+- **Decidido:** Ninguna decisión de fondo nueva; no se agrega entrada a `DECISIONES.md`.
+- **Cerrado:**
+  - Revisión de consistencia documental.
+- **Pendiente / abierto:**
+  - Crear en GitHub los dos issues hijos de #29 y abrir los de wireframe de UI-01 y UI-02.
+  - Redactar UI-03 a UI-13, el Modelo de Datos y el diagrama de casos de uso.
+  - Definir autenticación, planilla de carga inicial y listas de motivos.
+  - Typo menor sin corregir: "variamtes" en la ficha UI-01 de `09-interfaz-usuario.md`.
+- **Problemas o aprendizajes:**
+  - El trabajo de las sesiones intermedias no quedó registrado en `gestion/`, por lo que `ESTADO.md` y el README fueron quedando atrás. Conviene cerrar cada sesión actualizando `ESTADO.md` y la bitácora antes del commit.
+- **Próximo paso:** Redactar la ficha UI-03 (Alta y edición de producto).
+- **Dudas para retomar:** Ninguna nueva.
+
+---
+
 ## 2026-11-02 — Sesión 7
 **Duración aprox.:** No registrada · **Quién:** Usuario
 

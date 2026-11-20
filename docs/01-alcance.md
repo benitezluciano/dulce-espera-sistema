@@ -214,7 +214,7 @@ El proyecto estará condicionado por las siguientes restricciones:
 - La solución deberá priorizar el uso desde celular.
 - El MVP requerirá conexión a internet.
 - El sistema estará diseñado inicialmente para una única usuaria.
-- El alcance se concentrará en stock, ventas, ventas fiadas y reportes básicos.
+- El alcance se concentrará en stock, ventas, ventas fiadas y anulaciones, con la consulta de stock bajo como apoyo a la reposición.
 - No se incorporarán integraciones con redes sociales, proveedores ni servicios de facturación.
 - La información de stock dependerá de que la propietaria registre correctamente las altas, ventas, anulaciones y correcciones.
 - El modelo de talles deberá contemplar que los valores pueden variar entre proveedores y no representan medidas universales.
@@ -228,7 +228,7 @@ Estas cuestiones no impiden cerrar el alcance inicial, pero deberán resolverse 
 
 - Cómo se registrarán los pagos parciales de una venta fiada.
 - Si una anulación podrá realizarse en cualquier estado de la venta o requerirá condiciones específicas.
-- Qué información exacta incluirán los reportes mensuales.
+- ~~Qué información exacta incluirán los reportes mensuales.~~ Resuelta: el módulo de reportes se descartó del MVP (ver sección 5.6).
 - Cómo se resolverá la identificación cuando varias personas de una familia compartan el mismo número de teléfono.
 - Qué datos adicionales, además de nombre, apellido y teléfono, podrían ser necesarios en casos excepcionales.
 - Qué reglas se aplicarán para recuperar stock al anular una venta.
@@ -243,7 +243,7 @@ El alcance podrá considerarse validado cuando:
 - se aprueben las funcionalidades incluidas y excluidas;
 - se validen los supuestos y restricciones principales;
 - se acepte que el uso prioritario será desde el celular;
-- se confirme que los reportes mensuales forman parte del MVP;
+- se confirme que los reportes mensuales quedan fuera del MVP y que la necesidad de reposición se cubre con la consulta de stock bajo (sección 5.6);
 - se reconozca que los pagos parciales, la anulación de ventas y el teléfono compartido se detallarán en una etapa posterior.
 
 ## 11. Validación de la propietaria
