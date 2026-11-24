@@ -1,3 +1,34 @@
+## 2026-11-24 — Sesión 9
+**Duración aprox.:** No registrada · **Quién:** Usuario con asistencia de Claude Code
+
+- **Objetivo de la sesión:** Resolver conversando los puntos abiertos de UI-03 y redactar la ficha (DEC-008).
+- **Hecho:**
+  - Se explicaron y resolvieron los cinco puntos abiertos de UI-03 en el chat, antes de escribir nada. Se descartó el borrador previo de la ficha.
+  - Se redactó la ficha UI-03 (Alta y edición de producto) sin lista de dudas pendientes, con tres modos: alta, edición y agregar variante.
+  - Se agregó la inactivación de variantes: HU-20, CU-20, RF-CAT-25 a RF-CAT-28, RF-STK-21, RF-VTA-23, RN46 y RN47; se extendieron RF-BUS-09 y RF-BUS-10 y se ajustaron CU-03, CU-04, CU-05 y CU-07, y las fichas UI-01 y UI-02.
+  - Se aplicaron los criterios de formulario: precio mayor a cero (RF-CAT-07, RN48), marca opcional de texto libre (RF-CAT-02), RNF-04 aclarado para permitir el alta rápida de valores de catálogo, y la sección 4.1 de requisitos corregida.
+  - Se agregó UI-14 (menú de Administración) al inventario y se ajustó el mapa de navegación.
+  - Se corrigió el typo "variamtes" en la ficha UI-01 y se actualizó el README (20 HU y 20 CU).
+- **Decidido:** (ver DECISIONES.md)
+  - DEC-009 — Las variantes se inactivan y se reactivan; no se eliminan.
+  - DEC-010 — Criterios del formulario de producto ("No aplica" literal, alta rápida de valores, precio mayor a cero, marca opcional, Administración como menú).
+- **Cerrado:**
+  - Ficha UI-03.
+  - Vacío de requisito sobre corregir o retirar variantes.
+- **Pendiente / abierto:**
+  - Crear en GitHub el Issue de UI-03 (cerrarlo al mergear) y el de wireframe de UI-03; crear los dos issues hijos pendientes de #29 y los de wireframe de UI-01 y UI-02.
+  - Redactar UI-04 a UI-13, el Modelo de Datos y el diagrama de casos de uso. El modelo de datos debe reflejar el estado activo/inactivo de las variantes.
+  - Verificar con un prototipo mínimo los dos puntos abiertos de DEC-006.
+  - Definir planilla de carga inicial y listas de motivos.
+  - Decidir qué hacer con la rama remota `docs/add-wireframe-link`.
+- **Problemas o aprendizajes:**
+  - Resolver los puntos abiertos antes de escribir evitó redactar una ficha que habría quedado desactualizada: dos de las cinco dudas cambiaron documentos ya cerrados (RN16 se mantuvo y se creó la inactivación de variantes).
+  - Un mismo patrón de vacío apareció de nuevo: se definía cómo crear algo (variantes) pero no cómo retirarlo.
+- **Próximo paso:** Revisar y mergear la rama `docs/UI-03`; luego, ficha UI-04 (Carga inicial de stock).
+- **Dudas para retomar:** Ninguna nueva.
+
+---
+
 ## 2026-11-20 — Sesión 8
 **Duración aprox.:** No registrada · **Quién:** Usuario con asistencia de Claude Code
 

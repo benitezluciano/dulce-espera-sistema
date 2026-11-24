@@ -131,3 +131,39 @@
   - Que el asistente decida por defecto todo lo no definido: descartada porque algunas decisiones modifican requisitos y reglas ya aprobados.
 - **Consecuencias:** Se espera una etapa de preguntas antes de cada ficha o documento nuevo. Los detalles menores con una opción razonable por defecto se resuelven y se informan sin consulta previa. Aplica también a quien colabore con el repositorio.
 - **Relacionado con:** DEC-003, Issue #29
+
+---
+
+### DEC-009 — Las variantes se inactivan y se reactivan; no se eliminan
+
+- **Fecha:** 2026-11-24
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** Al diseñar el formulario de producto (UI-03) se detectó que RF-STK-12 habla de "corregir productos y variantes", pero ningún requisito definía cómo corregir o retirar una variante cargada por error. Los productos (RF-CAT-12) y los valores de catálogo (RF-CAT-20) sí se inactivan. Una variante errónea quedaría para siempre como "Agotada" o "Sin cantidad asignada" y, por HU-06, el sistema sugeriría reponer algo inexistente.
+- **Decisión:** Las variantes se inactivan y se reactivan, igual que los productos. Una variante inactiva conserva su cantidad, ventas e historial; no se ofrece en ventas nuevas ni en búsquedas normales; no admite asignaciones ni correcciones de stock; y su combinación de atributos sigue ocupada (se ofrece reactivarla). Se advierte antes de inactivar una variante con stock o que sea la única activa. Se crean HU-20 y CU-20, RF-CAT-25 a RF-CAT-28, RF-STK-21, RF-VTA-23, RN46 y RN47, y se extienden RF-BUS-09 y RF-BUS-10 a las variantes.
+- **Alternativas consideradas:**
+  - Editar los atributos de una variante ya cargada: descartada porque, si tiene ventas, altera el historial, algo que el proyecto evita en todos sus requisitos (RN14, RN17, RN35).
+  - No hacer nada en el MVP: descartada porque deja variantes inexistentes figurando como agotadas y distorsiona la decisión de reposición.
+- **Consecuencias:** Se modifican `04-requisitos.md`, `05-reglas-de-negocio.md`, `06-historias-de-usuario.md`, `07-casos-de-uso.md` y las fichas UI-01, UI-02 y UI-03. Queda pendiente reflejar el estado de variante en el modelo de datos.
+- **Relacionado con:** DEC-003, RN17, RN44, HU-06, `docs/09-interfaz-usuario.md`
+
+---
+
+### DEC-010 — Criterios del formulario de producto
+
+- **Fecha:** 2026-11-24
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** Al preparar la ficha UI-03 surgieron cuatro puntos sin definir o con redacción ambigua en los requisitos.
+- **Decisión:**
+  - **"No aplica" se mantiene en su lectura literal (RN16):** si un producto no requiere talle, género o color, se registra con una única variante. El volumen de esos productos es bajo y no justifica controlarlos por separado. Si hace falta distinguir colores, se registran productos distintos.
+  - **Alta rápida de valores de catálogo desde el formulario de producto.** RNF-04 se aclara: separa el mantenimiento de catálogos (consultar, renombrar, ordenar, desactivar y reactivar), no el alta de un valor nuevo.
+  - **El precio vigente debe ser un número mayor a cero** (RF-CAT-07, RN48).
+  - **La marca es opcional y de texto libre** (RF-CAT-02); la sección 4.1 de requisitos, que decía que formaba parte de la identificación del producto, se corrige.
+  - **Administración es un menú simple** (UI-14) con tres entradas: Nuevo producto, Catálogos y Carga inicial de stock.
+- **Alternativas consideradas:**
+  - "No aplica" por atributo, con variantes que se multiplican por los atributos que sí aplican: descartada porque no hay necesidad real de controlar por separado esos productos y exigiría reescribir RN16 y RF-CAT-10.
+  - Alta de valores solo en el apartado de Catálogos: descartada porque obliga a salir del formulario y puede perder los datos ya ingresados, justo cuando aparecen colores o estampados nuevos en cada reposición.
+  - Permitir precio cero: descartada para evitar productos vendibles sin precio.
+- **Consecuencias:** Se modifican RF-CAT-02, RF-CAT-07, RNF-04, la sección 4.1 de requisitos, RN48 y los casos de uso CU-01 y CU-18. Una consecuencia de la lectura literal de RN16: un producto con variante única activa no ofrece "Agregar variante"; si se cargó por error, se inactiva (CU-20) y se agrega la correcta.
+- **Relacionado con:** RN16, RF-CAT-10, DEC-009, `docs/09-interfaz-usuario.md`
