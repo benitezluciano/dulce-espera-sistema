@@ -13,11 +13,11 @@ _Cada historia debe incluir formato clásico, criterios de aceptación y validac
 
 ### Criterios de aceptación
 
-1. Dado que cargo un nuevo producto, puedo asignarle categoría, nombre, marca, precio vigente y una única temporada.
+1. Dado que cargo un nuevo producto, puedo asignarle categoría, nombre, marca (opcional), precio vigente y una única temporada.
 2. Dado que el producto tiene variantes, puedo definir talle, color y género para cada una.
 3. Dado que un atributo no aplica al producto, el sistema permite usar "No aplica" en la variante única.
 4. Dado que guardo el producto, el sistema genera automáticamente su código interno único.
-5. Dado que intento guardar sin nombre, categoría o precio, el sistema no permite confirmar la carga.
+5. Dado que intento guardar sin nombre, sin categoría o con un precio que no sea mayor a cero, el sistema no permite confirmar la carga.
 
 ### Validación INVEST
 
@@ -66,13 +66,14 @@ _Cada historia debe incluir formato clásico, criterios de aceptación y validac
 |-------|---------|
 | Historia | Como propietaria, quiero asignar la cantidad disponible de un producto o variante que no formó parte de la carga inicial, para mantener el stock completo sin depender únicamente de la planilla. |
 | Módulo | STK |
-| Requisitos relacionados | RF-STK-02, RF-STK-03, RF-STK-12 |
+| Requisitos relacionados | RF-STK-02, RF-STK-03, RF-STK-12, RF-CAT-28 |
 
 ### Criterios de aceptación
 
 1. Dado que doy de alta un producto o variante nueva (fuera de la carga inicial), puedo asignarle una cantidad disponible desde la interfaz.
 2. Dado que un producto ya cargado tiene variantes faltantes, puedo agregar la cantidad de esas variantes sin afectar las que ya tienen stock.
 3. Dado que asigno una cantidad por primera vez, el sistema no exige un motivo de corrección, porque no estoy modificando un valor anterior, sino creando uno nuevo.
+4. Dado que agrego una variante cuya combinación ya existe inactiva en el producto, el sistema me lo informa y me ofrece reactivarla en lugar de crear un duplicado.
 
 ### Validación INVEST
 
@@ -130,7 +131,7 @@ _Cada historia debe incluir formato clásico, criterios de aceptación y validac
 3. Dado que busco por nombre, el sistema admite coincidencias parciales.
 4. Dado que ningún producto cumple los criterios, el sistema me informa que no hay coincidencias.
 5. Dado que veo los resultados, el sistema muestra marca, temporada, variantes, cantidad disponible y precio vigente.
-6. Dado que no indico lo contrario, el sistema oculta los productos inactivos; puedo incluirlos mediante un filtro específico.
+6. Dado que no indico lo contrario, el sistema oculta los productos y las variantes inactivos; puedo incluirlos mediante un filtro específico.
 
 ### Validación INVEST
 
@@ -497,7 +498,7 @@ _Cada historia debe incluir formato clásico, criterios de aceptación y validac
 1. Dado que selecciono un producto, puedo modificar su nombre, marca, grupo, temporada y precio vigente.
 2. Dado que modifico el precio vigente, el nuevo precio se ofrece en las ventas posteriores y las ventas ya registradas conservan el precio aplicado.
 3. Dado que modifico la temporada, el cambio se aplica a todas las variantes del producto.
-4. Dado que intento guardar sin nombre o con un precio no válido, el sistema no permite confirmar el cambio.
+4. Dado que intento guardar sin nombre o con un precio que no sea mayor a cero, el sistema no permite confirmar el cambio.
 5. Dado que modifico un producto, su código interno no cambia.
 6. Dado que inactivo un producto, deja de aparecer en las búsquedas normales y no puede agregarse a nuevas ventas; sus variantes, cantidades y ventas anteriores se conservan.
 7. Dado que inactivo un producto que todavía tiene stock disponible, el sistema me advierte antes de confirmar.
@@ -539,6 +540,36 @@ _Cada historia debe incluir formato clásico, criterios de aceptación y validac
 | Valiosa | Sí | Permite explicar diferencias de stock y hace efectiva la trazabilidad de RN20. |
 | Estimable | Sí | Es una consulta de solo lectura con alcance acotado. |
 | Pequeña | Sí | Un único objetivo: consultar correcciones, sin registrar ni modificar nada. |
+| Verificable | Sí | Criterios objetivos. |
+ 
+---
+ 
+## HU-20 — Inactivar o reactivar una variante
+ 
+| Campo | Detalle |
+|-------|---------|
+| Historia | Como propietaria, quiero inactivar una variante que cargué por error o que dejé de vender, y poder reactivarla, para que no figure como agotada ni se ofrezca en ventas, sin perder su cantidad ni su historial. |
+| Módulo | CAT |
+| Requisitos relacionados | RF-CAT-25, RF-CAT-26, RF-CAT-27, RF-STK-21, RF-VTA-23, RF-BUS-09, RF-BUS-10 |
+ 
+### Criterios de aceptación
+ 
+1. Dado que selecciono una variante activa de un producto activo, puedo inactivarla.
+2. Dado que la variante tiene stock disponible o es la única variante activa del producto, el sistema me advierte el efecto antes de confirmar.
+3. Dado que inactivo una variante, el sistema conserva su cantidad, sus ventas y su historial, y no me permite asignarle ni corregirle stock.
+4. Dado que una variante está inactiva, deja de ofrecerse en las ventas nuevas y no aparece en las búsquedas normales; sigue visible en el detalle del producto, identificada como inactiva, y puedo incluirla mediante el filtro de inactivos.
+5. Dado que reactivo una variante inactiva, vuelve a ofrecerse en las ventas y en las búsquedas normales con su cantidad conservada.
+6. Dado que intento agregar una variante cuya combinación ya existe inactiva, el sistema me lo informa y me ofrece reactivarla (HU-03).
+7. Dado que el producto está inactivo, el sistema no me ofrece inactivar ni reactivar sus variantes.
+### Validación INVEST
+ 
+| Criterio | ¿Se cumple? | Observación |
+|----------|-------------|-------------|
+| Independiente | Sí | Depende de que la variante exista (HU-01 o HU-03), no de otra historia de mantenimiento. |
+| Negociable | Sí | La acción puede resolverse desde el menú de la variante en el detalle del producto; el diseño se define en UI. |
+| Valiosa | Sí | Evita que una variante cargada por error figure como agotada y sugiera reponer algo inexistente (HU-06), sin perder el historial. |
+| Estimable | Sí | Es un cambio de estado, análogo a la inactivación de productos (HU-18). |
+| Pequeña | Sí | Agrupa inactivar y reactivar, que comparten reglas y pantalla; no mezcla el alta (HU-03) ni la edición del producto (HU-18). |
 | Verificable | Sí | Criterios objetivos. |
  
 ---

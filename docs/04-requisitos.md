@@ -33,12 +33,12 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | ID | Requisito |
 |----|-----------|
 | RF-CAT-01 | El sistema deberá permitir registrar un producto asociado a una categoría. |
-| RF-CAT-02 | El sistema deberá permitir registrar la marca del producto. |
+| RF-CAT-02 | El sistema deberá permitir registrar, de forma opcional, la marca del producto como texto libre. |
 | RF-CAT-03 | El sistema deberá generar automáticamente un código interno único para cada producto. |
 | RF-CAT-04 | El sistema deberá permitir registrar el nombre del producto. |
 | RF-CAT-05 | El sistema deberá permitir asociar una única temporada al producto. |
 | RF-CAT-06 | El sistema deberá permitir asociar un grupo comercial al producto cuando corresponda. |
-| RF-CAT-07 | El sistema deberá permitir registrar un precio vigente para el producto. |
+| RF-CAT-07 | El sistema deberá permitir registrar un precio vigente para el producto, que deberá ser un número mayor a cero. |
 | RF-CAT-08 | El sistema deberá permitir crear múltiples variantes para un mismo producto. |
 | RF-CAT-09 | El sistema deberá permitir definir para cada variante los atributos aplicables de talle, color, género y estampado. |
 | RF-CAT-10 | Cuando un atributo no corresponda a una categoría, el sistema deberá permitir registrarlo como "No aplica" dentro de la variante única del producto. |
@@ -56,6 +56,10 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-CAT-22 | El sistema deberá permitir reactivar un valor de catálogo desactivado. |
 | RF-CAT-23 | El sistema deberá permitir reactivar un producto inactivo. |
 | RF-CAT-24 | El sistema deberá advertir antes de inactivar un producto que todavía tenga stock disponible. |
+| RF-CAT-25 | El sistema deberá permitir marcar una variante como inactiva sin eliminarla ni alterar su cantidad, sus ventas ni su historial. |
+| RF-CAT-26 | El sistema deberá advertir antes de inactivar una variante que todavía tenga stock disponible o que sea la única variante activa del producto. |
+| RF-CAT-27 | El sistema deberá permitir reactivar una variante inactiva. |
+| RF-CAT-28 | El sistema deberá informar, al agregar una variante cuya combinación de atributos coincide con una variante inactiva del mismo producto, que esa variante existe inactiva y ofrecer reactivarla. |
 
 ### Módulo STK — Stock y variantes
 
@@ -81,6 +85,7 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-STK-18 | El sistema deberá permitir filtrar el historial de correcciones por producto o variante y por fecha o período, combinando los criterios seleccionados. |
 | RF-STK-19 | El sistema deberá permitir acceder al historial de correcciones de una variante desde su consulta de stock. |
 | RF-STK-20 | El sistema no deberá permitir modificar ni eliminar registros del historial de correcciones. |
+| RF-STK-21 | El sistema no deberá permitir asignar ni corregir la cantidad de una variante inactiva. |
 
 ### Módulo BUS — Búsqueda y consulta
 
@@ -94,8 +99,8 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-BUS-06 | El sistema deberá combinar los filtros seleccionados mediante una condición que exija cumplir todos los criterios ingresados. |
 | RF-BUS-07 | El sistema deberá informar que no se encontraron coincidencias cuando ningún producto cumpla los criterios seleccionados. |
 | RF-BUS-08 | El sistema deberá permitir filtrar los resultados por `Disponibles`, `Agotados` y `Todos`. |
-| RF-BUS-09 | El sistema deberá ocultar los productos inactivos en las búsquedas normales. |
-| RF-BUS-10 | El sistema deberá permitir incluir productos inactivos mediante un filtro específico. |
+| RF-BUS-09 | El sistema deberá ocultar los productos y las variantes inactivos en las búsquedas normales. |
+| RF-BUS-10 | El sistema deberá permitir incluir productos y variantes inactivos mediante un filtro específico. |
 | RF-BUS-11 | El sistema deberá admitir coincidencias parciales al buscar por nombre. |
 | RF-BUS-12 | El sistema deberá mostrar el precio vigente junto con la información del producto. |
 | RF-BUS-13 | El sistema deberá mostrar la marca, temporada, variantes y cantidad disponible de los productos encontrados. |
@@ -127,6 +132,7 @@ ser verificados posteriormente mediante casos de prueba o casos de uso.
 | RF-VTA-20 | El sistema deberá permitir filtrar el listado de ventas por fecha o período, estado y medio de pago, combinando los criterios seleccionados. |
 | RF-VTA-21 | El sistema deberá permitir consultar el detalle de una venta: productos, variantes, cantidades, precios aplicados, descuento, total, medios de pago, fecha, estado y, según corresponda, la persona asociada y el motivo y fecha de anulación. |
 | RF-VTA-22 | El sistema no deberá permitir agregar productos inactivos a una venta nueva. |
+| RF-VTA-23 | El sistema no deberá permitir agregar variantes inactivas a una venta nueva. |
 
 ### Módulo FIA — Ventas fiadas y cuenta corriente
 
@@ -188,7 +194,7 @@ la validación del MVP.
 | ID | Requisito |
 |----|-----------|
 | RNF-03 | La interfaz deberá permitir administrar el catálogo y el stock desde un celular. |
-| RNF-04 | La administración de categorías, grupos, talles, géneros, colores, temporadas y estampados deberá encontrarse en un apartado separado de la operación cotidiana. |
+| RNF-04 | El mantenimiento de categorías, grupos, talles, géneros, colores, temporadas y estampados (consultar, renombrar, ordenar, desactivar y reactivar) deberá encontrarse en un apartado separado de la operación cotidiana. El alta de un valor nuevo podrá realizarse también desde el formulario de producto, para no interrumpir la carga. |
 | RNF-05 | La información de producto, variante y cantidad deberá presentarse de forma clara para facilitar una consulta rápida. |
 
 ### 3.3. Integridad y conservación de la información
@@ -210,7 +216,8 @@ la validación del MVP.
 ### 4.1. Decisiones confirmadas
 
 - El precio pertenece al producto y es común a sus variantes.
-- La marca forma parte de la identificación del producto.
+- La marca es opcional y se registra como texto libre.
+- El precio vigente de un producto debe ser un número mayor a cero.
 - La temporada pertenece al producto completo y es común a sus variantes.
 - Los productos sin talle, género o color tendrán una variante única con esos atributos como "No aplica".
 - Los productos se marcarán como inactivos en lugar de eliminarse.
@@ -235,6 +242,8 @@ la validación del MVP.
 - Una persona podrá generar nuevas ventas fiadas aunque mantenga deuda activa.
 - La fecha de ventas y pagos será la fecha actual del sistema.
 - El motivo obligatorio de stock aplica únicamente a la corrección de una cantidad ya existente; la asignación de cantidad a un producto o variante nueva no requiere motivo.
+- Las variantes no se eliminan: una variante cargada por error o que se deja de vender se inactiva, conserva su cantidad e historial y puede reactivarse (DEC-009).
+- Un producto que no requiere alguno de los atributos talle, género o color se registra con una única variante y ese atributo toma el valor "No aplica" (RN16). Si hay que distinguir colores, se registran productos distintos (DEC-010).
 
 ### 4.2. Alcance pendiente del módulo de stock
 

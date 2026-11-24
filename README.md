@@ -32,8 +32,8 @@ El sistema será de uso interno y no funcionará como una tienda online pública
 - Alcance funcional inicial: definido y aprobado.
 - Procesos AS-IS y TO-BE: diagramados (consulta de stock y venta).
 - Requisitos funcionales y no funcionales, reglas de negocio: completos.
-- Historias de usuario (19) y casos de uso (19): completos.
-- Diseño de interfaz: en elaboración (mapa de navegación, inventario de pantallas y fichas UI-01 y UI-02; wireframes pendientes).
+- Historias de usuario (20) y casos de uso (20): completos.
+- Diseño de interfaz: en elaboración (mapa de navegación, inventario de pantallas y fichas UI-01 a UI-03; wireframes pendientes).
 - Modelo de datos: pendiente.
 - Implementación del MVP: próxima etapa.
 

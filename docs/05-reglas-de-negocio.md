@@ -51,6 +51,9 @@
 | RN43 | Los talles se presentan según un orden definido por la propietaria y no alfabéticamente. | Los talles mezclan meses, años y números (RN03); el orden alfabético colocaría, por ejemplo, el 10 antes que el 4. |
 | RN44 | Un producto inactivo no puede incluirse en nuevas ventas hasta que se reactive; conserva sus variantes, cantidades e historial. | Extiende RN17: inactivar retira el producto de la operación sin alterar lo ya registrado. |
 | RN45 | Modificar el precio vigente de un producto no altera el precio aplicado en las ventas ya registradas. | Refuerza RN14 para el caso de la edición del producto. |
+| RN46 | Una variante no se elimina: se inactiva. Una variante inactiva conserva su cantidad, ventas e historial, no se ofrece en ventas nuevas, no se muestra en las búsquedas normales y no admite asignaciones ni correcciones de stock hasta que se reactive. | DEC-009. Extiende RN17 y RN44 a las variantes y evita que una variante cargada por error figure como agotada y sugiera una reposición inexistente. |
+| RN47 | La combinación de atributos de una variante inactiva sigue ocupada dentro de su producto: no puede registrarse otra variante igual y, en su lugar, se ofrece reactivarla. | Consecuencia de RN18 y RN46: evita variantes duplicadas que dispersen el stock. |
+| RN48 | El precio vigente de un producto debe ser un número mayor a cero. | DEC-010. Evita productos vendibles sin precio. |
 
 ## Notas de aplicación
 
@@ -65,3 +68,5 @@
 - **RN40** cierra el estado de transferencia pendiente: la venta pasa a considerarse cobrada recién cuando se marca explícitamente como confirmada.
 - **RN28 a RN32** definen la cuenta corriente de ventas fiadas, la aplicación de pagos y la conservación del historial.
 - **RN33 a RN39** definen la anulación de ventas: no tiene plazo límite, requiere motivo, conserva el historial, restituye stock y no altera pagos ya recibidos en ventas fiadas; en su lugar, genera un ajuste separado.
+- **RN46 y RN47** definen la inactivación de variantes: se conservan, dejan de ofrecerse en búsquedas normales y ventas, y su combinación de atributos sigue ocupada. **RN48** fija que el precio vigente debe ser mayor a cero.
+- **RN16** se mantiene en su lectura literal (DEC-010): basta que un producto no requiera talle, género o color para que se registre con una única variante. Si se necesita distinguir colores en ese caso, se registran productos distintos.

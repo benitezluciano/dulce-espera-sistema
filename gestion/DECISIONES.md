@@ -101,3 +101,69 @@
   - Sin ninguna restricción de acceso: descartada porque la información de stock, ventas y deudas de terceras personas es sensible.
 - **Consecuencias:** Se reformula RNF-08 y se actualizan el mapa de navegación de `docs/09-interfaz-usuario.md` y los supuestos de `docs/01-alcance.md`. Quedan dos puntos a verificar con un prototipo mínimo antes de implementar: (1) el script debe pertenecer a la cuenta de Silvia, o transferirse, para publicarse con acceso restringido a ella; (2) el comportamiento de Apps Script cuando el celular tiene varias cuentas de Google con sesión abierta.
 - **Relacionado con:** RNF-08, DEC-001, `docs/10-alternativas-de-solucion.md`
+
+---
+
+### DEC-007 — Una rama por tarea, desde `main` actualizada, fusionada con merge commit
+
+- **Fecha:** 2026-11-20
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** Se venía reutilizando la rama `docs/UI` para varias tareas y se acumularon ramas ya fusionadas sin borrar. Al separar el trabajo de autenticación y limpieza, se comprobó que reutilizar una rama larga obliga a verificar a mano qué commits están o no en `main`, y que un "squash and merge" reescribiría los commits y generaría conflictos en las ramas que parten de ellos.
+- **Decisión:** Cada tarea (normalmente una Issue) tiene su propia rama, creada desde `main` actualizada (`git checkout main`, `git pull`) y nombrada con el patrón `docs/<tarea>` (por ejemplo, `docs/UI-03`). Se integra con un Pull Request usando **"Create a merge commit"**, nunca squash ni rebase. Después del merge se actualiza `main` y se borra la rama, local y remota, con `git branch -d`, que se niega a borrar si hay commits sin fusionar.
+- **Alternativas consideradas:**
+  - Reutilizar una rama larga para varias tareas (`docs/UI`): descartada porque mezcla trabajo nuevo con commits ya fusionados y complica el historial de cada PR.
+  - Squash and merge: descartada porque rompe la ascendencia de los commits y genera conflictos en las ramas derivadas.
+- **Consecuencias:** Quedan eliminadas las ramas ya fusionadas (`docs/UI`, `docs/UI-acceso-y-limpieza`, `docs/CU`, `docs/CU-HU-17-19`, `docs/alcance`, `docs/requisitos`, `diagramas`). Se recomienda activar en GitHub "Automatically delete head branches" (pendiente de confirmar por el usuario). La rama `docs/add-wireframe-link` no está fusionada y se decide aparte.
+- **Relacionado con:** DEC-005, Issue #29
+
+---
+
+### DEC-008 — Conversar los puntos abiertos antes de redactar un entregable
+
+- **Fecha:** 2026-11-20
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** Al iniciar la ficha UI-03 se redactó el documento completo y se dejó al final una lista de "puntos a validar". Varios de esos puntos podían modificar documentos ya cerrados (RN16, RF-CAT-10, RF-STK-12), por lo que debían resolverse antes de escribir.
+- **Decisión:** Cuando una tarea tenga decisiones sin definir o inconsistencias con documentos cerrados, no se redacta en los archivos. Primero se conversa en el chat y se hacen las preguntas necesarias; cuando haya información suficiente, se pide una confirmación final antes de redactar. Los documentos no incluyen secciones de dudas pendientes: lo resuelto queda como decisión (`DECISIONES.md`) o como requisito.
+- **Alternativas consideradas:**
+  - Redactar con una sección de "puntos a validar" al final: descartada porque deja dudas dentro de entregables que se delegan (por ejemplo, a Gabi) y puede propagar supuestos sin validar.
+  - Que el asistente decida por defecto todo lo no definido: descartada porque algunas decisiones modifican requisitos y reglas ya aprobados.
+- **Consecuencias:** Se espera una etapa de preguntas antes de cada ficha o documento nuevo. Los detalles menores con una opción razonable por defecto se resuelven y se informan sin consulta previa. Aplica también a quien colabore con el repositorio.
+- **Relacionado con:** DEC-003, Issue #29
+
+---
+
+### DEC-009 — Las variantes se inactivan y se reactivan; no se eliminan
+
+- **Fecha:** 2026-11-24
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** Al diseñar el formulario de producto (UI-03) se detectó que RF-STK-12 habla de "corregir productos y variantes", pero ningún requisito definía cómo corregir o retirar una variante cargada por error. Los productos (RF-CAT-12) y los valores de catálogo (RF-CAT-20) sí se inactivan. Una variante errónea quedaría para siempre como "Agotada" o "Sin cantidad asignada" y, por HU-06, el sistema sugeriría reponer algo inexistente.
+- **Decisión:** Las variantes se inactivan y se reactivan, igual que los productos. Una variante inactiva conserva su cantidad, ventas e historial; no se ofrece en ventas nuevas ni en búsquedas normales; no admite asignaciones ni correcciones de stock; y su combinación de atributos sigue ocupada (se ofrece reactivarla). Se advierte antes de inactivar una variante con stock o que sea la única activa. Se crean HU-20 y CU-20, RF-CAT-25 a RF-CAT-28, RF-STK-21, RF-VTA-23, RN46 y RN47, y se extienden RF-BUS-09 y RF-BUS-10 a las variantes.
+- **Alternativas consideradas:**
+  - Editar los atributos de una variante ya cargada: descartada porque, si tiene ventas, altera el historial, algo que el proyecto evita en todos sus requisitos (RN14, RN17, RN35).
+  - No hacer nada en el MVP: descartada porque deja variantes inexistentes figurando como agotadas y distorsiona la decisión de reposición.
+- **Consecuencias:** Se modifican `04-requisitos.md`, `05-reglas-de-negocio.md`, `06-historias-de-usuario.md`, `07-casos-de-uso.md` y las fichas UI-01, UI-02 y UI-03. Queda pendiente reflejar el estado de variante en el modelo de datos.
+- **Relacionado con:** DEC-003, RN17, RN44, HU-06, `docs/09-interfaz-usuario.md`
+
+---
+
+### DEC-010 — Criterios del formulario de producto
+
+- **Fecha:** 2026-11-24
+- **Estado:** Cerrada
+- **Participantes:** Usuario (responsable del análisis y coordinación del proyecto)
+- **Contexto:** Al preparar la ficha UI-03 surgieron cuatro puntos sin definir o con redacción ambigua en los requisitos.
+- **Decisión:**
+  - **"No aplica" se mantiene en su lectura literal (RN16):** si un producto no requiere talle, género o color, se registra con una única variante. El volumen de esos productos es bajo y no justifica controlarlos por separado. Si hace falta distinguir colores, se registran productos distintos.
+  - **Alta rápida de valores de catálogo desde el formulario de producto.** RNF-04 se aclara: separa el mantenimiento de catálogos (consultar, renombrar, ordenar, desactivar y reactivar), no el alta de un valor nuevo.
+  - **El precio vigente debe ser un número mayor a cero** (RF-CAT-07, RN48).
+  - **La marca es opcional y de texto libre** (RF-CAT-02); la sección 4.1 de requisitos, que decía que formaba parte de la identificación del producto, se corrige.
+  - **Administración es un menú simple** (UI-14) con tres entradas: Nuevo producto, Catálogos y Carga inicial de stock.
+- **Alternativas consideradas:**
+  - "No aplica" por atributo, con variantes que se multiplican por los atributos que sí aplican: descartada porque no hay necesidad real de controlar por separado esos productos y exigiría reescribir RN16 y RF-CAT-10.
+  - Alta de valores solo en el apartado de Catálogos: descartada porque obliga a salir del formulario y puede perder los datos ya ingresados, justo cuando aparecen colores o estampados nuevos en cada reposición.
+  - Permitir precio cero: descartada para evitar productos vendibles sin precio.
+- **Consecuencias:** Se modifican RF-CAT-02, RF-CAT-07, RNF-04, la sección 4.1 de requisitos, RN48 y los casos de uso CU-01 y CU-18. Una consecuencia de la lectura literal de RN16: un producto con variante única activa no ofrece "Agregar variante"; si se cargó por error, se inactiva (CU-20) y se agrega la correcta.
+- **Relacionado con:** RN16, RF-CAT-10, DEC-009, `docs/09-interfaz-usuario.md`
