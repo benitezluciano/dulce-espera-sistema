@@ -263,7 +263,9 @@ evita pantallas sobrecargadas.
 - Volver a UI-01 conservando filtros y posición de la lista.
 - Editar producto: abre UI-03 (CU-18).
 - Inactivar o reactivar: pide confirmación y advierte si hay stock (CU-18, RF-CAT-24).
-- Agregar variante: abre UI-03 en la sección de variantes (CU-03).
+- Agregar variante: abre UI-03 en la sección de variantes (CU-03). No se ofrece si
+  el producto está inactivo o si tiene una variante única activa (RN16); en ese
+  último caso, una variante cargada por error se inactiva y se agrega la correcta.
 - Por variante activa: "Asignar stock" (solo si no tiene cantidad), "Corregir
   stock" (CU-04), "Ver historial" (CU-19) e "Inactivar variante" (CU-20). Las
   primeras abren UI-05 y UI-06; la inactivación pide confirmación y advierte si la
@@ -292,7 +294,8 @@ evita pantallas sobrecargadas.
 
 - Cargando.
 - Producto activo con variantes con stock, agotadas y sin cantidad asignada.
-- Producto inactivo, con aviso visible.
+- Producto inactivo, con aviso visible y sin la acción "Agregar variante".
+- Producto con variante única activa, sin la acción "Agregar variante".
 - Confirmación de inactivación de producto con advertencia de stock.
 - Variante inactiva, identificada con la palabra "Inactiva".
 - Confirmación de inactivación de variante, con advertencia si tiene stock o es la

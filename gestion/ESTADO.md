@@ -1,13 +1,14 @@
 # Estado actual
 
 **Última actualización:** 2026-11-24
-**Versión / hito actual:** Ficha UI-03 redactada en la rama `docs/UI-03`, pendiente de revisión y merge. `main` incluye el mapa de navegación, el inventario de pantallas, las fichas UI-01 y UI-02 y la autenticación definida (DEC-006). La Issue coordinadora de UI es #29.
+**Versión / hito actual:** `main` incluye el mapa de navegación, el inventario de pantallas, las fichas UI-01 a UI-03, la inactivación de variantes (DEC-009) y la autenticación definida (DEC-006). Rama de trabajo: `docs/UI-02-ajuste-agregar-variante`. La Issue coordinadora de UI es #29.
 
 ## Objetivo del momento
 Completar las fichas de UI antes de delegar los wireframes a Gabi. Se trabaja con una rama por tarea (DEC-007) y se conversan los puntos abiertos antes de redactar (DEC-008).
 
 ## En curso
-- [ ] Revisar y mergear la rama `docs/UI-03` (ficha UI-03 más los cambios de requisitos derivados: DEC-009 y DEC-010).
+- [ ] Mergear la rama `docs/UI-02-ajuste-agregar-variante` (ficha UI-02: ocultar "Agregar variante" en producto inactivo o con variante única). La ficha UI-03 y DEC-009 y DEC-010 ya están en `main` (PR #43).
+- [ ] Crear el sub-issue de ajuste del wireframe UI-02 para Gabi (texto preparado): ya había terminado UI-02 antes de la inactivación de variantes.
 - [ ] Crear en GitHub el Issue de UI-03 (texto ya preparado), vinculado a #29, y los dos issues hijos pendientes de #29: "Inventario de pantallas y mapa de navegación" y "Definir ficha UI-01 Buscar stock".
 - [ ] Incorporar a Gabi al repositorio y asignarle los wireframes cuando las fichas estén listas.
 
@@ -33,7 +34,7 @@ Completar las fichas de UI antes de delegar los wireframes a Gabi. Se trabaja co
 - Historias de Usuario y Casos de Uso completos (20 HU y 20 CU); requisitos y reglas de negocio actualizados.
 
 ## Próximo paso concreto
-Revisar el diff de `docs/UI-03`, mergear con merge commit y pasar a la ficha UI-04 (Carga inicial de stock). Antes de redactarla, conversar los puntos abiertos que aparezcan, en particular las columnas y valores permitidos de la planilla.
+Mergear el ajuste de UI-02 con merge commit y pasar a la ficha UI-04 (Carga inicial de stock). Antes de redactarla, conversar los puntos abiertos que aparezcan, en particular las columnas y valores permitidos de la planilla.
 
 ## Dudas / riesgos abiertos
 - Falta confirmar la incorporación de Gabi al repositorio y definir cómo recibirá y revisará cada entrega.

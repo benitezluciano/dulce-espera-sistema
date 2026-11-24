@@ -9,6 +9,7 @@
   - Se aplicaron los criterios de formulario: precio mayor a cero (RF-CAT-07, RN48), marca opcional de texto libre (RF-CAT-02), RNF-04 aclarado para permitir el alta rápida de valores de catálogo, y la sección 4.1 de requisitos corregida.
   - Se agregó UI-14 (menú de Administración) al inventario y se ajustó el mapa de navegación.
   - Se corrigió el typo "variamtes" en la ficha UI-01 y se actualizó el README (20 HU y 20 CU).
+  - Tras el merge del PR #43, se detectó que la ficha UI-02 no indicaba cuándo ocultar "Agregar variante" (producto inactivo o con variante única activa), a diferencia de UI-03. Se corrigió en la rama `docs/UI-02-ajuste-agregar-variante` y se redactó un sub-issue de ajuste del wireframe para Gabi, que ya había terminado UI-02 antes de DEC-009.
 - **Decidido:** (ver DECISIONES.md)
   - DEC-009 — Las variantes se inactivan y se reactivan; no se eliminan.
   - DEC-010 — Criterios del formulario de producto ("No aplica" literal, alta rápida de valores, precio mayor a cero, marca opcional, Administración como menú).
