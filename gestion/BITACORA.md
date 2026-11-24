@@ -9,7 +9,9 @@
   - Se aplicaron los criterios de formulario: precio mayor a cero (RF-CAT-07, RN48), marca opcional de texto libre (RF-CAT-02), RNF-04 aclarado para permitir el alta rápida de valores de catálogo, y la sección 4.1 de requisitos corregida.
   - Se agregó UI-14 (menú de Administración) al inventario y se ajustó el mapa de navegación.
   - Se corrigió el typo "variamtes" en la ficha UI-01 y se actualizó el README (20 HU y 20 CU).
-  - Tras el merge del PR #43, se detectó que la ficha UI-02 no indicaba cuándo ocultar "Agregar variante" (producto inactivo o con variante única activa), a diferencia de UI-03. Se corrigió en la rama `docs/UI-02-ajuste-agregar-variante` y se redactó un sub-issue de ajuste del wireframe para Gabi, que ya había terminado UI-02 antes de DEC-009.
+  - Tras el merge del PR #43, se detectó que la ficha UI-02 no indicaba cuándo ocultar "Agregar variante" (producto inactivo o con variante única activa), a diferencia de UI-03. Se corrigió en la rama `docs/UI-02-ajuste-agregar-variante` (PR #44) y se redactó un sub-issue de ajuste del wireframe para Gabi, que ya había terminado UI-02 antes de DEC-009.
+  - Se mergearon en `main` los PR #43 (ficha UI-03) y #44 (ajuste de UI-02), ambos con merge commit. Se borraron, en local y remoto, las ramas `docs/UI-03`, `docs/UI-02-ajuste-agregar-variante` y `docs/add-wireframe-link` (fusionada en el PR #38). Queda solo `main`.
+  - Por indicación del usuario, la actualización del estado del wireframe en la ficha UI-02 (elaborado en Figma, pendiente de ajuste por DEC-009) se hizo directo en `main`, por ser un cambio de una sola línea. El push no fue rechazado: `main` no tiene protección de rama.
 - **Decidido:** (ver DECISIONES.md)
   - DEC-009 — Las variantes se inactivan y se reactivan; no se eliminan.
   - DEC-010 — Criterios del formulario de producto ("No aplica" literal, alta rápida de valores, precio mayor a cero, marca opcional, Administración como menú).
@@ -17,15 +19,17 @@
   - Ficha UI-03.
   - Vacío de requisito sobre corregir o retirar variantes.
 - **Pendiente / abierto:**
-  - Crear en GitHub el Issue de UI-03 (cerrarlo al mergear) y el de wireframe de UI-03; crear los dos issues hijos pendientes de #29 y los de wireframe de UI-01 y UI-02.
+  - Crear en GitHub, si aún no existen, los sub-issues de #29: ficha UI-03, wireframe UI-03, ajuste del wireframe UI-02 (texto preparado) y los dos hijos pendientes ("Inventario de pantallas y mapa de navegación" y "Definir ficha UI-01 Buscar stock"). Registrar sus números en `ESTADO.md`.
+  - Actualizar en la ficha UI-01 el estado de su wireframe (ya elaborado en Figma) y sumar UI-03 al `wireframe.md` cuando Gabi lo entregue.
   - Redactar UI-04 a UI-13, el Modelo de Datos y el diagrama de casos de uso. El modelo de datos debe reflejar el estado activo/inactivo de las variantes.
   - Verificar con un prototipo mínimo los dos puntos abiertos de DEC-006.
   - Definir planilla de carga inicial y listas de motivos.
-  - Decidir qué hacer con la rama remota `docs/add-wireframe-link`.
+  - Activar en GitHub "Automatically delete head branches" (sugerido).
 - **Problemas o aprendizajes:**
+  - Cuando un entregable ya fue tomado por otra persona (el wireframe de UI-02 por Gabi), un cambio posterior en la ficha obliga a abrir un ajuste explícito; conviene comparar la versión anterior con la nueva y listar qué debe rehacer quien ya terminó.
   - Resolver los puntos abiertos antes de escribir evitó redactar una ficha que habría quedado desactualizada: dos de las cinco dudas cambiaron documentos ya cerrados (RN16 se mantuvo y se creó la inactivación de variantes).
   - Un mismo patrón de vacío apareció de nuevo: se definía cómo crear algo (variantes) pero no cómo retirarlo.
-- **Próximo paso:** Revisar y mergear la rama `docs/UI-03`; luego, ficha UI-04 (Carga inicial de stock).
+- **Próximo paso:** Ficha UI-04 (Carga inicial de stock), en una rama nueva desde `main`, conversando antes las columnas y valores permitidos de la planilla.
 - **Dudas para retomar:** Ninguna nueva.
 
 ---
