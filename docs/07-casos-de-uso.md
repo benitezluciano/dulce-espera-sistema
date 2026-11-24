@@ -24,11 +24,11 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 |----|--------|----|------------------------|-------------------|
 | CU-01 | Registrar un producto con sus variantes | HU-01 | RF-CAT-01 a 10 | RN13, RN15, RN16, RN18 |
 | CU-02 | Cargar el stock inicial mediante una planilla | HU-02 | RF-STK-01, 02, 10, 11, 12 | RN21 |
-| CU-03 | Asignar stock a un producto o variante nueva | HU-03 | RF-STK-02, 03, 12 | RN18 |
-| CU-04 | Corregir manualmente el stock | HU-04 | RF-STK-06, 07, 13, 14, 15 | RN19, RN20 |
+| CU-03 | Asignar stock a un producto o variante nueva | HU-03 | RF-STK-02, 03, 12; RF-CAT-28 | RN18, RN47 |
+| CU-04 | Corregir manualmente el stock | HU-04 | RF-STK-06, 07, 13, 14, 15, 21 | RN19, RN20, RN46 |
 | CU-05 | Buscar productos combinando filtros | HU-05 | RF-BUS-01 a 07, 09 a 13 | RN04 |
 | CU-06 | Identificar productos con stock bajo o agotado | HU-06 | RF-BUS-08, 14 | — |
-| CU-07 | Registrar una venta cobrada | HU-07 | RF-VTA-01 a 09, 11, 12, 14 a 16; RF-STK-16 | RN14, RN22 a RN26 |
+| CU-07 | Registrar una venta cobrada | HU-07 | RF-VTA-01 a 09, 11, 12, 14 a 16; RF-VTA-23; RF-STK-16 | RN14, RN22 a RN26, RN46 |
 | CU-08 | Confirmar una venta con transferencia pendiente | HU-08 | RF-VTA-13, 17 | RN27, RN40 |
 | CU-09 | Registrar una venta fiada asociada a una persona | HU-09 | RF-VTA-10; RF-FIA-01 a 03, 07 | RN01, RN06 a RN09, RN12, RN29 |
 | CU-10 | Consultar la cuenta corriente de una persona | HU-10 | RF-FIA-04, 05, 06, 08, 09 | RN11, RN28 |
@@ -41,6 +41,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | CU-17 | Modificar o desactivar un valor de catálogo | HU-17 | RF-CAT-18 a 22 | RN41, RN42, RN43 |
 | CU-18 | Modificar un producto o inactivarlo | HU-18 | RF-CAT-11, 12, 23, 24; RF-VTA-22 | RN14, RN17, RN44, RN45 |
 | CU-19 | Consultar el historial de correcciones de stock | HU-19 | RF-STK-14, 15, 17 a 20 | RN20 |
+| CU-20 | Inactivar o reactivar una variante | HU-20 | RF-CAT-25 a 27; RF-STK-21; RF-VTA-23; RF-BUS-09, 10 | RN46, RN47 |
 
 ### 3.1. Relaciones entre casos de uso
 
@@ -53,6 +54,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 - CU-15 es el punto de entrada de CU-08, CU-13 y CU-14, que parten de una venta seleccionada en el listado.
 - CU-18 parte de un producto encontrado con CU-05 (incluido el filtro de inactivos) y condiciona a CU-07 y CU-09, que solo ofrecen productos activos.
 - CU-19 se puede iniciar desde la consulta de una variante (CU-05) y permite revisar lo registrado por CU-04.
+- CU-20 parte de una variante vista en el detalle de un producto encontrado con CU-05, y condiciona a CU-03, CU-04, CU-07 y CU-09: una variante inactiva no admite asignación ni corrección de stock ni se ofrece en ventas, y CU-03 ofrece reactivarla cuando se intenta agregar su misma combinación.
 - CU-16 y CU-17 mantienen los valores de referencia que necesitan CU-01 y CU-02; CU-16 puede derivar en CU-17 cuando el nombre ingresado coincide con un valor desactivado.
 
 ---
@@ -85,7 +87,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | # | Situación | Respuesta del sistema |
 |---|-----------|-----------------------|
 | E1 | Falta el nombre, la categoría o el precio. | Indica los datos faltantes y no permite confirmar la carga. |
-| E2 | El precio no es un valor numérico válido. | Informa el error y solicita corregirlo. |
+| E2 | El precio no es un número mayor a cero. | Informa el error y solicita corregirlo. |
 | E3 | La combinación de atributos de una variante ya fue definida en el mismo producto. | Informa que la variante está duplicada y no la agrega. |
 | E4 | Se intenta guardar un producto sin ninguna variante. | Indica que debe definirse al menos una variante (con "No aplica" si corresponde). |
 | E5 | La propietaria cancela la carga. | Descarta los datos ingresados sin registrar nada. |
@@ -167,7 +169,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 |---|-----------|-----------------------|
 | E1 | La cantidad es negativa, decimal o no numérica. | Informa el error y solicita corregirla. |
 | E2 | La variante ya tiene una cantidad asignada. | Informa que para modificarla debe realizarse una corrección de stock (CU-04). |
-| E3 | La nueva variante repite la combinación de atributos de otra existente. | Informa que la variante ya existe y no la agrega. |
+| E3 | La nueva variante repite la combinación de atributos de otra existente. | Informa que la variante ya existe y no la agrega. Si la existente está inactiva, lo informa y ofrece reactivarla (CU-20). |
 | E4 | La propietaria cancela antes de confirmar. | No modifica ninguna cantidad. |
 | E5 | Se pierde la conexión al confirmar. | Informa que no pudo guardar y no registra datos parciales. |
 
@@ -188,7 +190,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | Nombre | Corregir manualmente el stock |
 | Descripción | La propietaria corrige la cantidad disponible de una variante cuando detecta una diferencia con la mercadería física, indicando un motivo. El sistema conserva un historial de cada corrección. |
 | Actores | Principal: Propietaria / Secundario: Ninguno |
-| Precondiciones | La propietaria accedió al sistema. La variante existe y ya tiene una cantidad asignada. |
+| Precondiciones | La propietaria accedió al sistema. La variante existe, está activa y ya tiene una cantidad asignada. |
 | Postcondiciones | Éxito: la variante queda con la nueva cantidad y se registra en el historial la fecha, la variante, la cantidad anterior, la cantidad nueva y el motivo. Fallo: la cantidad de la variante no cambia y no se registra ninguna corrección. |
 
 ### Secuencia normal
@@ -212,6 +214,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | E4 | La variante no tiene una cantidad asignada previamente. | Indica que debe asignarse el stock por primera vez (CU-03). |
 | E5 | La propietaria cancela antes de confirmar. | Mantiene la cantidad original sin registrar nada. |
 | E6 | Se pierde la conexión al confirmar. | Informa que no pudo guardar; no modifica la cantidad ni el historial. |
+| E7 | La variante está inactiva. | No permite corregir la cantidad e indica que debe reactivarse primero (CU-20). |
 
 | Campo | Detalle |
 |-------|---------|
@@ -239,7 +242,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 |---|----------------|--------------------|
 | 1 | Abre el buscador de productos. | Muestra los criterios disponibles: nombre, código interno, marca, categoría, grupo, género, talle, color, temporada, disponibilidad e inclusión de inactivos. |
 | 2 | Completa al menos un criterio (por ejemplo, solo la categoría "body") y, si lo necesita, agrega otros. | Aplica únicamente los criterios completados. |
-| 3 | Solicita buscar. | Busca los productos que cumplen todos los criterios ingresados, admite coincidencias parciales en el nombre y oculta los productos inactivos salvo que se haya pedido incluirlos. |
+| 3 | Solicita buscar. | Busca los productos que cumplen todos los criterios ingresados, admite coincidencias parciales en el nombre y oculta los productos y las variantes inactivos salvo que se haya pedido incluirlos. |
 | 4 | — | Muestra los resultados con nombre, marca, temporada, variantes, cantidad disponible de cada variante y precio vigente. |
 | 5 | Consulta los resultados y, si lo desea, ajusta los filtros. | Actualiza los resultados según los nuevos criterios. |
 
@@ -312,7 +315,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | # | Acción (actor) | Reacción (sistema) |
 |---|----------------|--------------------|
 | 1 | Elige la opción de registrar una venta. | Muestra una venta nueva con la fecha actual. |
-| 2 | Busca y selecciona un producto activo y una variante. | Muestra el precio vigente y la cantidad disponible de la variante. Los productos inactivos no se ofrecen. |
+| 2 | Busca y selecciona un producto activo y una variante. | Muestra el precio vigente y la cantidad disponible de la variante. Los productos y las variantes inactivos no se ofrecen. |
 | 3 | Indica la cantidad vendida. | Valida que no supere la cantidad disponible, agrega el ítem y calcula el subtotal. |
 | 4 | Repite los pasos 2 y 3 para cada producto o variante adicional. | Actualiza el subtotal con cada ítem agregado. |
 | 5 | Si lo decide, modifica manualmente el precio aplicado de un ítem. | Recalcula el subtotal con el precio indicado, sin alterar el precio vigente del producto. |
@@ -767,7 +770,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 |---|----------------|--------------------|
 | 1 | Busca y selecciona el producto (CU-05); si está inactivo, lo encuentra mediante el filtro de inactivos. | Muestra sus datos actuales: código interno y categoría (solo lectura), nombre, marca, grupo, temporada, precio vigente, estado y variantes. |
 | 2 | Elige una acción: editar los datos, inactivar o reactivar. | Presenta la acción elegida. |
-| 3 | Si edita, modifica uno o más datos. | Valida que el nombre esté completo y que el precio sea un valor numérico válido. |
+| 3 | Si edita, modifica uno o más datos. | Valida que el nombre esté completo y que el precio sea un número mayor a cero. |
 | 4 | — | Muestra un resumen de los cambios (valor anterior y nuevo) o del cambio de estado, aclarando que un cambio de precio solo afecta las ventas posteriores. Solicita confirmación. |
 | 5 | Confirma. | Guarda los cambios. Si cambió la temporada, la aplica a todas las variantes. Si inactivó, oculta el producto de las búsquedas normales y de las ventas nuevas. Si reactivó, vuelve a ofrecerlo. |
 | 6 | — | Informa que el cambio fue realizado. |
@@ -776,7 +779,7 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 
 | # | Situación | Respuesta del sistema |
 |---|-----------|-----------------------|
-| E1 | Falta el nombre o el precio no es un valor numérico válido. | Indica el error y no permite confirmar el cambio. |
+| E1 | Falta el nombre o el precio no es un número mayor a cero. | Indica el error y no permite confirmar el cambio. |
 | E2 | No se modificó ningún dato. | Informa que no hay cambios y no guarda nada. |
 | E3 | Se inactiva un producto con stock disponible. | Advierte la cantidad existente y solicita una confirmación explícita antes de inactivarlo. |
 | E4 | Se intenta inactivar un producto ya inactivo o reactivar uno ya activo. | No ofrece esa acción e informa el estado actual. |
@@ -826,4 +829,43 @@ No hay actores secundarios en el MVP: WhatsApp e Instagram son canales externos 
 | Rendimiento | Resultados en pocos segundos; valor objetivo a definir. |
 | Frecuencia | Baja: al revisar diferencias de stock o antes de una compra. |
 | Importancia | Media: hace efectiva la trazabilidad de las correcciones. |
+| Urgencia | Baja a media. |
+
+---
+
+## CU-20 — Inactivar o reactivar una variante
+
+| Campo | Detalle |
+|-------|---------|
+| Identificador | CU-20 |
+| Nombre | Inactivar o reactivar una variante |
+| Descripción | La propietaria inactiva una variante que cargó por error o que dejó de vender, o reactiva una variante inactiva, sin perder su cantidad, sus ventas ni su historial. |
+| Actores | Principal: Propietaria / Secundario: Ninguno |
+| Precondiciones | La propietaria accedió al sistema. La variante existe y su producto está activo. |
+| Postcondiciones | Éxito: la variante queda inactiva (o activa) conservando su cantidad, ventas e historial. Fallo: el estado de la variante no cambia. |
+
+### Secuencia normal
+
+| # | Acción (actor) | Reacción (sistema) |
+|---|----------------|--------------------|
+| 1 | Selecciona una variante desde el detalle de un producto (CU-05). | Muestra sus atributos, su cantidad y su estado, y ofrece la acción que corresponde: inactivar si está activa, reactivar si está inactiva. |
+| 2 | Elige inactivar o reactivar. | Muestra un resumen del efecto: al inactivar, deja de ofrecerse en ventas y búsquedas normales y no admite correcciones de stock; al reactivar, vuelve a ofrecerse con su cantidad conservada. Solicita confirmación. |
+| 3 | Confirma. | Cambia el estado de la variante sin modificar su cantidad, sus ventas ni su historial. |
+| 4 | — | Informa que el cambio fue realizado y muestra la variante con su estado actualizado. |
+
+### Excepciones
+
+| # | Situación | Respuesta del sistema |
+|---|-----------|-----------------------|
+| E1 | Se inactiva una variante con stock disponible o que es la única variante activa del producto. | Advierte la cantidad existente o que el producto quedará sin variantes activas, y solicita una confirmación explícita. |
+| E2 | Se intenta inactivar una variante ya inactiva o reactivar una ya activa. | No ofrece esa acción e informa el estado actual. |
+| E3 | El producto está inactivo. | No ofrece la acción e indica que debe reactivarse primero el producto (CU-18). |
+| E4 | La propietaria cancela antes de confirmar. | La variante permanece sin cambios. |
+| E5 | Se pierde la conexión al confirmar. | Informa que no pudo guardar y mantiene la variante sin cambios. |
+
+| Campo | Detalle |
+|-------|---------|
+| Rendimiento | Cambio de estado inmediato desde el celular; valor objetivo a definir. |
+| Frecuencia | Muy baja: ante una variante cargada por error o que se deja de vender. |
+| Importancia | Media: evita que una variante inexistente figure como agotada y sugiera una reposición errónea. |
 | Urgencia | Baja a media. |
