@@ -227,7 +227,8 @@ por nombre y operarse cómodamente desde el celular.
 
 **Casos de uso asociados:** CU-03, CU-04, CU-18, CU-19, CU-20 (CU-05 como origen)
 
-**Wireframe:** Pendiente; guardar como `diagramas/wireframes/02-detalle-producto.png`.
+**Wireframe:** Elaborado en Figma (enlace en `diagramas/wireframes/wireframe.md`);
+pendiente de ajuste por la inactivación de variantes (DEC-009).
 
 **Navegación:** Viene de UI-01 (al tocar un resultado) y de UI-03 (tras guardar un
 producto). Va a UI-03 (editar producto, agregar variante), UI-05 (asignar o
